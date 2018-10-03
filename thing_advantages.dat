@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of special Advantages for the game system.
+      Advantages confer their effects through scripts that apply the necessary changes
+      to the appropriate traits.
+
+      Advantages influence traits, so all adjustments must be applied prior to when the
+      final trait value is calculated. The script timing used below (PreTraits/5000)
+      ensures that we satisfy this requirement. All Advantages should be designated as
+      "unique" so that they can only be selected a single time by the user.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- AREA KNOWLEDGE -->
+  <thing
+    id="adAreaKnow"
+    name="Area Knowledge"
+    compset="Advantage"
+    isunique="no"
+    description="A Character with this  Advantage has thorough knowledge  of the terrain and  landmarks  which dominate a specific area. The  area  with which a Character is  familiar must be exactly specified  when  this  Advantage  is  purchased.  This  Advantage  may  be  purchased  more  than  once for  Characters familiar with more  than one area.{br}{br}A Character  with  this  Advantage can  automatically  locate  any  feature  or  landmark  within  the  area  by  gaining  RAPs on a Perception Check against an OV/RV of 2/2 ('where is the nearest  public  phone?', 'which  bayou  leads  to  LaBostrie's shack?', 'where  is  Wayne Field?' and  so on).  Additionally, a Character with Area Knowledge receives a +2 Column shift bonus to  his OV/RV against Perception Checks made to detect  him  while he  is  using  the Thief (Stealth) Subskill within the area. Similarly, the character receives a -2 Column Shift modifier to his target's OV/RV when making Perception Check to detect others who are using Stealth in the area.{br}{br}Such stealth  modifiers are discretionary, as Batman's Area Knowledge of Gotham City would aid him  while attempting to hide in an alley, but  probably  would  not help  him  sneak  around inside the Penguin's Gotham City hide out.  Likewise, a Green Lantern  who is  intimately familiar with  his  Space  sector wouldn't necessarily know every back alley and rooftop therein.">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate. -->
+    <fieldval field="usrLabelAr" value="Area Size"/>
+    <arrayval field="usrArray" index="0" value="Neighborhood"/>
+    <arrayval field="usrArray" index="1" value="City"/>
+    <arrayval field="usrArray" index="2" value="State/Province"/>
+    <arrayval field="usrArray" index="3" value="Country"/>
+    <arrayval field="usrArray" index="4" value="Continent"/>
+    <arrayval field="usrArray" index="5" value="Planet"/>
+    <arrayval field="usrArray" index="6" value="Solar System"/>
+    <arrayval field="usrArray" index="7" value="Galaxy/Dimension"/>
+    <arrayval field="usrArray" index="8" value="Space Sector"/>
+    <arrayval field="usrArray" index="9" value="Known Universe"/>
+   
+
+	<tag group="User" tag="NeedDomain"/>
+	
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Advantage"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated Advantages)
+      doneif (field[pwActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+	
+    <!-- We have a variable cost, so recalc based on user select. Each Advantage must be costed to account for the HP multiplier -->
+    <eval index="2" phase="Traits" priority="11000">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+      ~if this Advantage is not added directly to the hero (i.e. an advance), skip it entirely
+      doneif (origin.ishero = 0)
+
+      ~adjust the resource appropriately
+	  var cost as number
+	  if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+		cost = 10
+	  elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+		cost = 20
+	  elseif (compare(field[usrSelect].text,field[usrArray].arraytext[2]) = 0) then
+		cost = 30
+	  elseif (compare(field[usrSelect].text,field[usrArray].arraytext[3]) = 0) then
+		cost = 40
+	  elseif (compare(field[usrSelect].text,field[usrArray].arraytext[4]) = 0) then
+		cost = 50
+	  elseif (compare(field[usrSelect].text,field[usrArray].arraytext[5]) = 0) then
+		cost = 75
+	  elseif (compare(field[usrSelect].text,field[usrArray].arraytext[6]) = 0) then
+		cost = 100
+	  elseif (compare(field[usrSelect].text,field[usrArray].arraytext[7]) = 0) then
+		cost = 125
+	  elseif (compare(field[usrSelect].text,field[usrArray].arraytext[8]) = 0) then
+		cost = 150
+	  elseif (compare(field[usrSelect].text,field[usrArray].arraytext[9]) = 0) then
+		cost = 200
+	  endif
+	  
+	  cost = cost * herofield[acHPMult].value
+      hero.child[resHP].field[resSpent].value += cost
+	  perform assignstr["HPCost." & cost]
+      ]]></eval>	
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+
+   <!-- Attractive -->
+  <thing
+    id="adAttract"
+    name="Attractive"
+    compset="Advantage"
+    isunique="yes"
+    description="A Character with this Advantage is extremely  physically  attractive. Such a Character receives a -1 Column Shift modifier to the OV of any  Persuasion attempt made against members of the opposite sex.  For further information, see Chapter Six: Character Interaction.">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Area Size"/>
+    <arrayval field="usrArray" index="0" value="Neighborhood"/>   
+    -->
+	
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Advantage"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+	
+	<!-- All non-variable cost items should have this tag -->
+	<tag group="HPCost" tag="15"/>	
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated Advantages)
+      doneif (field[pwActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+	
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+
+   <!-- BUDDY -->
+  <thing
+    id="adBuddy"
+    name="Buddy"
+    compset="Advantage"
+    isunique="no"
+    description="">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Area Size"/>
+    <arrayval field="usrArray" index="0" value="Neighborhood"/>   
+    -->
+	
+	<tag group="User" tag="NeedDomain"/>
+	
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Advantage"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+	<!-- All non-variable cost items should have this tag -->
+	<tag group="HPCost" tag="10"/>	
+	
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated Advantages)
+      doneif (field[pwActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+	
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+
+  <!-- CONNOISSEUR -->
+  <thing
+    id="adConnois"
+    name="Connoisseur"
+    compset="Advantage"
+    isunique="yes"
+    description="">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Area Size"/>
+    <arrayval field="usrArray" index="0" value="Neighborhood"/>   
+    -->
+	
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Advantage"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+	<!-- All non-variable cost items should have this tag -->
+	<tag group="HPCost" tag="5"/>
+	
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated Advantages)
+      doneif (field[pwActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+	
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+
+  <!-- FREE ACCESS -->
+  <thing
+    id="adFreeAcc"
+    name="Free Access"
+    compset="Advantage"
+    isunique="yes"
+    description="">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Area Size"/>
+    <arrayval field="usrArray" index="0" value="Neighborhood"/>   
+    -->
+	
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Advantage"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+	
+	<tag group="User" tag="NeedDomain"/>
+	
+	<!-- All non-variable cost items should have this tag -->
+	<tag group="HPCost" tag="10"/>	
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated Advantages)
+      doneif (field[pwActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+
+  <!-- Gadget -->
+  <thing
+    id="adGadget"
+    name="Gadget"
+    compset="Advantage"
+    isunique="no"
+    description="">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Area Size"/>
+    <arrayval field="usrArray" index="0" value="Neighborhood"/>   
+    -->
+	
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Advantage"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated Advantages)
+      doneif (field[pwActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+	
+    <!-- We have a variable cost, so recalc based on user select. Each Advantage must be costed to account for the HP multiplier -->
+    <eval index="2" phase="Traits" priority="11000">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+      ~if this Advantage is not added directly to the hero (i.e. an advance), skip it entirely
+      doneif (origin.ishero = 0)
+
+      ~adjust the resource appropriately
+	  var cost as number
+	  cost = 10
+	  
+	  cost = cost * herofield[acHPMult].value
+      hero.child[resHP].field[resSpent].value += cost
+	  perform assignstr["HPCost." & cost]
+      ]]></eval>	
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+
+   <!-- Genius -->
+  <thing
+    id="adGenius"
+    name="Genius"
+    compset="Advantage"
+    isunique="yes"
+    description="">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Area Size"/>
+    <arrayval field="usrArray" index="0" value="Neighborhood"/>   
+    -->
+	
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Advantage"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+	<!-- All non-variable cost items should have this tag -->
+	<tag group="HPCost" tag="25"/>	
+	
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated Advantages)
+      doneif (field[pwActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+	
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+
+  <!-- Gift of Gab -->
+  <thing
+    id="adGiftGab"
+    name="Gift of Gab"
+    compset="Advantage"
+    isunique="yes"
+    description="">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Area Size"/>
+    <arrayval field="usrArray" index="0" value="Neighborhood"/>   
+    -->
+	
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Advantage"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+	
+	<!-- All non-variable cost items should have this tag -->
+	<tag group="HPCost" tag="20"/>
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated Advantages)
+      doneif (field[pwActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+	
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+
+  <!-- Headquarters -->
+  <thing
+    id="adHeadQuar"
+    name="Headquarters"
+    compset="Advantage"
+    isunique="yes"
+    description="">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.-->
+    <fieldval field="usrLabelAr" value="Size"/>
+    <arrayval field="usrArray" index="0" value="Confined"/>   
+    <arrayval field="usrArray" index="1" value="Expansive"/>   
+    
+	
+    <!-- If the ability can only be selected at character creation, assign this tag-->
+    <tag group="User" tag="CreateOnly"/>
+    
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Advantage"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated Advantages)
+      doneif (field[pwActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+	
+    <!-- We have a variable cost, so recalc based on user select. Each Advantage must be costed to account for the HP multiplier -->
+    <eval index="2" phase="Traits" priority="11000">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+      ~if this Advantage is not added directly to the hero (i.e. an advance), skip it entirely
+      doneif (origin.ishero = 0)
+
+      ~adjust the resource appropriately
+	  var cost as number
+	  if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+		cost = 10
+	  elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then
+		cost = 15
+	  endif
+	  
+	  cost = cost * herofield[acHPMult].value
+      hero.child[resHP].field[resSpent].value += cost
+	  perform assignstr["HPCost." & cost]
+      ]]></eval>	
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+
+
+  </document>

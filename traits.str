@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definitions of components associated with traits such as
+      attributes, skills, special abilities, etc.
+-->
+
+<document signature="Hero Lab Structure">
+
+  <!-- Trait component
+        All traits derive from this component and share these mechanisms in common
+  -->
+  <component
+    id="Trait"
+    name="Trait"
+    autocompset="no"
+    hasshortname="yes"
+    ispublic="no">
+
+    <!-- Abbreviation for use in places like the TacCon -->
+    <field
+      id="trtAbbrev"
+      name="Abbreviation"
+      type="static"
+      maxlength="6">
+      </field>
+
+    <!-- Minimum user-assigned value for the trait -->
+    <field
+      id="trtMinimum"
+      name="Minimum Value"
+      type="derived">
+      </field>
+
+    <!-- Maximum user-assigned value for the trait -->
+    <field
+      id="trtMaximum"
+      name="Maximum Value"
+      type="derived"
+      defvalue="30">
+      </field>
+
+    <!-- User value assigned for the trait -->
+    <field
+      id="trtUser"
+      name="User Value"
+      type="user"
+      usedelta="yes"
+      maxfinal="50">
+      <!-- Bound the user value to the limits established for the trait -->
+      <bound phase="Traits" priority="1000" name="Bound trtUser">
+        <before name="Calc trtFinal"/><![CDATA[
+        @minimum = field[trtMinimum].value
+        @maximum = field[trtMaximum].value
+        ]]></bound>
+      <!-- Final value for display is the fully adjusted net value that incorporates
+            all adjustments from other sources
+      -->
+      <finalize><![CDATA[
+        ~if we're in creation mode and not autonomous, we can't be modified
+        if (hero.tagis[mode.creation] + !autonomous >= 2) then
+          @text = "{bmp forbidden_up}"
+        else
+          @text = field[trtFinal].value
+          endif
+        ]]></finalize>
+      </field>
+
+    <!-- Bonuses applied to the trait (e.g. from other abilities) -->
+    <field
+      id="trtBonus"
+      name="Bonus Value"
+      type="derived">
+      </field>
+
+    <!-- In-play bonuses applied to the trait -->
+    <field
+      id="trtInPlay"
+      name="In-Play Bonus"
+      type="derived">
+      </field>
+
+    <!-- Final value for the trait -->
+    <field
+      id="trtFinal"
+      name="Final Value"
+      type="derived">
+      <!-- Calculate the final value from the three distinct pieces -->
+      <calculate phase="Traits" priority="3000" name="Calc trtFinal"><![CDATA[
+        ~Note! If you change this calculation, you may need to change the similar
+        ~       calculation in the "Derived" component.
+        @value = field[trtUser].value + field[trtBonus].value + field[trtInPlay].value
+        ]]></calculate>
+      </field>
+
+    <!-- Set the delta for the user value to be the current bonuses
+        NOTE! This is necessary so incrementers have proper values when edited by the user.
+        -->
+    <eval index="1" phase="Render" priority="5000"><![CDATA[
+      field[trtUser].delta = field[trtBonus].value + field[trtInPlay].value
+      ]]></eval>
+
+    <!-- If the trait is at its minimum/maximum, assign a tag to preclude further advancements -->
+    <eval index="2" phase="Final" priority="5000"><![CDATA[
+      ~base our test on the adjusted trait value, sans any in-play adjustments
+      var trait as number
+      trait = field[trtUser].value + field[trtBonus].value
+      if (trait <= field[trtMinimum].value) then
+        perform assign[Helper.Minimum]
+      elseif (trait >= field[trtMaximum].value) then
+        perform assign[Helper.Maximum]
+        endif
+      ]]></eval>
+
+    </component>
+
+
+  <!-- Attribute component
+        Each attribute possessed by the actor derives from this component
+  -->
+  <component
+    id="Attribute"
+    name="Attribute"
+    autocompset="no">
+
+    <field
+      id="attIndex"
+      name="Benchmark Index"
+      type="derived">
+      </field>	
+	  
+	 <field
+      id="attItalic"
+      name="Italicized?"
+      type="user"
+      minvalue="0"
+      maxvalue="1">
+      </field>
+	  
+    <!-- Each skill needs its own identity tag so existing skills can be identified during advancement -->
+    <identity group="Attribute"/>	  
+		
+    <!-- Attributes have a minimum trait value of 1 -->
+    <eval index="1" phase="Initialize" priority="3000"><![CDATA[
+	   perform forward[Attribute.?]
+      field[trtMinimum].value = 0
+      ]]></eval>
+
+    <!-- Find the cost on the AP Purchase cost table -->
+    <eval index="2" phase="Traits" priority="10000">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+	  var fc as number
+	  var cost as number
+	  var finalcost as number
+	  var finaldiff as number
+	   
+	  if (container.ishero <> 0) then
+		  ~doneif (isuser = 0)
+		  if (tagis[AttrType.ActOpp] <> 0) then
+			fc = 7
+		  elseif (tagis[thingid.attrWealth] <> 0) then
+			fc = 2
+		  else
+			fc = 6
+		  endif
+		  
+		  ~if fc > 10, purchase for fc 10 + the difference
+		  if (fc <= 10) then
+			finalcost = #purchcost[field[trtFinal].value,fc] 
+		  else
+			finaldiff = fc - 10
+			finalcost = #purchcost[field[trtFinal].value,10] 
+			finalcost += #purchcost[field[trtFinal].value,finaldiff]
+		  endif		
+		  hero.child[resHP].field[resSpent].value += finalcost
+		  
+		  ~apply our cost tag
+		   perform assignstr["HPCost." & cost]
+	  else
+		  if (tagis[AttrType.Gadget] <> 0) then
+			fc = 1
+		  elseif (tagis[AttrType.Resistance] <> 0) then
+			fc = 6
+		  endif
+		  if (field[attItalic].value <> 0) then
+			fc += 2
+		  endif
+		  var fcmod as number
+		  fcmod = #relnumfc[container.childfound[GadgetInfo].field[gdRelNum].value]
+		  fc += fcmod
+		  if (container.childfound[GadgetInfo].field[gdHardened].value + tagis[thingid.attrBod] > 1) then
+			fc += 2
+		  endif
+		
+		  ~if fc > 10, purchase for fc 10 + the difference
+		  if (fc <= 10) then
+			finalcost = #purchcost[field[trtFinal].value,fc] 
+		  else
+			finaldiff = fc - 10
+			finalcost = #purchcost[field[trtFinal].value,10] 
+			finalcost += #purchcost[field[trtFinal].value,finaldiff]
+		  endif	
+		  container.child[resGadHP].field[resSpent].value += finalcost
+	  endif	   
+      ]]></eval>
+
+    </component>
+
+
+  <!-- Skill component
+        Each skill derives from this component
+  -->
+  <component
+    id="Skill"
+    name="Skill"
+	addbehavior="never"
+    autocompset="no">
+	
+    <field
+      id="sklFC"
+      name="Factor Value"
+      type="derived">
+      <!-- Calculate the factor cost taking into account subskils -->
+      <calculate phase="Traits" priority="3000" name="Calc trtFinal"><![CDATA[
+        ~Note! If you change this calculation, you may need to change the similar
+        ~       calculation in the "Derived" component.
+		var fc as number
+		var subskls as number
+
+		
+		fc = tagvalue[FactorCost.?]
+		subskls = tagvalue[NumSubs.?]
+        
+		@value = fc + subskls
+        ]]></calculate>
+      </field>	
+	  
+    <!-- Each skill is associated with a specific attribute that must be identified -->
+    <linkage linkage="skillAttr" optional="no"/>
+
+    <!-- Each skill needs its own identity tag so existing skills can be identified during advancement -->
+    <identity group="Skill"/>
+
+    <!-- Every skill is shown on the "Rolls" mouse-over on the Dashboard/TacCon -->
+    <tag group="DashTacCon" tag="Rolls"/>
+
+    <!-- Track the skill on the actor -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      perform forward[Skill.?]
+	  field[trtMinimum].value = 1
+      ]]></eval>
+
+    <!-- Each skill point that is allocated by the user costs 2 CP -->
+    <eval index="2" phase="Traits" priority="10000">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+		  var fc as number
+		  var finalcost as number
+		  var finaldiff	as number
+		  var basecost as number	 		  
+		  
+		  basecost = tagvalue[BaseCost.?]
+		  fc = tagvalue[FactorCost.?] 
+      
+	  ~if this skill is not added directly to the hero (i.e. an advance), skip it entirely
+      if (container.ishero <> 0) then
+		  doneif (isuser = 0)
+		  ~adjust the resource appropriately
+		  
+
+		  if (isgizmo <> 0) then
+			fc += gizmo.tagcount[Subskill.?]
+		  endif
+		  
+		  if (fc < 1) then
+			fc = 1
+		  endif	  
+			  
+		  ~if fc > 10, purchase for fc 10 + the difference
+		  if (fc <= 10) then
+			finalcost = #purchcost[field[trtFinal].value,fc] + basecost
+		  else
+			finaldiff = fc - 10
+			finalcost = #purchcost[field[trtFinal].value,10] + basecost
+			finalcost += #purchcost[field[trtFinal].value,finaldiff]
+		  endif	  
+		  hero.child[resHP].field[resSpent].value += finalcost
+			  
+		  ~apply our cost tag and adjust fc tag
+		   perform delete[FactorCost.?]
+		   perform assignstr["FactorCost." & fc]
+		   perform delete[HPCost.?]
+		   perform assignstr["HPCost." & finalcost]
+	 
+	 else
+		  var fcmod as number
+		  fcmod = #relnumfc[container.childfound[GadgetInfo].field[gdRelNum].value]
+		  fc += fcmod
+		
+		  ~if fc > 10, purchase for fc 10 + the difference
+		  if (fc <= 10) then
+			finalcost = #purchcost[field[trtFinal].value,fc] + basecost
+		  else
+			finaldiff = fc - 10
+			finalcost = #purchcost[field[trtFinal].value,10] 
+			finalcost += #purchcost[field[trtFinal].value,finaldiff] + basecost
+		  endif	
+		  container.child[resGadHP].field[resSpent].value += finalcost
+	  endif	     
+      ]]></eval>
+
+    </component>
+
+	<!-- Advantage component
+        Each advantage derives from this component
+    -->
+  <component
+    id="Advantage"
+    name="Advantage"
+    autocompset="no">
+
+	<!-- Each advantage needs its own identity tag so existing advantages can be identified during advancement -->
+    <identity group="Advantage"/>
+
+    <!-- Every advantage is shown on the "Rolls" mouse-over on the Dashboard/TacCon -->
+    <tag group="DashTacCon" tag="Rolls"/>
+
+    <!-- Track the advantage on the actor -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      perform forward[Advantage.?]
+      ]]></eval>
+
+    <!-- Each advantage must be costed to account for the HP multiplier -->
+    <eval index="2" phase="Traits" priority="10000">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+      ~if this advantage is not added directly to the hero (i.e. an advance), skip it entirely
+      doneif (origin.ishero = 0)
+
+      ~adjust the resource appropriately
+	  var cost as number
+	  cost = tagvalue[HPCost.?]
+	  cost = cost * herofield[acHPMult].value
+      hero.child[resHP].field[resSpent].value += cost
+	  
+	  ~Remove the cost tag, then reassign it
+	  perform delete[HPCost.?]
+	  perform assignstr["HPCost." & cost]
+      ]]></eval>
+
+    </component>
+
+	<!-- Drawback component
+        Each Drawback derives from this component
+    -->
+  <component
+    id="Drawback"
+    name="Drawback"
+    autocompset="no">
+
+	<!-- Each Drawback needs its own identity tag so existing Drawbacks can be identified during advancement -->
+    <identity group="Drawback"/>
+
+    <!-- Every Drawback is shown on the "Rolls" mouse-over on the Dashboard/TacCon -->
+    <tag group="DashTacCon" tag="Rolls"/>
+
+    <!-- Track the Drawback on the actor -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      perform forward[Drawback.?]
+      ]]></eval>
+
+    <!-- Each Drawback must be costed to account for the HP multiplier -->
+    <eval index="2" phase="Traits" priority="10000">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+      ~if this Drawback is not added directly to the hero (i.e. an advance), skip it entirely
+      ~doneif (origin.ishero = 0)
+
+      ~adjust the resource appropriately
+	  var cost as number
+  	  
+		  cost = tagvalue[HPCost.?]
+		  cost = cost * herofield[acHPMult].value
+		  
+		if (container.ishero <> 0) then 
+		  hero.child[resHP].field[resSpent].value -= cost
+		  
+		  ~Remove the cost tag, then reassign it
+		  perform delete[HPCost.?]
+		  perform assignstr["HPCost." & cost]
+	    else
+			container.child[resGadHP].field[resSpent].value -= cost
+		endif	
+      ]]></eval>
+
+    </component>
+
+
+  <!-- Power component
+        Each power derives from this component
+  -->
+  <component
+    id="Power"
+    name="Power"
+	addbehavior="never"	
+    autocompset="no">
+
+    <!-- Activation state of ability - we're not activated by default -->
+    <field
+      id="pwActive"
+      name="Is Activated?"
+      type="user"
+      minvalue="0"
+      maxvalue="1">
+      </field>
+
+    <field
+      id="pwLinked"
+      name="Linked?"
+      type="derived"
+      minvalue="0"
+      maxvalue="1">
+      </field>
+
+    <!-- Each power is associated with a specific attribute that must be identified -->
+    <linkage linkage="powAttr" optional="no"/>
+	
+    <!-- Each ability needs its own identity tag to detect cascading dependencies via prereqs -->
+    <identity group="Power"/>
+
+    <!-- Setup an identity tag group to track all activated abilities and adjustments -->
+    <identity group="Activated"/>
+
+    <!-- All abilities get the same tag for sorting purposes -->
+    <tag group="SpecialTab" tag="Power"/>
+
+     <!-- Track the ability on the actor -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      perform forward[Power.?]
+      ]]></eval>
+
+    <!-- If the ability is activated, designate it appropriately -->
+    <eval index="2" phase="Setup" priority="100"><![CDATA[
+      ~if we're not able to be activated, we don't qualify
+      doneif (tagis[User.Activation] = 0)
+
+      ~if we've been activated by the user, mark ourselves as activated; in addition,
+      ~forward our identity tag to our parent actor; this allows the actor to track
+      ~when abilities are activated and reflect the state to the user
+      if (field[pwActive].value <> 0) then
+        perform assign[Helper.Activated]
+        perform forward[Activated.?]
+        endif
+      ]]></eval>
+	  
+	<!-- Calculate HP cost -->
+    <eval index="3" phase="Traits" priority="10000">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+      ~if this skill is not added directly to the hero (i.e. an advance), skip it entirely
+  
+      ~adjust the resource appropriately
+      var fc as number
+	  var finalcost as number
+	  var finaldiff	as number
+	  var basecost as number
+	  
+	  basecost = tagvalue[BaseCost.?]
+	   
+	  fc = tagvalue[FactorCost.?]
+  
+	  ~fc cannot be less than 1
+	   if (fc < 1) then
+		fc = 1
+	   endif  
+	
+	if (container.ishero <> 0) then
+	  doneif (isuser = 0)	  
+	  ~if fc > 10, purchase for fc 10 + the difference
+	  if (fc <= 10) then
+		finalcost = #purchcost[field[trtFinal].value,fc] + basecost
+	  else
+		finaldiff = fc - 10
+		finalcost = #purchcost[field[trtFinal].value,10] + basecost
+		finalcost += #purchcost[field[trtFinal].value,finaldiff]
+	  endif
+	  hero.child[resHP].field[resSpent].value += finalcost
+	  
+	   perform delete[FactorCost.?]
+	   perform assignstr["FactorCost." & fc]
+	   perform delete[HPCost.?]
+   	   perform assignstr["HPCost." & finalcost]
+	 else
+	  var fcmod as number
+	  fcmod = #relnumfc[container.childfound[GadgetInfo].field[gdRelNum].value]
+	  fc += fcmod
+	
+	  ~if fc > 10, purchase for fc 10 + the difference
+	  if (fc <= 10) then
+		finalcost = #purchcost[field[trtFinal].value,fc] + basecost
+	  else
+		finaldiff = fc - 10
+		finalcost = #purchcost[field[trtFinal].value,10] 
+		finalcost += #purchcost[field[trtFinal].value,finaldiff] + basecost
+	  endif	
+	  container.child[resGadHP].field[resSpent].value += finalcost
+  endif  
+      ]]></eval>
+
+    <!-- Verify abilities that are only available at creation -->
+    <prereq message="Only available during character creation.">
+      <validate><![CDATA[
+        ~we only report this as a failure things (once added, we assume the user knows best)
+        validif (@ispick <> 0)
+
+        ~if we are not designated as creation only, we're valid
+        validif (altthing.tagis[User.CreateOnly] = 0)
+
+        ~if the mode is creation, we're valid
+        validif (state.iscreate <> 0)
+        ]]></validate>
+      </prereq>
+
+    </component>
+
+
+  <!-- Derived component
+        Each derived trait (calculated from other traits) is based upon this component
+  -->
+  <component
+    id="Derived"
+    name="Derived Trait"
+    autocompset="no">
+
+    <!-- Derived traits are based on other traits. The "calculate" script on the
+        "trtFinal" field value will work great for most traits, but NOT for derived
+        traits. Consequently, derived traits need to re-calculate the field value AFTER
+        the traits derived from are properly calculated. So the individual calculation
+        scripts for each derived trait must occur AFTER the initial "trtFinal"
+        calculation and BEFORE this derived calculation. We can also omit any "user"
+        value from the calculation since derived traits have no user-defined facet.
+        -->
+    <eval index="1" phase="Traits" priority="6000" name="Derived trtFinal"><![CDATA[
+      field[trtFinal].value = field[trtBonus].value + field[trtInPlay].value
+      ]]></eval>
+
+    </component>
+
+  <!-- Linked component
+        Each Linked trait (calculated from other traits) is based upon this component
+  -->
+  <component
+    id="Linked"
+    name="Linked Trait"
+    autocompset="no">
+
+	<field
+		id="lnkLinked"
+		name="Linked?"
+		type="derived"
+		minvalue="0"
+		maxvalue="1">
+      </field>
+
+	
+    <eval index="1" phase="Traits" priority="4000" name="Linked Trait"><![CDATA[
+	  var fc as number
+	  fc = tagvalue[FactorCost.?]
+	  fc -= 2
+	  if (fc < 1) then
+		fc = 1
+	  endif
+	  if (field[lnkLinked].value <> 0) then
+		if (islinkage[powAttr] <> 0) then
+			field[trtFinal].value = linkage[powAttr].field[trtFinal].value
+		elseif (islinkage[skillAttr] <> 0) then
+			field[trtFinal].value = linkage[skillAttr].field[trtFinal].value	
+		endif
+		field[livename].text = field[name].text & " {super}L{/super}"
+		perform delete[FactorCost.?]
+		perform assignstr["FactorCost." & fc]
+	  endif
+      ]]></eval>
+
+    </component>
+
+
+  <!-- Motivation component
+        Each Motivation derives from this component
+  -->
+  <component
+    id="Motivation"
+    name="Motivation"
+    autocompset="no">
+
+    <!-- Each motivation needs its own identity tag to configure the hero appropriately -->
+    <identity group="Motivation"/>
+
+    <!-- Track the race on the actor by assigning the appropriate tag -->
+    <eval index="1" phase="Setup" priority="5000"><![CDATA[
+      perform forward[Motivation.?]
+      ]]></eval>
+
+    </component>
+
+  <!-- Bonus component
+        Used for tracking Bonuses on Powers
+  -->
+  <component
+    id="Bonus"
+    name="Bonus"
+    autocompset="no"
+	ispublic="yes">
+	  
+	<identity group="Bonus"/>
+ 
+    <!-- Assign the tag to the container -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      perform forward[Bonus.?,parent]
+      ]]></eval>
+
+    <!-- Each Bonus must be costed to account for the HP multiplier -->
+    <eval index="2" phase="Traits" priority="1500">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+
+      ~adjust the resource appropriately
+	  var mod as number
+	  var parentcost as number
+	  var adj as number
+	  
+	  mod = tagvalue[FCMod.?]
+	  parentcost = parent.tagvalue[FactorCost.?] 
+	  adj = parentcost + mod
+	  
+	  ~Remove the cost tag, then reassign it
+	 
+	  perform parent.delete[FactorCost.?]
+	  perform parent.assignstr["FactorCost." & adj]
+      ]]></eval>	  
+    </component>
+
+  <!-- Limitation component
+        Used for tracking Limitation on Powers
+  -->
+  <component
+    id="Limitation"
+    name="Limitation"
+    autocompset="no"
+	ispublic="yes">
+	  
+	<identity group="Limitation"/>
+ 
+    <!-- Assign the tag to the container -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      perform forward[Limitation.?,parent]
+      ]]></eval>	
+	  
+    <!-- Each Bonus must be costed to account for the HP multiplier -->
+    <eval index="2" phase="Traits" priority="1500">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+      ~if this Drawback is not added directly to the hero (i.e. an advance), skip it entirely
+      ~doneif (origin.ishero = 0)
+
+      ~adjust the resource appropriately
+	  var mod as number
+	  var parentcost as number
+	  var adj as number
+	  
+	  mod = tagvalue[FCMod.?]
+	  parentcost = parent.tagvalue[FactorCost.?] 
+	  adj = parentcost - mod
+	  
+	  if (adj < 1) then
+		adj = 1
+	  endif
+	  
+	  ~Remove the cost tag, then reassign it
+	  perform parent.delete[FactorCost.?]
+	  perform parent.assignstr["FactorCost." & adj]
+      ]]></eval>	  
+    </component>
+	
+  <!-- Define various component sets associated with the components defined above.
+  -->
+
+  <!-- No compsets are auto-defined for the component -->
+
+  <!-- Attribute - all attributes derive from this compset -->
+  <compset
+    id="Attribute"
+    forceunique="yes">
+    <compref component="Attribute"/>
+    <compref component="Trait"/>
+    <compref component="CanAdvance"/>
+    </compset>
+
+  <!-- Skill - all skills derive from this compset -->
+  <compset
+    id="Skill"
+    forceunique="yes">
+    <compref component="Skill"/>
+    <compref component="Trait"/>
+    <compref component="Domain"/>
+    <compref component="Custom"/>
+    <compref component="Linked"/>
+    <compref component="CanAdvance"/>
+	<compref component="UserSelect"/>	
+    </compset>
+
+  <!-- Bonus - all bonuses derive from this compset -->
+  <compset
+    id="Bonus">
+    <compref component="Bonus"/>
+    <compref component="Trait"/>
+    <compref component="Domain"/>
+    <compref component="CanAdvance"/>
+    <compref component="Custom"/>
+    <compref component="UserSelect"/>
+    </compset>
+
+  <!-- Limitation - all limitations derive from this compset -->
+  <compset
+    id="Limitation">
+    <compref component="Limitation"/>
+    <compref component="Trait"/>
+    <compref component="Domain"/>
+    <compref component="CanAdvance"/>
+    <compref component="Custom"/>
+    <compref component="UserSelect"/>
+    </compset>
+	
+  <!-- Advantage - all advantages derive from this compset -->
+  <compset
+    id="Advantage">
+    <compref component="Advantage"/>
+    <compref component="Trait"/>
+    <compref component="Domain"/>
+    <compref component="CanAdvance"/>
+    <compref component="Custom"/>
+    <compref component="UserSelect"/>
+    </compset>
+
+  <!-- Drawback - all drawbacks derive from this compset -->
+  <compset
+    id="Drawback">
+    <compref component="Drawback"/>
+    <compref component="Trait"/>
+    <compref component="Domain"/>
+    <compref component="CanAdvance"/>
+    <compref component="Custom"/>
+    <compref component="UserSelect"/>
+    </compset>
+
+  <!-- Power - all abilities derive from this compset -->
+  <compset
+    id="Power">
+    <compref component="Power"/>
+    <compref component="Trait"/>
+    <compref component="SpecialTab"/>
+    <compref component="CanAdvance"/>
+    <compref component="Domain"/>
+    <compref component="Custom"/>
+    <compref component="Linked"/>
+	<compref component="UserSelect"/>
+    </compset>
+
+  <!-- Trait - all derived traits are based on this compset -->
+  <compset
+    id="Trait">
+    <compref component="Derived"/>
+    <compref component="Trait"/>
+    </compset>
+
+  <!-- Motivation - all motivations derive from this compset -->
+  <compset
+    id="Motivation"
+    forceunique="yes">
+    <compref component="Motivation"/>
+    </compset>
+
+  <!-- Entity for bonuses and limitations -->
+   <entity
+	  id="entMod"
+	  defaultthing="PowerInfo"
+	  form="power">
+	  <bootstrap thing="PowerInfo"/>
+	</entity>
+
+	<!-- Entity for drawbacks -->
+   <entity
+	  id="entCntHeal"
+	  defaultthing="DrawbkInfo"
+	  form="power">
+	  <bootstrap thing="DrawbkInfo"/>
+	</entity>
+  </document>

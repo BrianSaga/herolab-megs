@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Motivations -->
+  <thing
+    id="motUphold"
+    name="Upholding the Good"
+    compset="Motivation"
+    isunique="yes"
+    description="A Character with the Motivation of Upholding the Good believes steadfastly in traditional moral values: compassion, justice, truthfulness, and a resolute faith in society's laws. A Character Upholding the Good is unrelenting in the pursuit of Good and would never overstep the boundaries of the law, even if it may occasionally seem justice would be better served otherwise. A Character with the Motivation of Upholding the Good believes societal laws to be ultimately benign and will defend those laws at all costs.">
+
+    <!-- If the race confers any special abilities, bootstrap them here
+    <bootstrap thing="abSample"/>
+    -->
+
+    <!-- Define any script needed to apply changes to traits or other mechanisms
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~apply whatever adjustment(s) are needed here
+      ~hero.child[resPower].field[resMax].value += 1
+      ~#traitbonus[attrStr] += 1
+      ]]></eval>
+    -->
+
+    </thing>
+
+   <thing
+    id="motSeek"
+    name="Seeking Justice"
+    compset="Motivation"
+    isunique="yes"
+    description="A Character with the Motivation of Seeking Justice will ignore anything which interferes with a quest. This hero will  willingly subvert society's laws, some of which he believes help  protect criminals. This hero will seek out a criminal at whatever social level the criminal exists, matching deed for deed, violence with violence.">
+
+    <!-- If the race confers any special abilities, bootstrap them here
+    <bootstrap thing="abSample"/>
+    -->
+
+    <!-- Define any script needed to apply changes to traits or other mechanisms
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~apply whatever adjustment(s) are needed here
+      ~hero.child[resPower].field[resMax].value += 1
+      ~#traitbonus[attrStr] += 1
+      ]]></eval>
+    -->
+
+    </thing>
+
+   <thing
+    id="motResp"
+    name="Responsibility of Power"
+    compset="Motivation"
+    isunique="yes"
+    description="A Character with the Motivation of Responsibility of Power decides to change as a result of the awesome Powers and Skills which separate him from the rest of the world. The Character, no longer ordinary, accepts that with great power comes great responsibility. Such a hero will generally uphold the Jaws of society, realizing that he is an example to others and that such power demands a more disciplined lifestyle than the hero might otherwise have chosen. However, the course of action this responsibility dictates occasionally strains such a hero's patience.">
+
+    <!-- If the race confers any special abilities, bootstrap them here
+    <bootstrap thing="abSample"/>
+    -->
+
+    <!-- Define any script needed to apply changes to traits or other mechanisms
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~apply whatever adjustment(s) are needed here
+      ~hero.child[resPower].field[resMax].value += 1
+      ~#traitbonus[attrStr] += 1
+      ]]></eval>
+    -->
+
+    </thing>
+
+  <thing
+    id="motThrill"
+    name="Thrill of Adventure"
+    compset="Motivation"
+    isunique="yes"
+    description="A Character with the Motivation of Responsibility of Power decides to change as a result of the awesome Powers and Skills which separate him from the rest of the world. The Character, no longer ordinary, accepts that with great power comes great responsibility. Such a hero will generally uphold the Jaws of society, realizing that he is an example to others and that such power demands a more disciplined lifestyle than the hero might otherwise have chosen. However, the course of action this responsibility dictates occasionally strains such a hero's patience.">
+
+    <!-- If the race confers any special abilities, bootstrap them here
+    <bootstrap thing="abSample"/>
+    -->
+
+    <!-- Define any script needed to apply changes to traits or other mechanisms
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~apply whatever adjustment(s) are needed here
+      ~hero.child[resPower].field[resMax].value += 1
+      ~#traitbonus[attrStr] += 1
+      ]]></eval>
+    -->
+
+    </thing>
+
+   <thing
+    id="motUnwant"
+    name="Unwanted Power"
+    compset="Motivation"
+    isunique="yes"
+    description="A Character with the Motivation of Unwanted Power was usually created by accident or at the whim of others. This hero in no way desires such Powers and abilities. the possession of which often brings severe personal consequences. This is a reluctant hero, one who would gladly return to his former life if given the opponunity. Such a Character often joins a hero team, seeking an acceptance denied the Character in the normal world. This hero regularly forms extremely close, personal attachments to other heroes and is very loyal to the team. A hero with Unwanted Power may strongly feel that society owes him a debt and can often be short-tempered.">
+
+    <!-- If the race confers any special abilities, bootstrap them here
+    <bootstrap thing="abSample"/>
+    -->
+
+    <!-- Define any script needed to apply changes to traits or other mechanisms
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~apply whatever adjustment(s) are needed here
+      ~hero.child[resPower].field[resMax].value += 1
+      ~#traitbonus[attrStr] += 1
+      ]]></eval>
+    -->
+
+    </thing>
+
+	<thing
+    id="motMercen"
+    name="Mercenary"
+    compset="Motivation"
+    isunique="yes"
+    description="This Character commits crimes for the money involved. which may come from the crime itself, or the villain may be paid be an outside source to commit the crime. Being an outlaw business person. In effect, a Mercenary will not commit a crime if the fee is not right. A Mercenary possesses his own particular standards: some will not hesitate to kill in order to complete a crime, but for most Mercenaries, murder necessitates a much higher fee. A Mercenary will regularly negotiate fees, for crime is a business, not a religious calling.">
+
+    <!-- If the race confers any special abilities, bootstrap them here
+    <bootstrap thing="abSample"/>
+    -->
+
+    <!-- Define any script needed to apply changes to traits or other mechanisms
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~apply whatever adjustment(s) are needed here
+      ~hero.child[resPower].field[resMax].value += 1
+      ~#traitbonus[attrStr] += 1
+      ]]></eval>
+    -->
+
+    </thing>
+
+	<thing
+    id="motNih"
+    name="Nihilist"
+    compset="Motivation"
+    isunique="yes"
+    description="This Character desires, above all else. complete destruction on as wide a scale as possible. The villain is suicidal, thinking nothing of taking his life as long us thousands of others die in the process. Being driven by an unreasoning hatred of all things, a Nihilist will often enter Killing Combat, making the use of Persuasion on the villain neilrly impossible.">
+
+    <!-- If the race confers any special abilities, bootstrap them here
+    <bootstrap thing="abSample"/>
+    -->
+
+    <!-- Define any script needed to apply changes to traits or other mechanisms
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~apply whatever adjustment(s) are needed here
+      ~hero.child[resPower].field[resMax].value += 1
+      ~#traitbonus[attrStr] += 1
+      ]]></eval>
+    -->
+
+    </thing>
+
+	<thing
+    id="motPower"
+    name="Power Lust"
+    compset="Motivation"
+    isunique="yes"
+    description="This Character wants to rule the country, world, galaxy, or universe, depending on the extent of an individual's ambitions and abilities. The villain will not seem unreasonable in demeanor as long as everything goes his own way. Characters governed by this Motivation include leaders of 'noble causes' who espouse concepts like, 'My rule will benefit all of you, for only I con save/help/lead you. Oppose me, and all humanity will suffer!' A villain with Power Lust considers murder to be a perfectly viable means to an end, and will use it according to his own evil standards. However, he will not kill his enemies simply for killing's sake.">
+
+    <!-- If the race confers any special abilities, bootstrap them here
+    <bootstrap thing="abSample"/>
+    -->
+
+    <!-- Define any script needed to apply changes to traits or other mechanisms
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~apply whatever adjustment(s) are needed here
+      ~hero.child[resPower].field[resMax].value += 1
+      ~#traitbonus[attrStr] += 1
+      ]]></eval>
+    -->
+
+    </thing>
+
+	<thing
+    id="motPsycho"
+    name="Psychopathic"
+    compset="Motivation"
+    isunique="yes"
+    description="This Character is ruled by uncontrollable negative emotions such as hatred, jealousy, fear, and arrogance, which allow the villain to feel justified in committing evil. The psychopath may be completely insane or simply be governed by a twisted and evil morality. The act of killing does not bother the psychopath, whose feelings and reasoning are often incomprehensibly warped. Most villains described as 'pure evil' would be classified as psychopaths."> 
+	
+    <!-- If the race confers any special abilities, bootstrap them here
+    <bootstrap thing="abSample"/>
+    -->
+
+    <!-- Define any script needed to apply changes to traits or other mechanisms
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~apply whatever adjustment(s) are needed here
+      ~hero.child[resPower].field[resMax].value += 1
+      ~#traitbonus[attrStr] += 1
+      ]]></eval>
+    -->
+
+    </thing>
+
+	<thing
+    id="motThrSkr"
+    name="Thrill Seeker"
+    compset="Motivation"
+    isunique="yes"
+    description="This Character lives in the criminal world for kicks. Unlike his heroic counterpart, this Thrill Seeker has no stomach whatsoever for confrontation. If events turn against this villain, he turns into a coward. The Thrill Seeker will not attempt to kill a hero unless terribly desperate: heroes have been known to become upset by such attempts and might then hurt the villain, which is certainly not any fun."> 
+	
+    <!-- If the race confers any special abilities, bootstrap them here
+    <bootstrap thing="abSample"/>
+    -->
+
+    <!-- Define any script needed to apply changes to traits or other mechanisms
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~apply whatever adjustment(s) are needed here
+      ~hero.child[resPower].field[resMax].value += 1
+      ~#traitbonus[attrStr] += 1
+      ]]></eval>
+    -->
+
+    </thing>
+
+
+  </document>

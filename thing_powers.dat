@@ -1,0 +1,3820 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Acid Power -->
+  <thing
+    id="powAcid"
+    name="Acid"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Acid"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrBod"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Bomb Power -->
+  <thing
+    id="powBomb"
+    name="Bomb"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Bomb"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>	
+	<tag group="Range" tag="Special"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Claws Power -->
+  <thing
+    id="powClaws"
+    name="Claws"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Bomb"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Touch"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="25"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="1"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrDex"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Cling Power -->
+  <thing
+    id="powCling"
+    name="Cling"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Cling"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Touch"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="2"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Cold Immunity Power -->
+  <thing
+    id="powColdIm"
+    name="Cold Immunity"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Cold"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrBod"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Darkness Power -->
+  <thing
+    id="powDark"
+    name="Darkness"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Dark"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="7"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Digging Power -->
+  <thing
+    id="powDig"
+    name="Digging"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Dig"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Touch"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="2"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Disintegration Power -->
+  <thing
+    id="powDisint"
+    name="Disintegration"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Disi"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Touch"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="100"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Energy Absorption Power -->
+  <thing
+    id="powEnAb"
+    name="Energy Absorption"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="EnAb"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="25"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="5"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrBod"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Energy Blast Power -->
+  <thing
+    id="powEnBlast"
+    name="Energy Blast"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="EnBl"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrBod"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Extra Limb Power -->
+  <thing
+    id="powExtra"
+    name="Extra Limb"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="EnBl"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<tag group="User" tag="NeedDomain"/>
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrBod"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Flame Being Power -->
+  <thing
+    id="powFlame"
+    name="Flame Being"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Flame"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="6"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Flame Immunity Power -->
+  <thing
+    id="powFlImm"
+    name="Flame Immunity"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="FlIm"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrBod"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Flame Project Power -->
+  <thing
+    id="powFlProj"
+    name="Flame Project"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="FlPr"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Flash Power -->
+  <thing
+    id="powFlash"
+    name="Flash"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Flash"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Flight Power -->
+  <thing
+    id="powFlight"
+    name="Flight"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Flash"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrDex"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Fog Power -->
+  <thing
+    id="powFog"
+    name="Fog"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Flash"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Force Field Power -->
+  <thing
+    id="powForFld"
+    name="Force Field"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Ffld"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="30"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="6"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Force Shield Power -->
+  <thing
+    id="powShield"
+    name="Force Shield"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Shld"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="5"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Gliding Power -->
+  <thing
+    id="powGliding"
+    name="Gliding"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Glid"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="2"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrDex"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Glue Power -->
+  <thing
+    id="powGlue"
+    name="Glue"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Glue"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="5"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Growth Power -->
+  <thing
+    id="powGrowth"
+    name="Growth"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Grow"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="35"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="10"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Hypersensitive Touch Power -->
+  <thing
+    id="powHypTch"
+    name="Hypersensitive Touch"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Hyp"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Touch"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="2"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrDex"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Ice Production Power -->
+  <thing
+    id="powIceProd"
+    name="Ice Production"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="IcPr"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="AutoDice"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="10"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Icing Power -->
+  <thing
+    id="powIcing"
+    name="Icing"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Icng"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="5"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Invisibility Power -->
+  <thing
+    id="powInvis"
+    name="Invisibility"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Invis"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="45"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrDex"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Invulnerability Power -->
+  <thing
+    id="powInvul"
+    name="Invulnerability"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Invu"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="7"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrBod"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Jumping Power -->
+  <thing
+    id="powJump"
+    name="Jumping"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Jump"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="2"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Lightning Power -->
+  <thing
+    id="powLight"
+    name="Lightning"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Light"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Mimic Power -->
+  <thing
+    id="powMimic"
+    name="Mimic"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Mimc"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="50"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="10"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrDex"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+  
+  <!-- Mutation Power -->
+  <thing
+    id="powMutat"
+    name="Mutation"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Mut"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Touch"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="200"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="10"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Omni-arm Power -->
+  <thing
+    id="powOmniarm"
+    name="Omni-Arm"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Omni"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="5"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Paralysis Power -->
+  <thing
+    id="powParal"
+    name="Paralysis"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Para"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Poison Touch Power -->
+  <thing
+    id="powPoiTch"
+    name="Poison Touch"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Pois"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Touch"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="30"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Projectile Weapons Power -->
+  <thing
+    id="powProjWpn"
+    name="Projectile Weapons"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Proj"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="2"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Running Power -->
+  <thing
+    id="powRunning"
+    name="Running"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Run"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="0"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="2"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrDex"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Sealed Systems Power -->
+  <thing
+    id="powSealed"
+    name="Sealed Systems"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Seal"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="5"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrBod"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Self Manipulation Power -->
+  <thing
+    id="powSelfMan"
+    name="Self Manipulation"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Self"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="75"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="10"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrDex"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Shade Power -->
+  <thing
+    id="powShade"
+    name="Shade"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Shad"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrBod"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Shrinking Power -->
+  <thing
+    id="powShrink"
+    name="Shrinking"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Shrk"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="5"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Skin Armor Power -->
+  <thing
+    id="powSkinArm"
+    name="Skin Armor"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Skin"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="50"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="5"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrBod"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Snare Power -->
+  <thing
+    id="powSnare"
+    name="Snare"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Snare"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Solar Sustenance Power -->
+  <thing
+    id="powSolarSu"
+    name="Solar Sustenance"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Solar"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="1"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrBod"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Sonic Beam Power -->
+  <thing
+    id="powSonicBm"
+    name="Sonic Beam"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Sonic"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Split Power -->
+  <thing
+    id="powSplit"
+    name="Split"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Split"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="50"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="10"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrDex"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Stretching Power -->
+  <thing
+    id="powStretch"
+    name="Stretching"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Strch"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="6"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrDex"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Superspeed Power -->
+  <thing
+    id="powSuperSp"
+    name="Super Speed"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="SupSd"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="25"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="5"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrDex"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+	<!-- Swimming Power -->
+  <thing
+    id="powSwim"
+    name="Swimming"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Swim"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="2"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Systemic Antidote Power -->
+  <thing
+    id="powSysAnt"
+    name="Systemic Antidote"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="SyAn"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrBod"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Two Dimensional Power -->
+  <thing
+    id="powTwoDim"
+    name="Two Dimensional"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="TwoDi"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="75"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="5"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrDex"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+
+  <!-- Vibe Power -->
+  <thing
+    id="powVibe"
+    name="Vibe"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Vibe"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrStr"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+
+  <!-- Water Freedom Power -->
+  <thing
+    id="powWater"
+    name="Water Freedom"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Wtr"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Physical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrDex"/>
+	<child
+		entity="entMod">
+	</child>
+	</thing>
+
+	
+<!-- Mental Powers-->
+	
+  <!-- Adaptation Power -->
+  <thing
+    id="powAdapt"
+    name="Adaptation"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Adpt"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Special"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="1000"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="10"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>	
+
+  <!-- Air Control Power -->
+  <thing
+    id="powAirCtl"
+    name="Air Control"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="AirCl"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="9"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Air Walking Power -->
+  <thing
+    id="powAirWalk"
+    name="Air Walking"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="AirWk"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="2"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Analytical Smell/Tracking Sense Power -->
+  <thing
+    id="powAnaSmel"
+    name="Analytical Smell/Tracking Sense"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="AnaSm"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Animal Mimicry Power -->
+  <thing
+    id="powAnimal"
+    name="Animal Mimicry"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="AnMim"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="50"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="5"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Attraction/Repulsion Power -->
+  <thing
+    id="powAttRep"
+    name="Attraction/Repulsion"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="AtRep"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrMin"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Cell Rot Power -->
+  <thing
+    id="powCellRot"
+    name="Cell Rot"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Cell"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Touch"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Chameleon Power -->
+  <thing
+    id="powChamel"
+    name="Chameleon"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Cham"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>	
+
+  <!-- Comprehend Languages Power -->
+  <thing
+    id="powCompr"
+    name="Comprehend Languages"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Comp"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="2"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrMin"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Continuum Control Power -->
+  <thing
+    id="powContCon"
+    name="Continuum Control"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Cont"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="550"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="10"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+	
+  <!-- Control Power -->
+  <thing
+    id="powControl"
+    name="Control"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Ctrl"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="50"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="7"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Damage Transference Power -->
+  <thing
+    id="powDamTran"
+    name="Damage Transference"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="DmTr"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Touch"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="5"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Danger Sense Power -->
+  <thing
+    id="powDanger"
+    name="Danger Sense"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Dngr"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="25"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Density Increase Power -->
+  <thing
+    id="powDensity"
+    name="Density Increase"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Dens"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="5"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Detect Power -->
+  <thing
+    id="powDetect"
+    name="Detect"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Det"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="AutoDice"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Directional Hearing Power -->
+  <thing
+    id="powDirect"
+    name="Directional Hearing"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="DirHr"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Dispersal Power -->
+  <thing
+    id="powDispers"
+    name="Dispersal"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Disp"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="6"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Earth Control Power -->
+  <thing
+    id="powEarth"
+    name="Earth Control"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="EthCt"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="7"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Empathy Power -->
+  <thing
+    id="powEmpathy"
+    name="Empathy"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Empa"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Extended Hearing Power -->
+  <thing
+    id="powExtend"
+    name="Extended Hearing"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Ext"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="1"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Flame Control Power -->
+  <thing
+    id="powFlamCtl"
+    name="Flame Control"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="FlCtl"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="6"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Force Manipulation Power -->
+  <thing
+    id="powForce"
+    name="Force Manipulation"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="FrMan"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="75"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="10"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Full Vision Power -->
+  <thing
+    id="powFullVis"
+    name="Full Vision"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="FlVis"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="1"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Gravity Increase Power -->
+  <thing
+    id="powGravity"
+    name="Gravity Increase"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="GrInc"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Heat Vision Power -->
+  <thing
+    id="powHeatVis"
+    name="Heat Vision"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Heat"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Hypnotism Power -->
+  <thing
+    id="powHypno"
+    name="Hypnotism"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Hypno"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="50"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="6"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Ice Control Power -->
+  <thing
+    id="powIceCtl"
+    name="Ice Control"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="IceCl"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="8"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Illusion Power -->
+  <thing
+    id="powIllus"
+    name="Illusion"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Ill"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="50"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="10"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Iron Will Power -->
+  <thing
+    id="powIronWll"
+    name="Iron Will"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Iron"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Life Sense Power -->
+  <thing
+    id="powLifeSn"
+    name="Life Sense"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="LfSn"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="AutoDice"/>
+	<tag group="BaseCost" tag="35"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Magnetic Control Power -->
+  <thing
+    id="powMagnet"
+    name="Magnetic Control"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Magn"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="10"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Matter Manipulation Power -->
+  <thing
+    id="powMatter"
+    name="Matter Manipulation"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="MtrMn"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="100"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="10"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Mental Blast Power -->
+  <thing
+    id="powMental"
+    name="Mental Blast"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Ment"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Mental Freeze Power -->
+  <thing
+    id="powMentFr"
+    name="Mental Freeze"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="MtFr"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Mental Illusion Power -->
+  <thing
+    id="powMentIl"
+    name="Mental Illusion"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="MtIl"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="50"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="6"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Microscopic Vision Power -->
+  <thing
+    id="powMicrosc"
+    name="Microscopic Vision"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Micro"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="0APs"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="1"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+   <!-- Mind Blank Power -->
+  <thing
+    id="powMindBk"
+    name="Mind Blank"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="MndBl"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrMin"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Mind Blast Power -->
+  <thing
+    id="powMindBl"
+    name="Mind Blast"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="MndBs"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Mind Drain Power -->
+  <thing
+    id="powMindDr"
+    name="Mind Drain"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="MndDr"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Mind Field Power -->
+  <thing
+    id="powMindFld"
+    name="Mind Field"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="MndFd"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="6"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Mind Probe Power -->
+  <thing
+    id="powMindPrb"
+    name="Mind Probe"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="MndPr"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Mind Over Matter Power -->
+  <thing
+    id="powMoM"
+    name="Mind Over Matter"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="MoM"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="1"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrMin"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Mind Shield Power -->
+  <thing
+    id="powMindSh"
+    name="Mind Shield"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="MndSh"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="5"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Molecular Chameleon Power -->
+  <thing
+    id="powMolCham"
+    name="Molecular Chameleon"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="MolCh"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="75"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="10"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Neutralize Power -->
+  <thing
+    id="powNeutral"
+    name="Neutralize"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Neut"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="25"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Object Awareness Power -->
+  <thing
+    id="powObjAw"
+    name="Object Awareness"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="ObjAw"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="1"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Personality Transfer Power -->
+  <thing
+    id="powPerTran"
+    name="Personality Transfer"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="PerTr"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="30"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="8"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Phobia Power -->
+  <thing
+    id="powPhobia"
+    name="Phobia"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Phob"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Postcognition Power -->
+  <thing
+    id="powPostCog"
+    name="Postcognition"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Post"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Touch"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="2"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Power Drain Power -->
+  <thing
+    id="powPowDr"
+    name="Power Drain"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="PwrDr"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="40"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="9"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Power Reserve Power -->
+  <thing
+    id="powPowRes"
+    name="Power Reserve"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="PwrRe"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="150"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="10"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+	
+  <!-- Precognition Power -->
+  <thing
+    id="powPrecog"
+    name="Precognition"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Precg"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="75"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Pyrotechnics Power -->
+  <thing
+    id="powPyro"
+    name="Pyrotechnics"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Pyro"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Radar Sense Power -->
+  <thing
+    id="powRadar"
+    name="Radar Sense"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Radr"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="1"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Radio Communication Power -->
+  <thing
+    id="powRadio"
+    name="Radio Communication"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="RdCm"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="plus5"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Recall Power -->
+  <thing
+    id="powRecall"
+    name="Recall"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Rec"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="AutoDice"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="1"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrMin"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Reflection/Deflection Power -->
+  <thing
+    id="powRefDef"
+    name="Reflection/Deflection"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="RfDf"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="40"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="5"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Regeneration Power -->
+  <thing
+    id="powRegen"
+    name="Regeneration"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Regn"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="25"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="8"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Remote Sensing Power -->
+  <thing
+    id="powRemSen"
+    name="Remote Sensing"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Remot"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="35"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Sensory Block Power -->
+  <thing
+    id="powSenBlck"
+    name="Sensory Block"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="SenBl"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="30"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="7"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+  
+  <!-- Shape Change Power -->
+  <thing
+    id="powShapeCh"
+    name="Shape Change"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Shape"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="35"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="10"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Sonar Power -->
+  <thing
+    id="powSonar"
+    name="Sonar"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Sonar"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="AutoDice"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="2"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Speak with Animals Power -->
+  <thing
+    id="powSpeak"
+    name="Speak with Animals"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Speak"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="oneAP"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="2"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Super Hearing Power -->
+  <thing
+    id="powSupHr"
+    name="Super Hearing"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="SpHr"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="plus3"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="1"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Super Ventriloquism Power -->
+  <thing
+    id="powSupVen"
+    name="Super Ventriloquism"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="SpVn"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="2"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Suspension Power -->
+  <thing
+    id="powSuspen"
+    name="Suspension"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Susp"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="1"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Telekinesis Power -->
+  <thing
+    id="powTelekin"
+    name="Telekinesis"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Telek"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="AutoDice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="6"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Telepathy Power -->
+  <thing
+    id="powTelepat"
+    name="Telepathy"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Telep"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Teleportation Power -->
+  <thing
+    id="powTelep"
+    name="Teleportation"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Telp"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="plus7"/>
+	<tag group="Type" tag="AutoDice"/>
+	<tag group="BaseCost" tag="50"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Telescopic Vision Power -->
+  <thing
+    id="powTelScop"
+    name="Telescopic Vision"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="TelSc"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Special"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="1"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Thermal Vision Power -->
+  <thing
+    id="powTherVis"
+    name="Thermal Vision"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Ther"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="1"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Time Travel Power -->
+  <thing
+    id="powTimeTr"
+    name="Time Travel"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Time"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Special"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="500"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="4"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Truesight Power -->
+  <thing
+    id="powTrueSig"
+    name="True Sight"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="True"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Ultra Vision Power -->
+  <thing
+    id="powUltra"
+    name="Ultra Vision"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="UlVis"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="1"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Warp Power -->
+  <thing
+    id="powWarp"
+    name="Warp"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Warp"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Special"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="100"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="5"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrWil"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- Water Control Power -->
+  <thing
+    id="powWtrCtl"
+    name="Water Control"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="WatCl"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="35"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="8"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+  <!-- X-Ray Vision Power -->
+  <thing
+    id="powXRayVis"
+    name="X-Ray Vision"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Xray"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mental"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrInt"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+<!-- Mystical Powers -->	
+	
+  <!-- Mystic Link Power -->
+  <thing
+    id="powMysLink"
+    name="Mystic Link"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="MysLn"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mystical"/>
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="NA"/>
+	<tag group="BaseCost" tag="30"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="8"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrAur"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+  
+  <!-- Air Animation Power -->
+  <thing
+    id="powAirAni"
+    name="Air Animation"
+    compset="Power"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="AirAn"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="PowerType" tag="Mystical"/>
+	<tag group="Range" tag="Normal"/>
+	<tag group="Type" tag="Auto"/>
+	<tag group="BaseCost" tag="30"/>
+	
+	<!-- Factor Cost -->
+	<tag group="FactorCost" tag="8"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="powAttr" thing="attrAur"/>
+	<child
+		entity="entMod">
+	</child>	
+    </thing>
+
+
+  </document>

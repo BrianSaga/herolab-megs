@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. 
+-->
+
+<document signature="Hero Lab Data">
+
+ <thing
+  id="gdBodyDam"
+  name="Body Damage"
+  compset="Damage">
+
+  </thing>
+
+ <thing
+  id="gdMindDam"
+  name="Mind Damage"
+  compset="Damage">
+
+  </thing>
+
+  <thing
+  id="gdSpirDam"
+  name="Spirit Damage"
+  compset="Damage">
+
+  </thing>	
+  <!-- Gadget Info -->
+  <thing
+    id="GadgetInfo"
+    name="Gadget Info Thing"
+    compset="GadgetInfo"
+    isunique="yes"
+    description="Description goes here">
+    </thing>
+
+  <!-- Custom Gadget -->
+  <thing
+    id="gaCustGad"
+    name="&#150; Custom Gadget &#150;"
+    compset="Gadget"
+    isunique="no"
+    description="Description goes here">
+
+	<child
+		entity="entGadget">
+	</child>	
+    </thing>
+	
+  <!-- Superphone Gadget 
+  <thing
+    id="gaSuperPh"
+    name="Superphone"
+    compset="Gadget"
+    isunique="yes"
+    description="">
+	<tag group="Gadget" tag="Minor"/>
+	<child
+		entity="entGadget">
+		<bootstrap thing="abRestrict">
+			<assignval field="domDomain" value="only communicates with home time period"/>
+		</bootstrap>
+		<bootstrap thing="abTransmit"/>
+	</child>	
+    </thing>
+ -->
+  </document>

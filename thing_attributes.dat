@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of attributes possessed by every actor for the
+      game system. The display order of attributes is controlled via the assignment of
+      an "explicit" tag with the relative position of each.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Dexterity Attribute
+  -->
+  <thing
+    id="attrDex"
+    name="Dexterity"
+    compset="Attribute"
+    isunique="yes"
+    description="Dexterity represents a Character's agility and nimbleness.">
+    <fieldval field="trtAbbrev" value="Dex"/>
+    <tag group="explicit" tag="1"/>
+    <tag group="AttrType" tag="ActOpp"/>
+    <tag group="AttrType" tag="Physical"/>
+	
+    </thing>
+
+  <thing
+    id="attrStr"
+    name="Strength"
+    compset="Attribute"
+    isunique="yes"
+    description="Strength represents a Character's ability to lift weight and withstand duress.">
+    <fieldval field="trtAbbrev" value="Str"/>
+    <tag group="explicit" tag="2"/>
+    <tag group="AttrType" tag="Effect"/>
+	<tag group="AttrType" tag="Physical"/>
+	</thing>
+	
+  <thing
+    id="attrBod"
+    name="Body"
+    compset="Attribute"
+    isunique="yes"
+    description="This Attribute represents a Character's standard  resistance to  physical damage.">
+    <fieldval field="trtAbbrev" value="Bod"/>
+    <tag group="explicit" tag="3"/>
+	<tag group="AttrType" tag="Resistance"/>
+	<tag group="AttrType" tag="Physical"/>
+    </thing>
+
+	<thing
+    id="attrInt"
+    name="Intelligence"
+    compset="Attribute"
+    isunique="yes"
+    description="Intelligence represents a Character's ability to think rapidly and his/her knowledge of facts.">
+    <fieldval field="trtAbbrev" value="Int"/>
+    <tag group="explicit" tag="4"/>
+	<tag group="AttrType" tag="ActOpp"/>
+	<tag group="AttrType" tag="Mental"/>
+    </thing>	
+
+   <thing
+    id="attrWil"
+    name="Will"
+    compset="Attribute"
+    isunique="yes"
+    description="This Attribute represents a Character's ability to draw conclusions and his/her willpower in  general.">
+    <fieldval field="trtAbbrev" value="Wil"/>
+    <tag group="explicit" tag="5"/>
+	<tag group="AttrType" tag="Effect"/>
+    <tag group="AttrType" tag="Mental"/>
+	</thing>
+
+	<thing
+    id="attrMin"
+    name="Mind"
+    compset="Attribute"
+    isunique="yes"
+    description="This Attribute is a  measure of a Character's resistance to mental stress.">
+    <fieldval field="trtAbbrev" value="Min"/>
+    <tag group="explicit" tag="6"/>
+	<tag group="AttrType" tag="Resistance"/>
+	<tag group="AttrType" tag="Mental"/>
+    </thing>
+	
+	<thing
+    id="attrInf"
+    name="Influence"
+    compset="Attribute"
+    isunique="yes"
+    description="Influence represents the power of a Character's personality and presence.">
+    <fieldval field="trtAbbrev" value="Inf"/>
+    <tag group="explicit" tag="7"/>
+	<tag group="AttrType" tag="ActOpp"/>
+	<tag group="AttrType" tag="Mystical"/>
+    </thing>	
+
+	<thing
+    id="attrAur"
+    name="Aura"
+    compset="Attribute"
+    isunique="yes"
+    description="This Attribute represents a Character's ability to intercede with his or her personality to affect the actions of others and also indicates his or her level of magical power.">
+    <fieldval field="trtAbbrev" value="Aur"/>
+    <tag group="explicit" tag="8"/>
+	<tag group="AttrType" tag="Effect"/>
+    <tag group="AttrType" tag="Mystical"/>
+	</thing>	
+
+	<thing
+    id="attrSpi"
+    name="Spirit"
+    compset="Attribute"
+    isunique="yes"
+    description="This Attribute represents a Character's ability to withstand mystical stress and is also a reflection of the Character's general spiritual resolve.">
+    <fieldval field="trtAbbrev" value="Spi"/>
+    <tag group="explicit" tag="9"/>
+	<tag group="AttrType" tag="Resistance"/>
+	<tag group="AttrType" tag="Mystical"/>
+    </thing>
+
+	<thing
+    id="attrAV"
+    name="Acting Value"
+    compset="Attribute"
+    isunique="yes"
+    description="">
+    <fieldval field="trtAbbrev" value="AV"/>
+    <tag group="explicit" tag="10"/>
+	<tag group="AttrType" tag="Gadget"/>
+    </thing>
+
+	<thing
+    id="attrEV"
+    name="Effect Value"
+    compset="Attribute"
+    isunique="yes"
+    description="">
+    <fieldval field="trtAbbrev" value="EV"/>
+    <tag group="explicit" tag="11"/>
+	<tag group="AttrType" tag="Gadget"/>
+    </thing>
+
+	<thing
+    id="attrRange"
+    name="Range"
+    compset="Attribute"
+    isunique="yes"
+    description="">
+    <fieldval field="trtAbbrev" value="Rng"/>
+    <tag group="explicit" tag="12"/>
+	<tag group="AttrType" tag="Gadget"/>
+    </thing>	
+	
+	<thing
+    id="attrWealth"
+    name="Wealth"
+    compset="Attribute"
+    isunique="yes"
+    description="">
+    <fieldval field="trtAbbrev" value="Wea"/>
+    <tag group="explicit" tag="13"/>
+    </thing>	
+  </document>

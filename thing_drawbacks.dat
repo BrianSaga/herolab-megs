@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of special Drawbacks for the game system.
+      Drawbacks confer their effects through scripts that apply the necessary changes
+      to the appropriate traits.
+
+      Drawbacks influence traits, so all adjustments must be applied prior to when the
+      final trait value is calculated. The script timing used below (PreTraits/5000)
+      ensures that we satisfy this requirement. All Drawbacks should be designated as
+      "unique" so that they can only be selected a single time by the user.
+-->
+
+<document signature="Hero Lab Data">
+  
+  <!-- Drawback Info -->
+  <thing
+    id="DrawbkInfo"
+    name="Drawback Info"
+    compset="DrawbkInfo"
+    isunique="yes"
+    description="Description goes here">
+    </thing>
+	
+  <!-- Age -->
+  <thing
+    id="drAge"
+    name="Age"
+    compset="Drawback"
+    isunique="yes"
+    description="Description goes here">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Menu1"/>
+    <arrayval field="usrArray" index="0" value="Choice #1"/>
+    <arrayval field="usrArray" index="1" value="Choice #2"/>
+    <arrayval field="usrArray" index="2" value="Choice #3"/>
+    -->
+
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Power"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+	<!-- All non-variable cost items should have this tag -->
+	<tag group="HPCost" tag="15"/>	
+	
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated Drawbacks)
+      doneif (field[pwActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+
+  <!-- Alter Ego -->
+  <thing
+    id="drAlterEgo"
+    name="Alter Ego"
+    compset="Drawback"
+    isunique="no"
+    description="">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"  component and define this field appropriately. -->
+    <fieldval field="usrChkText" value="Uncontrollable"/>
+    
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Menu1"/>
+    <arrayval field="usrArray" index="0" value="Choice #1"/>
+    <arrayval field="usrArray" index="1" value="Choice #2"/>
+    <arrayval field="usrArray" index="2" value="Choice #3"/>
+    -->
+
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Power"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+	<tag group="User" tag="NeedDomain"/>
+	
+	<!-- All non-variable cost items should have this tag -->
+	<tag group="HPCost" tag="25"/>	
+
+	<!-- Set base hero points for out non-powered form -->	
+    <eval value="1" phase="Setup" priority="100"><![CDATA[
+		trustme
+		minion.child[actor].field[acStartHP].value = 225
+      ]]></eval>
+	  
+    <!-- Change the HP bonus of this drawback based on user select -->
+    <eval value="2" phase="PreTraits" priority="5000"> 
+      <before name="Calc trtFinal"/><![CDATA[
+		if (field[usrIsCheck].value = 1) then
+			perform delete[HPCost.?]
+			perform assign[HPCost.75]
+		endif
+      ]]></eval>
+    
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+	<minion 
+		id="mnAltEgo">
+		</minion>
+		
+    </thing>
+
+  <!-- Altered Anatomy -->
+  <thing
+    id="drAltAnat"
+    name="Altered Anatomy"
+    compset="Drawback"
+    isunique="yes"
+    description="Description goes here">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Menu1"/>
+    <arrayval field="usrArray" index="0" value="Choice #1"/>
+    <arrayval field="usrArray" index="1" value="Choice #2"/>
+    <arrayval field="usrArray" index="2" value="Choice #3"/>
+    -->
+
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Power"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+
+	<tag group="User" tag="NeedDomain"/>
+	
+	<!-- All non-variable cost items should have this tag -->
+	<tag group="HPCost" tag="20"/>	
+	
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated Drawbacks)
+      doneif (field[pwActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+  <!-- Authority Figure -->
+  <thing
+    id="drAuth"
+    name="Authority Figure"
+    compset="Drawback"
+    isunique="yes"
+    description="Description goes here">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Menu1"/>
+    <arrayval field="usrArray" index="0" value="Choice #1"/>
+    <arrayval field="usrArray" index="1" value="Choice #2"/>
+    <arrayval field="usrArray" index="2" value="Choice #3"/>
+    -->
+
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Power"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+
+	<tag group="User" tag="NeedDomain"/>	
+	
+	<!-- All non-variable cost items should have this tag -->
+	<tag group="HPCost" tag="15"/>	
+	
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated Drawbacks)
+      doneif (field[pwActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>	
+	
+
+  <!-- Cannot Heal -->
+  <thing
+    id="drCannot"
+    name="Cannot Heal"
+    compset="Drawback"
+    isunique="yes"
+    description="Description goes here">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately. -->
+    <fieldval field="usrChkText" value="Healed only by Powers"/>  
+
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Power"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+	
+	<!-- All non-variable cost items should have this tag -->
+	<tag group="HPCost" tag="15"/>	
+	
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated Drawbacks)
+      doneif (field[pwActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+	
+    </thing>	
+  </document>

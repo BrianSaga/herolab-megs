@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of subskills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Power Info -->
+  <thing
+    id="PowerInfo"
+    name="Power Info"
+    compset="PowerInfo"
+    isunique="yes"
+    description="Description goes here">
+    </thing>
+
+  <!-- Area Effect  -->
+  <thing
+    id="bonAreaEff"
+    name="Area of Effect"
+    compset="Bonus"
+    isunique="yes"
+    description="Description goes here">
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.-->
+    
+    	
+	
+	<tag group="FCMod" tag="1"/>
+	<tag group="OnPower" tag="Any"/>
+	
+    <!-- Each Bonus must be costed to account for the HP multiplier -->
+    <eval index="1" phase="Traits" priority="1500">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+
+      ~adjust the resource appropriately
+	  var mod as number
+	  
+	  mod = tagvalue[FCMod.?]
+	  if (field[usrIsCheck].value <> 0) then
+		mod += 1
+		perform delete[FCMod.?]
+		perform assignstr["FCMod." & mod]
+	  endif
+	
+      ]]></eval>	
+    </thing>
+	
+  <!-- Range -->
+  <thing
+    id="bonRange"
+    name="Range"
+    compset="Bonus"
+    isunique="yes"
+    description="This Bonus allows a Power which normally has a Range of  Touch  or  Self  to  possess  an effectively  Normal  Range.  Exactly  how this alteration affects  the Power's use will vary from Power  to Power,  and  will  often require  GM adjudication.  Ln any  case,  each Power a Character has  can only be  used  once  per phase,  whether at a range or not.  The Range Bonus can never be used to bestow Powers upon  another Character (as the 'Usable on Others' Bonus allows).">
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="affect any sized area"/>
+    -->	
+	
+	<tag group="FCMod" tag="1"/>
+	<tag group="OnPower" tag="Any"/>
+	
+    <!-- Each Bonus must be costed to account for the HP multiplier 
+    <eval index="1" phase="Traits" priority="100">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+
+      ~adjust the resource appropriately
+	  var mod as number
+	  
+	  mod = tagvalue[FCMod.?]
+	  if (field[usrIsCheck].value <> 0) then
+		mod += 1
+		perform delete[FCMod.?]
+		perform assignstr["FCMod." & mod]
+	  endif
+	
+      ]]></eval>	
+	  -->
+    </thing>
+
+   <!-- Usable on Others -->
+  <thing
+    id="bonUsable"
+    name="Usable on Others"
+    compset="Bonus"
+    isunique="yes"
+    description="Description goes here.">
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="affect any sized area"/>
+    -->	
+	
+	<tag group="FCMod" tag="5"/>
+	<tag group="OnPower" tag="Any"/>
+	
+    <!-- Each Bonus must be costed to account for the HP multiplier 
+    <eval index="1" phase="Traits" priority="100">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+
+      ~adjust the resource appropriately
+	  var mod as number
+	  
+	  mod = tagvalue[FCMod.?]
+	  if (field[usrIsCheck].value <> 0) then
+		mod += 1
+		perform delete[FCMod.?]
+		perform assignstr["FCMod." & mod]
+	  endif
+	
+      ]]></eval>	
+	  -->
+    </thing>
+
+  <!-- Miscellaneous Bonus -->
+  <thing
+    id="bonMisc"
+    name="Miscellaneous Bonus"
+    compset="Bonus"
+    isunique="yes"
+    description="Description goes here.">
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="affect any sized area"/>
+    -->	
+	
+	<tag group="FCMod" tag="1"/>
+	<tag group="OnPower" tag="Any"/>
+	<tag group="User" tag="NeedDomain"/>
+	
+    <!-- Each Bonus must be costed to account for the HP multiplier 
+    <eval index="1" phase="Traits" priority="100">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+
+      ~adjust the resource appropriately
+	  var mod as number
+	  
+	  mod = tagvalue[FCMod.?]
+	  if (field[usrIsCheck].value <> 0) then
+		mod += 1
+		perform delete[FCMod.?]
+		perform assignstr["FCMod." & mod]
+	  endif
+	
+      ]]></eval>	
+	  -->
+    </thing>	
+  </document>

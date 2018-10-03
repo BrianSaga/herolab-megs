@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of skills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Acrobatics Skill -->
+  <thing
+    id="skAcro"
+    name="Acrobatics"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Acro"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="15"/>
+	
+	<!-- Since we are explicitly ADDING subskills rather than removing them, list our FC
+		 as the book value - # of subskills -->
+	<tag group="FactorCost" tag="4"/>
+	<tag group="NumSubs" tag="3"/>
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="skillAttr" thing="attrDex"/>
+	<child
+		entity="entSubSkl">
+	</child>	
+    </thing>
+
+
+ <!-- Animal Handling Skill -->
+  <thing
+    id="skAnimal"
+    name="Animal Handling"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="AnHa"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="AutoDice"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Since we are explicitly ADDING subskills rather than removing them, list our FC
+		 as the book value - # of subskills -->
+	<tag group="FactorCost" tag="2"/>
+	<tag group="NumSubs" tag="2"/>	
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="skillAttr" thing="attrInf"/>
+	<child
+		entity="entSubSkl">
+	</child>	
+    </thing>
+
+	<!-- Artist Skill -->
+  <thing
+    id="skArtist"
+    name="Artist"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Art"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Since we are explicitly ADDING subskills rather than removing them, list our FC
+		 as the book value - # of subskills -->
+	<tag group="FactorCost" tag="1"/>
+	<tag group="NumSubs" tag="7"/>	
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="skillAttr" thing="attrInf"/>
+	<child
+		entity="entSubSkl">
+	</child>	
+    </thing>
+
+  <!-- Charisma Skill -->
+  <thing
+    id="skCharisma"
+    name="Charisma"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Cha"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Since we are explicitly ADDING subskills rather than removing them, list our FC
+		 as the book value - # of subskills -->
+	<tag group="FactorCost" tag="3"/>
+	<tag group="NumSubs" tag="3"/>	
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="skillAttr" thing="attrInf"/>
+	<child
+		entity="entSubSkl">
+	</child>	
+    </thing>
+
+  <!-- Detective Skill -->
+  <thing
+    id="skDetect"
+    name="Detective"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Det"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Since we are explicitly ADDING subskills rather than removing them, list our FC
+		 as the book value - # of subskills -->
+	<tag group="FactorCost" tag="2"/>
+	<tag group="NumSubs" tag="5"/>	
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="skillAttr" thing="attrInt"/>
+	<child
+		entity="entSubSkl">
+	</child>	
+    </thing>
+
+  <!-- Gadgetry Skill -->
+  <thing
+    id="skGadgetry"
+    name="Gadgetry"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Gad"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="25"/>
+	
+	<!-- Since we are explicitly ADDING subskills rather than removing them, list our FC
+		 as the book value - # of subskills -->
+	<tag group="FactorCost" tag="6"/>
+	<tag group="NumSubs" tag="2"/>	
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="skillAttr" thing="attrInt"/>
+	<child
+		entity="entSubSkl">
+	</child>	
+    </thing>
+
+  <!-- Martial Artist Skill -->
+  <thing
+    id="skMartial"
+    name="Martial Artist"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Mar"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="25"/>
+	
+	<!-- Since we are explicitly ADDING subskills rather than removing them, list our FC
+		 as the book value - # of subskills -->
+	<tag group="FactorCost" tag="6"/>
+	<tag group="NumSubs" tag="0"/>	
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="skillAttr" thing="attrDex"/>
+	<child
+		entity="entSubSkl">
+	</child>	
+    </thing>
+  
+  <!-- Medicine Skill -->
+  <thing
+    id="skMedicine"
+    name="Medicine"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Med"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Since we are explicitly ADDING subskills rather than removing them, list our FC
+		 as the book value - # of subskills -->
+	<tag group="FactorCost" tag="2"/>
+	<tag group="NumSubs" tag="4"/>	
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="skillAttr" thing="attrInt"/>
+	<child
+		entity="entSubSkl">
+	</child>	
+    </thing>
+
+  <!-- Military Science Skill -->
+  <thing
+    id="skMilitary"
+    name="Military Science"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Mil"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Since we are explicitly ADDING subskills rather than removing them, list our FC
+		 as the book value - # of subskills -->
+	<tag group="FactorCost" tag="2"/>
+	<tag group="NumSubs" tag="6"/>	
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="skillAttr" thing="attrInt"/>
+	<child
+		entity="entSubSkl">
+	</child>	
+    </thing>
+
+  <!-- Occultist Skill -->
+  <thing
+    id="skOccult"
+    name="Occultist"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Occ"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="20"/>
+	
+	<!-- Since we are explicitly ADDING subskills rather than removing them, list our FC
+		 as the book value - # of subskills -->
+	<tag group="FactorCost" tag="3"/>
+	<tag group="NumSubs" tag="6"/>	
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="skillAttr" thing="attrInf"/>
+	<child
+		entity="entSubSkl">
+	</child>	
+    </thing>
+
+  <!-- Scientist Skill -->
+  <thing
+    id="skScient"
+    name="Scientist"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Sci"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Since we are explicitly ADDING subskills rather than removing them, list our FC
+		 as the book value - # of subskills -->
+	<tag group="FactorCost" tag="3"/>
+	<tag group="NumSubs" tag="2"/>	
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="skillAttr" thing="attrInt"/>
+	<child
+		entity="entSubSkl">
+	</child>	
+    </thing>
+
+  <!-- Thief Skill -->
+  <thing
+    id="skThief"
+    name="Thief"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Thf"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="10"/>
+	
+	<!-- Since we are explicitly ADDING subskills rather than removing them, list our FC
+		 as the book value - # of subskills -->
+	<tag group="FactorCost" tag="2"/>
+	<tag group="NumSubs" tag="6"/>	
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="skillAttr" thing="attrDex"/>
+	<child
+		entity="entSubSkl">
+	</child>	
+    </thing>
+
+  <!-- Vehicles Skill -->
+  <thing
+    id="skVehicles"
+    name="Vehicles"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Veh"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Since we are explicitly ADDING subskills rather than removing them, list our FC
+		 as the book value - # of subskills -->
+	<tag group="FactorCost" tag="1"/>
+	<tag group="NumSubs" tag="4"/>	
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="skillAttr" thing="attrDex"/>
+	<child
+		entity="entSubSkl">
+	</child>	
+    </thing>
+
+  <!-- Weaponry Skill -->
+  <thing
+    id="skWeaponry"
+    name="Weaponry"
+    compset="Skill"
+    isunique="yes"
+    description="Description goes here">
+    <fieldval field="trtAbbrev" value="Wea"/>
+
+    <!-- If this skill should be shown as an out-of-combat skill on the TacCon, assign this tag
+    <tag group="DashTacCon" tag="NonCombat"/>
+    -->
+
+	<!-- Tags describe our skill in game terms -->
+	<tag group="Range" tag="Self"/>
+	<tag group="Type" tag="Dice"/>
+	<tag group="BaseCost" tag="5"/>
+	
+	<!-- Since we are explicitly ADDING subskills rather than removing them, list our FC
+		 as the book value - # of subskills -->
+	<tag group="FactorCost" tag="1"/>
+	<tag group="NumSubs" tag="5"/>	
+	
+    <!-- Specify the attribute to which this skill is linked -->
+    <link linkage="skillAttr" thing="attrDex"/>
+	<child
+		entity="entSubSkl">
+	</child>	
+    </thing>
+	
+
+
+
+
+  </document>

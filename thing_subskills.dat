@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of subskills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+
+  <!-- Subskill Info -->
+  <thing
+    id="SubsklInfo"
+    name="Subskill Info"
+    compset="SubSklInfo"
+    isunique="yes"
+    description="Description goes here">
+    </thing>
+
+
+  <!-- Acrobatics Subskills -->
+  <thing
+    id="subClimb"
+    name="Climbing"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skAcro"/>
+    </thing>
+
+	<thing
+    id="subDodging"
+    name="Dodging"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skAcro"/>
+    </thing>
+
+	<thing
+    id="subGymnast"
+    name="Gymnastics"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skAcro"/>
+    </thing>
+	
+  <!-- Animal Handling Subskills -->
+  <thing
+    id="subAnimTra"
+    name="Animal Training"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skAnimal"/>
+    </thing>
+
+	<thing
+    id="subRiding"
+    name="Riding"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skAnimal"/>
+    </thing>
+
+  <!-- Artist Subskills -->
+  <thing
+    id="subActor"
+    name="Actor"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skArtist"/>
+    </thing>
+
+	<thing
+    id="subDancer"
+    name="Dancer"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skArtist"/>
+    </thing>
+
+	<thing
+    id="subMusic"
+    name="Musician"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skArtist"/>
+    </thing>		
+
+	<thing
+    id="subPainter"
+    name="Painter"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skArtist"/>
+    </thing>
+	
+	<thing
+    id="subPhoto"
+    name="Photographer"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skArtist"/>
+    </thing>
+
+	<thing
+    id="subSculpt"
+    name="Sculptor"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skArtist"/>
+    </thing>
+
+	<thing
+    id="subWriter"
+    name="Writer"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skArtist"/>
+    </thing>
+
+  <!-- Charisma Subskills -->
+  <thing
+    id="subInter"
+    name="Interrogation"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skCharisma"/>
+    </thing>
+
+	<thing
+    id="subIntim"
+    name="Intimidation"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skCharisma"/>
+    </thing>
+
+	<thing
+    id="subPers"
+    name="Persuasion"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skCharisma"/>
+    </thing>
+
+  <!-- Detective Subskills -->
+  <thing
+    id="subClueAn"
+    name="Clue Analysis"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skDetect"/>
+    </thing>
+
+	<thing
+    id="subCounter"
+    name="Counterfeit Recognition"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skDetect"/>
+    </thing>
+
+	<thing
+    id="subIdentif"
+    name="Identification Systems"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skDetect"/>
+    </thing>
+
+ 	<thing
+    id="subLaw"
+    name="Law"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skDetect"/>
+    </thing>
+
+ 	<thing
+    id="subPolice"
+    name="Police Procedure"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skDetect"/>
+    </thing>
+	
+  <!-- Gadgetry Subskills -->
+  <thing
+    id="subBldGad"
+    name="Build Gadget"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skGadgetry"/>
+    </thing>	
+
+	<thing
+    id="subIdenGad"
+    name="Identify Gadget"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skGadgetry"/>
+    </thing>	
+	
+  <!-- Medicine Subskills -->
+  <thing
+    id="subFirst"
+    name="First Aid"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skMedicine"/>
+    </thing>
+
+	<thing
+    id="subForens"
+    name="Forensics"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skMedicine"/>
+    </thing>
+
+	<thing
+    id="subMedTrea"
+    name="Medical Treatment"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skMedicine"/>
+    </thing>		
+
+	<thing
+    id="subSurgery"
+    name="Surgery"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skMedicine"/>
+    </thing>	
+
+  <!-- Military Science Subskills -->
+  <thing
+    id="subCamou"
+    name="Camouflage"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skMilitary"/>
+    </thing>
+
+	<thing
+    id="subCart"
+    name="Cartography"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skMilitary"/>
+    </thing>
+
+	<thing
+    id="subDanger"
+    name="Danger Recognition"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skMilitary"/>
+    </thing>	
+
+	<thing
+    id="subDemo"
+    name="Demolition"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skMilitary"/>
+    </thing>
+
+	<thing
+    id="subFieldCd"
+    name="Field Command"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skMilitary"/>
+    </thing>
+
+	<thing
+    id="subTrack"
+    name="Tracking"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skMilitary"/>
+    </thing>
+
+  <!-- Occultist Subskills -->
+  <thing
+    id="subCreate"
+    name="Create Artifact"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skOccult"/>
+    </thing>	
+
+	<thing
+    id="subIdent"
+    name="Identify Artifact"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skOccult"/>
+    </thing>	
+
+	<thing
+    id="subOccKnow"
+    name="Occult Knowledge"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skOccult"/>
+    </thing>
+
+	<thing
+    id="subRitual"
+    name="Ritual Magic"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skOccult"/>
+    </thing>
+
+	<thing
+    id="subPremon"
+    name="Premonition"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skOccult"/>
+    </thing>
+
+  <!-- Scientist Subskills -->
+  <thing
+    id="subAnalys"
+    name="Analysis"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skScient"/>
+    </thing>	
+
+	<thing
+    id="subDrawPln"
+    name="Drawing Plans"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skScient"/>
+    </thing>
+
+  <!-- Thief Subskills -->
+  <thing
+    id="subEscape"
+    name="Escape Artist"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skThief"/>
+    </thing>	
+
+	<thing
+    id="subForgery"
+    name="Forgery"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skThief"/>
+    </thing>	
+
+	<thing
+    id="subLocks"
+    name="Locks and Safes"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skThief"/>
+    </thing>	
+
+	<thing
+    id="subPikPock"
+    name="Pickpocketing"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skThief"/>
+    </thing>
+
+	<thing
+    id="subSecSys"
+    name="Security Systems"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skThief"/>
+    </thing>	
+
+	<thing
+    id="subStealth"
+    name="Stealth"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skThief"/>
+    </thing>
+
+	<!-- Vehicles Subskills -->
+	<thing
+    id="subAirVeh"
+    name="Air Vehicles"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skVehicles"/>
+    </thing>	
+
+	<thing
+    id="subWatVeh"
+    name="Water Vehicles"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skVehicles"/>
+    </thing>	
+
+	<thing
+    id="subLandVeh"
+    name="Land Vehicles"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skVehicles"/>
+    </thing>	
+
+	<thing
+    id="subSpace"
+    name="Space Craft"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skVehicles"/>
+    </thing>
+
+	<!-- Weaponry Subskills -->
+	<thing
+    id="subFireArm"
+    name="Firearms"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skWeaponry"/>
+    </thing>	
+
+	<thing
+    id="subMelee"
+    name="Melee Weapons"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skWeaponry"/>
+    </thing>
+
+	<thing
+    id="subExotic"
+    name="Exotic Weapons"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skWeaponry"/>
+    </thing>
+
+	<thing
+    id="subMissile"
+    name="Missile Weapons"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skWeaponry"/>
+    </thing>
+
+	<thing
+    id="subHeavy"
+    name="Heavy Weapons"
+    compset="Subskill"
+    isunique="yes"
+    description="Description goes here">
+	
+	<tag group="OnSkill" tag="skWeaponry"/>
+    </thing>	
+	
+  </document>

@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of miscellaneous things that are required for
+   the game system. Miscellaneous things include the mechanisms for managing applied
+   damage, user images, and personal info for each actor. It also includes things
+   used to track resource pools, such as those used for managing the available
+   attribute points, skill points, etc.
+-->
+
+<document signature="Hero Lab Data">
+
+ <thing
+	id="mchRelNum"
+	name="Table"
+	compset="Mechanics">
+	
+	 <eval index="1" phase="Setup" priority="1000"><![CDATA[
+		field[mechRelNum].matrixvalue[0,1] = 3
+		field[mechRelNum].matrixvalue[2,1] = 2
+		field[mechRelNum].matrixvalue[3,1] = 1
+		field[mechRelNum].matrixvalue[5,1] = 0
+		field[mechRelNum].matrixvalue[7,1] = -1
+		field[mechRelNum].matrixvalue[9,1] = -2
+		field[mechRelNum].matrixvalue[11,1] = -3
+	 ]]></eval>
+	</thing>
+
+ <thing
+	id="mchAPPurch"
+	name="Table"
+	compset="Mechanics">
+	
+	 <eval index="1" phase="Setup" priority="1000"><![CDATA[
+					
+		~AP Purchase Cost Table
+		field[mechAPCost].matrixvalue[1,1] = 1
+		field[mechAPCost].matrixvalue[2,1] = 2
+		field[mechAPCost].matrixvalue[3,1] = 3
+		field[mechAPCost].matrixvalue[4,1] = 4
+		field[mechAPCost].matrixvalue[5,1] = 5
+		field[mechAPCost].matrixvalue[6,1] = 6
+		field[mechAPCost].matrixvalue[7,1] = 8
+		field[mechAPCost].matrixvalue[8,1] = 10
+		field[mechAPCost].matrixvalue[9,1] = 12
+		field[mechAPCost].matrixvalue[10,1] = 16
+		field[mechAPCost].matrixvalue[11,1] = 20
+		field[mechAPCost].matrixvalue[12,1] = 24
+		field[mechAPCost].matrixvalue[13,1] = 28
+		field[mechAPCost].matrixvalue[14,1] = 32
+		field[mechAPCost].matrixvalue[15,1] = 40
+		field[mechAPCost].matrixvalue[16,1] = 45
+		field[mechAPCost].matrixvalue[17,1] = 50
+		field[mechAPCost].matrixvalue[18,1] = 55
+		field[mechAPCost].matrixvalue[19,1] = 60
+		field[mechAPCost].matrixvalue[20,1] = 65
+		field[mechAPCost].matrixvalue[21,1] = 70
+		field[mechAPCost].matrixvalue[22,1] = 80
+		field[mechAPCost].matrixvalue[23,1] = 90
+		field[mechAPCost].matrixvalue[24,1] = 100
+		field[mechAPCost].matrixvalue[25,1] = 110
+		field[mechAPCost].matrixvalue[26,1] = 120
+		field[mechAPCost].matrixvalue[27,1] = 130
+		field[mechAPCost].matrixvalue[28,1] = 150
+		field[mechAPCost].matrixvalue[29,1] = 175
+		field[mechAPCost].matrixvalue[30,1] = 200
+		field[mechAPCost].matrixvalue[31,1] = 225
+		field[mechAPCost].matrixvalue[32,1] = 250
+		field[mechAPCost].matrixvalue[33,1] = 275
+		field[mechAPCost].matrixvalue[34,1] = 300
+		field[mechAPCost].matrixvalue[35,1] = 350
+		field[mechAPCost].matrixvalue[36,1] = 400
+		field[mechAPCost].matrixvalue[37,1] = 450
+		field[mechAPCost].matrixvalue[38,1] = 500
+		field[mechAPCost].matrixvalue[39,1] = 550
+		field[mechAPCost].matrixvalue[40,1] = 600
+		field[mechAPCost].matrixvalue[1,2] = 1
+		field[mechAPCost].matrixvalue[2,2] = 2
+		field[mechAPCost].matrixvalue[3,2] = 4
+		field[mechAPCost].matrixvalue[4,2] = 6
+		field[mechAPCost].matrixvalue[5,2] = 8
+		field[mechAPCost].matrixvalue[6,2] = 12
+		field[mechAPCost].matrixvalue[7,2] = 16
+		field[mechAPCost].matrixvalue[8,2] = 20
+		field[mechAPCost].matrixvalue[9,2] = 24
+		field[mechAPCost].matrixvalue[10,2] = 32
+		field[mechAPCost].matrixvalue[11,2] = 40
+		field[mechAPCost].matrixvalue[12,2] = 48
+		field[mechAPCost].matrixvalue[13,2] = 56
+		field[mechAPCost].matrixvalue[14,2] = 64
+		field[mechAPCost].matrixvalue[15,2] = 60
+		field[mechAPCost].matrixvalue[16,2] = 90
+		field[mechAPCost].matrixvalue[17,2] = 100
+		field[mechAPCost].matrixvalue[18,2] = 110
+		field[mechAPCost].matrixvalue[19,2] = 120
+		field[mechAPCost].matrixvalue[20,2] = 130
+		field[mechAPCost].matrixvalue[21,2] = 140
+		field[mechAPCost].matrixvalue[22,2] = 160
+		field[mechAPCost].matrixvalue[23,2] = 180
+		field[mechAPCost].matrixvalue[24,2] = 200
+		field[mechAPCost].matrixvalue[25,2] = 220
+		field[mechAPCost].matrixvalue[26,2] = 240
+		field[mechAPCost].matrixvalue[27,2] = 260
+		field[mechAPCost].matrixvalue[28,2] = 300
+		field[mechAPCost].matrixvalue[29,2] = 350
+		field[mechAPCost].matrixvalue[30,2] = 400
+		field[mechAPCost].matrixvalue[31,2] = 450
+		field[mechAPCost].matrixvalue[32,2] = 500
+		field[mechAPCost].matrixvalue[33,2] = 550
+		field[mechAPCost].matrixvalue[34,2] = 600
+		field[mechAPCost].matrixvalue[35,2] = 700
+		field[mechAPCost].matrixvalue[36,2] = 800
+		field[mechAPCost].matrixvalue[37,2] = 900
+		field[mechAPCost].matrixvalue[38,2] = 1500
+		field[mechAPCost].matrixvalue[39,2] = 1100
+		field[mechAPCost].matrixvalue[40,2] = 1200
+		field[mechAPCost].matrixvalue[1,3] = 2
+		field[mechAPCost].matrixvalue[2,3] = 3
+		field[mechAPCost].matrixvalue[3,3] = 6
+		field[mechAPCost].matrixvalue[4,3] = 9
+		field[mechAPCost].matrixvalue[5,3] = 12
+		field[mechAPCost].matrixvalue[6,3] = 18
+		field[mechAPCost].matrixvalue[7,3] = 24
+		field[mechAPCost].matrixvalue[8,3] = 30
+		field[mechAPCost].matrixvalue[9,3] = 36
+		field[mechAPCost].matrixvalue[10,3] = 48
+		field[mechAPCost].matrixvalue[11,3] = 60
+		field[mechAPCost].matrixvalue[12,3] = 72
+		field[mechAPCost].matrixvalue[13,3] = 84
+		field[mechAPCost].matrixvalue[14,3] = 96
+		field[mechAPCost].matrixvalue[15,3] = 120
+		field[mechAPCost].matrixvalue[16,3] = 135
+		field[mechAPCost].matrixvalue[17,3] = 150
+		field[mechAPCost].matrixvalue[18,3] = 165
+		field[mechAPCost].matrixvalue[19,3] = 180
+		field[mechAPCost].matrixvalue[20,3] = 195
+		field[mechAPCost].matrixvalue[21,3] = 210
+		field[mechAPCost].matrixvalue[22,3] = 240
+		field[mechAPCost].matrixvalue[23,3] = 270
+		field[mechAPCost].matrixvalue[24,3] = 300
+		field[mechAPCost].matrixvalue[25,3] = 330
+		field[mechAPCost].matrixvalue[26,3] = 360
+		field[mechAPCost].matrixvalue[27,3] = 390
+		field[mechAPCost].matrixvalue[28,3] = 450
+		field[mechAPCost].matrixvalue[29,3] = 525
+		field[mechAPCost].matrixvalue[30,3] = 600
+		field[mechAPCost].matrixvalue[31,3] = 675
+		field[mechAPCost].matrixvalue[32,3] = 750
+		field[mechAPCost].matrixvalue[33,3] = 825
+		field[mechAPCost].matrixvalue[34,3] = 900
+		field[mechAPCost].matrixvalue[35,3] = 1050
+		field[mechAPCost].matrixvalue[36,3] = 1200
+		field[mechAPCost].matrixvalue[37,3] = 1350
+		field[mechAPCost].matrixvalue[38,3] = 1000
+		field[mechAPCost].matrixvalue[39,3] = 1650
+		field[mechAPCost].matrixvalue[40,3] = 1800
+		field[mechAPCost].matrixvalue[1,4] = 2
+		field[mechAPCost].matrixvalue[2,4] = 4
+		field[mechAPCost].matrixvalue[3,4] = 8
+		field[mechAPCost].matrixvalue[4,4] = 12
+		field[mechAPCost].matrixvalue[5,4] = 16
+		field[mechAPCost].matrixvalue[6,4] = 24
+		field[mechAPCost].matrixvalue[7,4] = 32
+		field[mechAPCost].matrixvalue[8,4] = 40
+		field[mechAPCost].matrixvalue[9,4] = 48
+		field[mechAPCost].matrixvalue[10,4] = 64
+		field[mechAPCost].matrixvalue[11,4] = 80
+		field[mechAPCost].matrixvalue[12,4] = 96
+		field[mechAPCost].matrixvalue[13,4] = 112
+		field[mechAPCost].matrixvalue[14,4] = 128
+		field[mechAPCost].matrixvalue[15,4] = 160
+		field[mechAPCost].matrixvalue[16,4] = 180
+		field[mechAPCost].matrixvalue[17,4] = 200
+		field[mechAPCost].matrixvalue[18,4] = 220
+		field[mechAPCost].matrixvalue[19,4] = 240
+		field[mechAPCost].matrixvalue[20,4] = 260
+		field[mechAPCost].matrixvalue[21,4] = 280
+		field[mechAPCost].matrixvalue[22,4] = 320
+		field[mechAPCost].matrixvalue[23,4] = 360
+		field[mechAPCost].matrixvalue[24,4] = 400
+		field[mechAPCost].matrixvalue[25,4] = 440
+		field[mechAPCost].matrixvalue[26,4] = 480
+		field[mechAPCost].matrixvalue[27,4] = 520
+		field[mechAPCost].matrixvalue[28,4] = 600
+		field[mechAPCost].matrixvalue[29,4] = 700
+		field[mechAPCost].matrixvalue[30,4] = 800
+		field[mechAPCost].matrixvalue[31,4] = 900
+		field[mechAPCost].matrixvalue[32,4] = 1000
+		field[mechAPCost].matrixvalue[33,4] = 1100
+		field[mechAPCost].matrixvalue[34,4] = 1200
+		field[mechAPCost].matrixvalue[35,4] = 1400
+		field[mechAPCost].matrixvalue[36,4] = 1600
+		field[mechAPCost].matrixvalue[37,4] = 1800
+		field[mechAPCost].matrixvalue[38,4] = 2000
+		field[mechAPCost].matrixvalue[39,4] = 2200
+		field[mechAPCost].matrixvalue[40,4] = 2400
+		field[mechAPCost].matrixvalue[1,5] = 3
+		field[mechAPCost].matrixvalue[2,5] = 5
+		field[mechAPCost].matrixvalue[3,5] = 10
+		field[mechAPCost].matrixvalue[4,5] = 15
+		field[mechAPCost].matrixvalue[5,5] = 20
+		field[mechAPCost].matrixvalue[6,5] = 30
+		field[mechAPCost].matrixvalue[7,5] = 40
+		field[mechAPCost].matrixvalue[8,5] = 50
+		field[mechAPCost].matrixvalue[9,5] = 60
+		field[mechAPCost].matrixvalue[10,5] = 80
+		field[mechAPCost].matrixvalue[11,5] = 100
+		field[mechAPCost].matrixvalue[12,5] = 120
+		field[mechAPCost].matrixvalue[13,5] = 140
+		field[mechAPCost].matrixvalue[14,5] = 160
+		field[mechAPCost].matrixvalue[15,5] = 200
+		field[mechAPCost].matrixvalue[16,5] = 225
+		field[mechAPCost].matrixvalue[17,5] = 250
+		field[mechAPCost].matrixvalue[18,5] = 275
+		field[mechAPCost].matrixvalue[19,5] = 300
+		field[mechAPCost].matrixvalue[20,5] = 325
+		field[mechAPCost].matrixvalue[21,5] = 350
+		field[mechAPCost].matrixvalue[22,5] = 400
+		field[mechAPCost].matrixvalue[23,5] = 450
+		field[mechAPCost].matrixvalue[24,5] = 500
+		field[mechAPCost].matrixvalue[25,5] = 550
+		field[mechAPCost].matrixvalue[26,5] = 600
+		field[mechAPCost].matrixvalue[27,5] = 650
+		field[mechAPCost].matrixvalue[28,5] = 750
+		field[mechAPCost].matrixvalue[29,5] = 875
+		field[mechAPCost].matrixvalue[30,5] = 1000
+		field[mechAPCost].matrixvalue[31,5] = 1125
+		field[mechAPCost].matrixvalue[32,5] = 1250
+		field[mechAPCost].matrixvalue[33,5] = 1375
+		field[mechAPCost].matrixvalue[34,5] = 1500
+		field[mechAPCost].matrixvalue[35,5] = 1750
+		field[mechAPCost].matrixvalue[36,5] = 2000
+		field[mechAPCost].matrixvalue[37,5] = 2250
+		field[mechAPCost].matrixvalue[38,5] = 2500
+		field[mechAPCost].matrixvalue[39,5] = 2750
+		field[mechAPCost].matrixvalue[40,5] = 3000
+		field[mechAPCost].matrixvalue[1,6] = 3
+		field[mechAPCost].matrixvalue[2,6] = 6
+		field[mechAPCost].matrixvalue[3,6] = 12
+		field[mechAPCost].matrixvalue[4,6] = 18
+		field[mechAPCost].matrixvalue[5,6] = 24
+		field[mechAPCost].matrixvalue[6,6] = 36
+		field[mechAPCost].matrixvalue[7,6] = 48
+		field[mechAPCost].matrixvalue[8,6] = 60
+		field[mechAPCost].matrixvalue[9,6] = 72
+		field[mechAPCost].matrixvalue[10,6] = 96
+		field[mechAPCost].matrixvalue[11,6] = 120
+		field[mechAPCost].matrixvalue[12,6] = 144
+		field[mechAPCost].matrixvalue[13,6] = 168
+		field[mechAPCost].matrixvalue[14,6] = 192
+		field[mechAPCost].matrixvalue[15,6] = 240
+		field[mechAPCost].matrixvalue[16,6] = 270
+		field[mechAPCost].matrixvalue[17,6] = 300
+		field[mechAPCost].matrixvalue[18,6] = 330
+		field[mechAPCost].matrixvalue[19,6] = 360
+		field[mechAPCost].matrixvalue[20,6] = 390
+		field[mechAPCost].matrixvalue[21,6] = 420
+		field[mechAPCost].matrixvalue[22,6] = 480
+		field[mechAPCost].matrixvalue[23,6] = 540
+		field[mechAPCost].matrixvalue[24,6] = 600
+		field[mechAPCost].matrixvalue[25,6] = 660
+		field[mechAPCost].matrixvalue[26,6] = 720
+		field[mechAPCost].matrixvalue[27,6] = 780
+		field[mechAPCost].matrixvalue[28,6] = 900
+		field[mechAPCost].matrixvalue[29,6] = 1050
+		field[mechAPCost].matrixvalue[30,6] = 1200
+		field[mechAPCost].matrixvalue[31,6] = 1350
+		field[mechAPCost].matrixvalue[32,6] = 1500
+		field[mechAPCost].matrixvalue[33,6] = 1650
+		field[mechAPCost].matrixvalue[34,6] = 1800
+		field[mechAPCost].matrixvalue[35,6] = 2100
+		field[mechAPCost].matrixvalue[36,6] = 2400
+		field[mechAPCost].matrixvalue[37,6] = 2700
+		field[mechAPCost].matrixvalue[38,6] = 3000
+		field[mechAPCost].matrixvalue[39,6] = 3300
+		field[mechAPCost].matrixvalue[40,6] = 3600
+		field[mechAPCost].matrixvalue[1,7] = 4
+		field[mechAPCost].matrixvalue[2,7] = 7
+		field[mechAPCost].matrixvalue[3,7] = 14
+		field[mechAPCost].matrixvalue[4,7] = 21
+		field[mechAPCost].matrixvalue[5,7] = 28
+		field[mechAPCost].matrixvalue[6,7] = 42
+		field[mechAPCost].matrixvalue[7,7] = 56
+		field[mechAPCost].matrixvalue[8,7] = 70
+		field[mechAPCost].matrixvalue[9,7] = 84
+		field[mechAPCost].matrixvalue[10,7] = 112
+		field[mechAPCost].matrixvalue[11,7] = 140
+		field[mechAPCost].matrixvalue[12,7] = 168
+		field[mechAPCost].matrixvalue[13,7] = 196
+		field[mechAPCost].matrixvalue[14,7] = 224
+		field[mechAPCost].matrixvalue[15,7] = 280
+		field[mechAPCost].matrixvalue[16,7] = 315
+		field[mechAPCost].matrixvalue[17,7] = 350
+		field[mechAPCost].matrixvalue[18,7] = 385
+		field[mechAPCost].matrixvalue[19,7] = 420
+		field[mechAPCost].matrixvalue[20,7] = 455
+		field[mechAPCost].matrixvalue[21,7] = 490
+		field[mechAPCost].matrixvalue[22,7] = 560
+		field[mechAPCost].matrixvalue[23,7] = 630
+		field[mechAPCost].matrixvalue[24,7] = 700
+		field[mechAPCost].matrixvalue[25,7] = 770
+		field[mechAPCost].matrixvalue[26,7] = 840
+		field[mechAPCost].matrixvalue[27,7] = 910
+		field[mechAPCost].matrixvalue[28,7] = 1050
+		field[mechAPCost].matrixvalue[29,7] = 1225
+		field[mechAPCost].matrixvalue[30,7] = 1400
+		field[mechAPCost].matrixvalue[31,7] = 1575
+		field[mechAPCost].matrixvalue[32,7] = 1750
+		field[mechAPCost].matrixvalue[33,7] = 1925
+		field[mechAPCost].matrixvalue[34,7] = 2100
+		field[mechAPCost].matrixvalue[35,7] = 2450
+		field[mechAPCost].matrixvalue[36,7] = 2800
+		field[mechAPCost].matrixvalue[37,7] = 3150
+		field[mechAPCost].matrixvalue[38,7] = 3500
+		field[mechAPCost].matrixvalue[39,7] = 3850
+		field[mechAPCost].matrixvalue[40,7] = 4200
+		field[mechAPCost].matrixvalue[1,8] = 4
+		field[mechAPCost].matrixvalue[2,8] = 8
+		field[mechAPCost].matrixvalue[3,8] = 16
+		field[mechAPCost].matrixvalue[4,8] = 24
+		field[mechAPCost].matrixvalue[5,8] = 32
+		field[mechAPCost].matrixvalue[6,8] = 48
+		field[mechAPCost].matrixvalue[7,8] = 64
+		field[mechAPCost].matrixvalue[8,8] = 80
+		field[mechAPCost].matrixvalue[9,8] = 96
+		field[mechAPCost].matrixvalue[10,8] = 128
+		field[mechAPCost].matrixvalue[11,8] = 160
+		field[mechAPCost].matrixvalue[12,8] = 192
+		field[mechAPCost].matrixvalue[13,8] = 224
+		field[mechAPCost].matrixvalue[14,8] = 256
+		field[mechAPCost].matrixvalue[15,8] = 320
+		field[mechAPCost].matrixvalue[16,8] = 360
+		field[mechAPCost].matrixvalue[17,8] = 400
+		field[mechAPCost].matrixvalue[18,8] = 440
+		field[mechAPCost].matrixvalue[19,8] = 480
+		field[mechAPCost].matrixvalue[20,8] = 520
+		field[mechAPCost].matrixvalue[21,8] = 560
+		field[mechAPCost].matrixvalue[22,8] = 640
+		field[mechAPCost].matrixvalue[23,8] = 720
+		field[mechAPCost].matrixvalue[24,8] = 800
+		field[mechAPCost].matrixvalue[25,8] = 880
+		field[mechAPCost].matrixvalue[26,8] = 960
+		field[mechAPCost].matrixvalue[27,8] = 1040
+		field[mechAPCost].matrixvalue[28,8] = 1200
+		field[mechAPCost].matrixvalue[29,8] = 1400
+		field[mechAPCost].matrixvalue[30,8] = 1600
+		field[mechAPCost].matrixvalue[31,8] = 1800
+		field[mechAPCost].matrixvalue[32,8] = 2000
+		field[mechAPCost].matrixvalue[33,8] = 2200
+		field[mechAPCost].matrixvalue[34,8] = 2400
+		field[mechAPCost].matrixvalue[35,8] = 2800
+		field[mechAPCost].matrixvalue[36,8] = 3200
+		field[mechAPCost].matrixvalue[37,8] = 3600
+		field[mechAPCost].matrixvalue[38,8] = 4000
+		field[mechAPCost].matrixvalue[39,8] = 4400
+		field[mechAPCost].matrixvalue[40,8] = 4800
+		field[mechAPCost].matrixvalue[1,9] = 5
+		field[mechAPCost].matrixvalue[2,9] = 9
+		field[mechAPCost].matrixvalue[3,9] = 18
+		field[mechAPCost].matrixvalue[4,9] = 27
+		field[mechAPCost].matrixvalue[5,9] = 36
+		field[mechAPCost].matrixvalue[6,9] = 54
+		field[mechAPCost].matrixvalue[7,9] = 72
+		field[mechAPCost].matrixvalue[8,9] = 90
+		field[mechAPCost].matrixvalue[9,9] = 108
+		field[mechAPCost].matrixvalue[10,9] = 144
+		field[mechAPCost].matrixvalue[11,9] = 180
+		field[mechAPCost].matrixvalue[12,9] = 216
+		field[mechAPCost].matrixvalue[13,9] = 252
+		field[mechAPCost].matrixvalue[14,9] = 288
+		field[mechAPCost].matrixvalue[15,9] = 360
+		field[mechAPCost].matrixvalue[16,9] = 405
+		field[mechAPCost].matrixvalue[17,9] = 450
+		field[mechAPCost].matrixvalue[18,9] = 495
+		field[mechAPCost].matrixvalue[19,9] = 540
+		field[mechAPCost].matrixvalue[20,9] = 585
+		field[mechAPCost].matrixvalue[21,9] = 630
+		field[mechAPCost].matrixvalue[22,9] = 720
+		field[mechAPCost].matrixvalue[23,9] = 810
+		field[mechAPCost].matrixvalue[24,9] = 900
+		field[mechAPCost].matrixvalue[25,9] = 990
+		field[mechAPCost].matrixvalue[26,9] = 1080
+		field[mechAPCost].matrixvalue[27,9] = 1170
+		field[mechAPCost].matrixvalue[28,9] = 1350
+		field[mechAPCost].matrixvalue[29,9] = 1575
+		field[mechAPCost].matrixvalue[30,9] = 1800
+		field[mechAPCost].matrixvalue[31,9] = 2025
+		field[mechAPCost].matrixvalue[32,9] = 2250
+		field[mechAPCost].matrixvalue[33,9] = 2475
+		field[mechAPCost].matrixvalue[34,9] = 2700
+		field[mechAPCost].matrixvalue[35,9] = 3150
+		field[mechAPCost].matrixvalue[36,9] = 3600
+		field[mechAPCost].matrixvalue[37,9] = 4050
+		field[mechAPCost].matrixvalue[38,9] = 4500
+		field[mechAPCost].matrixvalue[39,9] = 4950
+		field[mechAPCost].matrixvalue[40,9] = 5400
+		field[mechAPCost].matrixvalue[1,10] = 5
+		field[mechAPCost].matrixvalue[2,10] = 10
+		field[mechAPCost].matrixvalue[3,10] = 20
+		field[mechAPCost].matrixvalue[4,10] = 30
+		field[mechAPCost].matrixvalue[5,10] = 40
+		field[mechAPCost].matrixvalue[6,10] = 60
+		field[mechAPCost].matrixvalue[7,10] = 80
+		field[mechAPCost].matrixvalue[8,10] = 100
+		field[mechAPCost].matrixvalue[9,10] = 120
+		field[mechAPCost].matrixvalue[10,10] = 160
+		field[mechAPCost].matrixvalue[11,10] = 200
+		field[mechAPCost].matrixvalue[12,10] = 240
+		field[mechAPCost].matrixvalue[13,10] = 280
+		field[mechAPCost].matrixvalue[14,10] = 320
+		field[mechAPCost].matrixvalue[15,10] = 400
+		field[mechAPCost].matrixvalue[16,10] = 450
+		field[mechAPCost].matrixvalue[17,10] = 500
+		field[mechAPCost].matrixvalue[18,10] = 550
+		field[mechAPCost].matrixvalue[19,10] = 600
+		field[mechAPCost].matrixvalue[20,10] = 650
+		field[mechAPCost].matrixvalue[21,10] = 700
+		field[mechAPCost].matrixvalue[22,10] = 800
+		field[mechAPCost].matrixvalue[23,10] = 900
+		field[mechAPCost].matrixvalue[24,10] = 1000
+		field[mechAPCost].matrixvalue[25,10] = 1100
+		field[mechAPCost].matrixvalue[26,10] = 1200
+		field[mechAPCost].matrixvalue[27,10] = 1300
+		field[mechAPCost].matrixvalue[28,10] = 1500
+		field[mechAPCost].matrixvalue[29,10] = 1750
+		field[mechAPCost].matrixvalue[30,10] = 2000
+		field[mechAPCost].matrixvalue[31,10] = 2250
+		field[mechAPCost].matrixvalue[32,10] = 2500
+		field[mechAPCost].matrixvalue[33,10] = 2750
+		field[mechAPCost].matrixvalue[34,10] = 3000
+		field[mechAPCost].matrixvalue[35,10] = 3500
+		field[mechAPCost].matrixvalue[36,10] = 4000
+		field[mechAPCost].matrixvalue[37,10] = 4500
+		field[mechAPCost].matrixvalue[38,10] = 5000
+		field[mechAPCost].matrixvalue[39,10] = 5500
+		field[mechAPCost].matrixvalue[40,10] = 6000	
+	 
+   ]]></eval>
+	</thing>
+
+	<thing
+	id="mchBench"
+	name="Attribute Benchmarks"
+	compset="Mechanics">
+	
+	 <eval index="1" phase="Setup" priority="1000"><![CDATA[
+	 
+		~ Dex Benchmarks. Dex is index 0
+		
+		field[mechBench].matrixtext[1,0] = "The person has normal agility and can perform activities associated with daily living."
+		field[mechBench].matrixtext[2,0] = "The person has normal agility and can perform activities associated with daily living."
+		field[mechBench].matrixtext[3,0] = "The individual has agility equivalent to one who practices athletic abilities beyond,what is required for daily living such as: police officers, firemen, clowns, stage performers, dancers."
+		field[mechBench].matrixtext[4,0] = "The individual has agility equivalent to one who practices athletic abilities beyond,what is required for daily living such as: police officers, firemen, clowns, stage performers, dancers."
+		field[mechBench].matrixtext[5,0] = "The person possesses agility equivalent to individuals who are well-honed in athletic prowess as Gymnasts, Stunt men, and Circus Aerialists."
+		field[mechBench].matrixtext[6,0] = "The person possesses agility equivalent to individuals who are well-honed in athletic prowess as Gymnasts, Stunt men, and Circus Aerialists."
+		field[mechBench].matrixtext[7,0] = "The individual is agile enough to be a medal-winning Olympic gymnast."
+		field[mechBench].matrixtext[8,0] = "The individual is agile enough to be a medal-winning Olympic gymnast."
+		field[mechBench].matrixtext[9,0] = "This person possesses the best agility humanly possible and could easily become a record-setting Gold Medal Olympic gymnast."
+		field[mechBench].matrixtext[10,0] = "This person possesses the best agility humanly possible and could easily become a record-setting Gold Medal Olympic gymnast."
+		field[mechBench].matrixtext[11,0] = "This is a superhuman level of athletic prowess, where the individual can actually dodge high velocity projectiles such as arrows and bullets aimed directly at him or her with moderate effort."
+		field[mechBench].matrixtext[12,0] = "This is a superhuman level of athletic prowess, where the individual can actually dodge high velocity projectiles such as arrows and bullets aimed directly at him or her with moderate effort."
+		field[mechBench].matrixtext[13,0] = "This level of agility allows the dodging of laser fire and the ability to sight and catch slower moving projectiles, such as arrows and bullets."
+		field[mechBench].matrixtext[14,0] = "This level of agility allows the dodging of laser fire and the ability to sight and catch slower moving projectiles, such as arrows and bullets."
+		field[mechBench].matrixtext[15,0] = "This level of agility allows the dodging of laser fire and the ability to sight and catch slower moving projectiles, such as arrows and bullets."
+		field[mechBench].matrixtext[16,0] = "The person is capable of athletic maneuvers that seem to defy the ability of the humanoid structure. His or her reactions are so swift laser fire appears in slow motion."
+		field[mechBench].matrixtext[17,0] = "The person is capable of athletic maneuvers that seem to defy the ability of the humanoid structure. His or her reactions are so swift laser fire appears in slow motion."
+		field[mechBench].matrixtext[18,0] = "The person is capable of athletic maneuvers that seem to defy the ability of the humanoid structure. His or her reactions are so swift laser fire appears in slow motion."
+		field[mechBench].matrixtext[19,0] = "Reaction time and coordination are so attuned that the individual's thoughts and actions are simultaneous."
+		field[mechBench].matrixtext[20,0] = "Reaction time and coordination are so attuned that the individual's thoughts and actions are simultaneous."
+		field[mechBench].matrixtext[21,0] = "Reaction time and coordination are so attuned that the individual's thoughts and actions are simultaneous."
+		field[mechBench].matrixtext[22,0] = "The character's actions begin before the human brain can complete a thought."
+		field[mechBench].matrixtext[23,0] = "The character's actions begin before the human brain can complete a thought."
+		field[mechBench].matrixtext[24,0] = "The character's actions begin before the human brain can complete a thought."
+		field[mechBench].matrixtext[25,0] = "A person with agility of this magnitude sees his surroundings, even energy, as motionless and can easily dodge multiple laser fire."
+		field[mechBench].matrixtext[26,0] = "A person with agility of this magnitude sees his surroundings, even energy, as motionless and can easily dodge multiple laser fire."
+		field[mechBench].matrixtext[27,0] = "A person with agility of this magnitude sees his surroundings, even energy, as motionless and can easily dodge multiple laser fire."
+		field[mechBench].matrixtext[28,0] = "A level  of agility where the individual's reactions occur as if he was clairvoyant."
+		field[mechBench].matrixtext[29,0] = "A level  of agility where the individual's reactions occur as if he was clairvoyant."
+		field[mechBench].matrixtext[30,0] = "A level  of agility where the individual's reactions occur as if he was clairvoyant."
+		
+	 ~Str benchmarks. Index is 1.
+	 	field[mechBench].matrixtext[1,1] = "A normal human who can lift 200 pounds above his head."
+		field[mechBench].matrixtext[2,1] = "A normal human who can lift 200 pounds above his head."
+		field[mechBench].matrixtext[3,1] = "A person with exceptional human strength, equivalent to that of professional weight lifters.{br}Lifting Range: 400-800 pounds."
+		field[mechBench].matrixtext[4,1] = "A person with exceptional human strength, equivalent to that of professional weight lifters.{br}Lifting Range: 400-800 pounds."
+		field[mechBench].matrixtext[5,1] = "This is the level of maximum human strength.{br}Lifting Range: 900-1,600 pounds."
+		field[mechBench].matrixtext[6,1] = "This is the level of maximum human strength.{br}Lifting Range: 900-1,600 pounds."
+		field[mechBench].matrixtext[7,1] = "This is super-human strength capable of bending a steel crowbar.{br}Lifting Range: 3-6 tons."
+		field[mechBench].matrixtext[8,1] = "This is super-human strength capable of bending a steel crowbar.{br}Lifting Range: 3-6 tons."
+		field[mechBench].matrixtext[9,1] = "A person with strength of sufficient force to demolish a concrete barrier.{br}Lifting Range: 12-25 tons." 
+		field[mechBench].matrixtext[10,1] = "A person with strength of sufficient force to demolish a concrete barrier.{br}Lifting Range: 12-25 tons." 
+		field[mechBench].matrixtext[11,1] = "The power of the individual's strength can rupture a steel wall.{br}Lifting Range: 50-100 tons." 
+		field[mechBench].matrixtext[12,1] = "The power of the individual's strength can rupture a steel wall.{br}Lifting Range: 50-100 tons." 
+		field[mechBench].matrixtext[13,1] = "The individual can summon strength to crush titanium without real effort or throw a car a half mile (this can be done at a 15).{br}Lifting Range: 200-800 tons." 
+		field[mechBench].matrixtext[14,1] = "The individual can summon strength to crush titanium without real effort or throw a car a half mile (this can be done at a 15).{br}Lifting Range: 200-800 tons." 
+		field[mechBench].matrixtext[15,1] = "The individual can summon strength to crush titanium without real effort or throw a car a half mile (this can be done at a 15).{br}Lifting Range: 200-800 tons."
+		field[mechBench].matrixtext[16,1] = "At this level of strength, most barriers, natural or man-made, cannot stop this Individual, as he can easily demolish a fortified bunker.{br}Lifting Range: 1,600-6,400 tons."
+		field[mechBench].matrixtext[17,1] = "At this level of strength, most barriers, natural or man-made, cannot stop this Individual, as he can easily demolish a fortified bunker.{br}Lifting Range: 1,600-6,400 tons."
+		field[mechBench].matrixtext[18,1] = "At this level of strength, most barriers, natural or man-made, cannot stop this Individual, as he can easily demolish a fortified bunker.{br}Lifting Range: 1,600-6,400 tons."
+		field[mechBench].matrixtext[19,1] = "This Individual possesses strength equivalent to that of the giants of ancient legends.{br}Lifting Range: 12,800-51,200 tons."
+		field[mechBench].matrixtext[20,1] = "This Individual possesses strength equivalent to that of the giants of ancient legends.{br}Lifting Range: 12,800-51,200 tons."
+		field[mechBench].matrixtext[21,1] = "This Individual possesses strength equivalent to that of the giants of ancient legends.{br}Lifting Range: 12,800-51,200 tons."
+		field[mechBench].matrixtext[22,1] = "At this level the individual possesses god-like strength.{br}Lifting Range: 102,400-409,600 tons."  
+		field[mechBench].matrixtext[23,1] = "At this level the individual possesses god-like strength.{br}Lifting Range: 102,400-409,600 tons."  
+		field[mechBench].matrixtext[24,1] = "At this level the individual possesses god-like strength.{br}Lifting Range: 102,400-409,600 tons."  
+		field[mechBench].matrixtext[25,1] = "Beings with strength in this range have Titan-level prowess.{br}Lifting Range: 819,200-3,276,800 tons."  
+		field[mechBench].matrixtext[26,1] = "Beings with strength in this range have Titan-level prowess.{br}Lifting Range: 819,200-3,276,800 tons."  
+		field[mechBench].matrixtext[27,1] = "Beings with strength in this range have Titan-level prowess.{br}Lifting Range: 819,200-3,276,800 tons."  
+		field[mechBench].matrixtext[28,1] = "This is entity-level strength. Small celestial bodies are obliterated with the exercise of this level of strength.{br}Lifting Range: 6,553,600-13,107,200 tons."  
+		field[mechBench].matrixtext[29,1] = "This is entity-level strength. Small celestial bodies are obliterated with the exercise of this level of strength.{br}Lifting Range: 6,553,600-13,107,200 tons."  
+		field[mechBench].matrixtext[30,1] = "This is entity-level strength. Small celestial bodies are obliterated with the exercise of this level of strength.{br}Lifting Range: 6,553,600-13,107,200 tons."  
+	  ]]></eval>
+	</thing>
+
+ <!-- Damage transaction handler for use when applying damage on the In-Play tab -->
+ <thing
+  id="mscBody"
+  name="Body Damage"
+  compset="Damage">
+
+  <!-- Automatically add the damage transaction to every actor -->
+  <tag group="Helper" tag="Bootstrap"/>
+  </thing>
+
+  <!-- Damage transaction handler for use when applying damage on the In-Play tab -->
+ <thing
+  id="mscMind"
+  name="Mind Damage"
+  compset="Damage">
+
+  <!-- Automatically add the damage transaction to every actor -->
+  <tag group="Helper" tag="Bootstrap"/>
+  </thing>
+
+  <!-- Damage transaction handler for use when applying damage on the In-Play tab -->
+ <thing
+  id="mscSpirit"
+  name="Spirit Damage"
+  compset="Damage">
+
+  <!-- Automatically add the damage transaction to every actor -->
+  <tag group="Helper" tag="Bootstrap"/>
+  </thing>
+
+
+ <!-- Personal information details used on the Personal tab -->
+ <thing
+  id="mscPerson"
+  name="Personal"
+  compset="Personal">
+  </thing>
+
+
+ <!-- Basic user-added image that is managed through the gallery on Personal tab -->
+ <thing
+  id="mscUserImg"
+  name="User Image"
+  compset="UserImage">
+  </thing>
+
+  <!-- Basic user-added image that is managed through the gallery on Gadget form -->
+  <thing
+    id="mscGadImg"
+    name="Gadget Image"
+    compset="UserImage">
+    </thing>
+
+  
+ <!-- Character point resource to track the pool of character points being spent -->
+ <thing
+  id="resHP"
+  name="Hero Points"
+  compset="Resource">
+
+  <!-- Automatically add the resource to every actor -->
+  <tag group="Helper" tag="Bootstrap"/>
+
+  <!-- Use the starting character points as our initial maximum -->
+  <eval index="1" phase="Setup" priority="1000"><![CDATA[
+   field[resMax].value = herofield[acStartHP].value
+   ]]></eval>
+  </thing>
+
+  <thing
+  id="resGadHP"
+  name="Gadget Hero Points"
+  compset="Resource">
+    <fieldval field="resObject" value="Gadget"/>
+
+  <!-- Use the remaining hero points as our initial maximum -->
+  <eval index="1" phase="Final" priority="2000"><![CDATA[
+   field[resMax].value = hero.child[resHP].field[resLeft].value
+   ]]></eval>
+
+   <!-- Recalc Res Left -->
+  <eval index="2" phase="Final" priority="3000"><![CDATA[
+   field[resLeft].value = field[resMax].value - field[resSpent].value
+   ]]></eval>
+  </thing>
+
+
+ <!-- Experience points resource to track the pool of XP accrued and spent -->
+ <thing
+  id="resXP"
+  name="Experience Points"
+  compset="Resource">
+
+  <!-- Automatically add the resource to every actor -->
+  <tag group="Helper" tag="Bootstrap"/>
+
+  <!-- Do NOT require this resource to be fully utilized -->
+  <tag group="Helper" tag="NoMinimum"/>
+
+  <!-- Use the starting XP plus the accrued XP as our maximum -->
+  <eval index="1" phase="Setup" priority="1000" name="Calc XP Max"><![CDATA[
+   field[resMax].value = herofield[acStartXP].value + hero.usagepool[TotalXP].value
+   ]]></eval>
+  </thing>
+
+
+ <!-- Advance resource to track the number of advances accrued/spent -->
+ <thing
+  id="resAdvance"
+  name="Advances"
+  compset="Resource"
+  panellink="advances">
+  <fieldval field="resObject" value="Advance"/>
+
+  <!-- Automatically add the resource to every actor -->
+  <tag group="Helper" tag="Bootstrap"/>
+
+  <!-- Base our maximum on the accrued XP -->
+  <eval index="1" phase="Setup" priority="2000">
+   <after name="Calc XP Max"/><![CDATA[
+   field[resMax].value = round(#resmax[resXP] / 20,0,-1)
+   ]]></eval>
+
+  </thing>
+
+
+ <!-- Hero points tracker so the user can manage the expenditure of hero points -->
+ <thing
+  id="trkHP"
+  name="Hero Points"
+  compset="Tracker">
+
+  <!-- Automatically add the tracker to every actor -->
+  <tag group="Helper" tag="Bootstrap"/>
+
+  <!-- Use the starting power points as our initial maximum -->
+  <eval index="1" phase="Final" priority="1000"><![CDATA[
+   field[trkMin].value = 0
+   field[trkMax].value = hero.child[resHP].field[resLeft].value 
+   ]]></eval>
+  </thing>
+
+
+ <!-- Types of characters you might want to build -->
+ <thing
+  id="typHero"
+  name="Type: Hero (PC)"
+  compset="CharType">
+  </thing>
+ <thing
+  id="typNPC"
+  name="Type: Non-Player Character"
+  compset="CharType">
+  </thing>
+
+
+ <!-- NPC Info to display on the NPC info tab - the final "Additional
+   Information" pick can be added multiple times and customised by the user. -->
+ <thing
+  id="npcDesc"
+  name="Description"
+  compset="NPCInfo"
+  uniqueness="unique">
+  <tag group="explicit" tag="5"/>
+  </thing>
+ <thing
+  id="npcGoals"
+  name="Motivations &amp; Goals"
+  compset="NPCInfo"
+  uniqueness="unique">
+  <tag group="explicit" tag="10"/>
+  </thing>
+ <thing
+  id="npcSchemes"
+  name="Schemes, Plots &amp; Adventure Hooks"
+  compset="NPCInfo"
+  uniqueness="unique">
+  <tag group="explicit" tag="15"/>
+  </thing>
+ <thing
+  id="npcTacBef"
+  name="Tactics - Before Combat"
+  compset="NPCInfo"
+  uniqueness="unique">
+  <tag group="explicit" tag="20"/>
+  </thing>
+ <thing
+  id="npcTacDur"
+  name="Tactics - During Combat"
+  compset="NPCInfo"
+  uniqueness="unique">
+  <tag group="explicit" tag="25"/>
+  </thing>
+ <thing
+  id="npcMorale"
+  name="Tactics - Morale"
+  compset="NPCInfo"
+  uniqueness="unique">
+  <tag group="explicit" tag="30"/>
+  </thing>
+ <thing
+  id="npcEnviron"
+  name="Ecology - Environment"
+  compset="NPCInfo"
+  uniqueness="unique">
+  <tag group="explicit" tag="35"/>
+  </thing>
+ <thing
+  id="npcOrganiz"
+  name="Ecology - Organization"
+  compset="NPCInfo"
+  uniqueness="unique">
+  <tag group="explicit" tag="40"/>
+  </thing>
+ <thing
+  id="npcTreas"
+  name="Ecology - Treasure"
+  compset="NPCInfo"
+  uniqueness="unique">
+  <tag group="explicit" tag="45"/>
+  </thing>
+ <thing
+  id="npcOther"
+  name="Additional Information"
+  compset="NPCInfo">
+  <tag group="Helper" tag="CustomItem"/>
+  <tag group="explicit" tag="50"/>
+  </thing>
+
+  </document>

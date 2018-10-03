@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the definitions of components that don't really fit anywhere
+      else, such as resources, journal entries, etc.
+-->
+
+<document signature="Hero Lab Structure">
+
+  <!-- Subskill component
+        Used for tracking Subskills on Skills
+  -->
+  <component
+    id="Subskill"
+    name="Subskill"
+    autocompset="no"
+	ispublic="yes">
+	  
+	<identity group="Subskill"/> 
+	  
+    <!-- Assign the tag to the container -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      perform forward[Subskill.?,parent]
+      ]]></eval>	
+    </component>
+
+  <!-- Subskill Info component
+        Used for tracking determining which subskills belong on which Skills
+  -->
+  <component
+    id="SubSklInfo"
+    name="Subskill Info"
+    autocompset="yes"
+	ispublic="no">
+
+    <!-- Tag applied when picked -->
+    <field
+      id="sskTagExp"
+      name="Tag Expression"
+      type="derived"
+      maxlength="200">
+      </field>
+	  
+    <field
+      id="subLinked"
+      name="Linked"
+      type="user"
+      minvalue="0"
+      maxvalue="1">
+      </field>	  
+	  
+    <!-- Build to candidate tag expression -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      if (parent.isgizmo <> 0) then
+		~set our candidate field for aoe selection
+		field[sskTagExp].text = "OnSkill.Any | OnSkill." & parent.idstring
+	  endif
+      ]]></eval>	
+
+    <eval index="2" phase="Traits" priority="1000"><![CDATA[
+      parent.field[lnkLinked].value = field[subLinked].value
+      ]]></eval>	  
+
+    </component>
+
+
+	<!-- Power Info component
+        Used for tracking modifiers on powers
+  -->
+  <component
+    id="PowerInfo"
+    name="Power Info"
+    autocompset="yes"
+	ispublic="no">
+
+    <!-- Tag applied when picked -->
+    <field
+      id="powTagExp"
+      name="Tag Expression"
+      type="derived"
+      maxlength="200">
+      </field>
+	  
+    <field
+      id="powLinked"
+      name="Linked"
+      type="user"
+      minvalue="0"
+      maxvalue="1">
+      </field>
+	  
+    <!-- Build to candidate tag expression -->
+    <eval index="1" phase="Setup" priority="1000"><![CDATA[
+      if (parent.isgizmo <> 0) then
+		~set our candidate field for aoe selection
+		field[powTagExp].text = "OnPower.Any | OnPower." & parent.idstring
+		
+	  endif
+      ]]></eval>	
+
+    <eval index="2" phase="Traits" priority="1000"><![CDATA[
+      parent.field[lnkLinked].value = field[powLinked].value
+      ]]></eval>	  
+
+    </component>	
+	
+  <!-- GadgetInfo component
+        Used for tracking various info items on gadgets
+  -->
+  <component
+    id="GadgetInfo"
+    name="GadgetInfo"
+    autocompset="yes"
+	addbehavior="default"
+	ispublic="yes">
+
+	
+	<!-- Gadget description -->
+    <field
+      id="gdDesc"
+      name="Gadget Description"
+      type="user"
+      maxlength="100">
+      </field>
+	  
+	<!-- Store the accrued cost of the gadget -->
+    <field
+      id="gdHP"
+      name="Hero Points"
+      type="derived"
+      minvalue="-999">
+      </field>
+
+	<!-- Reliability number of the gadget -->
+    <field
+      id="gdRelNum"
+      name="Reliability Number"
+      type="user"
+      minvalue="0"
+	  maxvalue="11">
+      </field>
+
+	<!-- Current Reliability number of the gadget -->
+    <field
+      id="gdCurRel"
+      name="Current Reliability Number"
+      type="derived">
+	  <calculate phase="Final" priority="10000" name="Calc Cur Rel Num"><![CDATA[
+        ~Add body damage to reliability number
+		var val as number
+		val = field[gdRelNum].value + usagepool[gdBodyNet].value
+	   @value = val
+	   ]]></calculate>
+      </field>
+	  
+	<field
+      id="gdTaken"
+      name="Can be taken away?"
+      type="user"
+      minvalue="0"
+      maxvalue="1"
+	  defvalue="1">
+      </field>  
+
+	<field
+      id="gdHardened"
+      name="Hardened defenses?"
+      type="user"
+      minvalue="0"
+      maxvalue="1">
+      </field>  
+
+	<!-- Tag applied to Powers picked for the gadget -->
+    <field
+      id="gdTagExp"
+      name="Power Tag Expression"
+      type="derived"
+      maxlength="200">
+      </field>
+
+	<!-- Is Free? -->
+    <field
+      id="gdIsFree"
+      name="Free?"
+      type="user"
+      minvalue="0"
+	  maxvalue="1">
+	  </field>
+
+	    <!-- Damage to be sustained or healed -->
+    <field
+      id="gdBodyDmg"
+      name="Damage"
+      type="user"
+      minvalue="0"
+      maxvalue="99">
+      </field>
+
+	<field
+      id="gdMindDmg"
+      name="Damage"
+      type="user"
+      minvalue="0"
+      maxvalue="99">
+      </field>
+
+	<field
+      id="gdSpirDmg"
+      name="Damage"
+      type="user"
+      minvalue="0"
+      maxvalue="99">
+      </field>
+	
+    <!-- Minimum (starting) health for the gadget -->
+    <field
+      id="gdBodyMin"
+      name="Min Body"
+      type="derived">
+      <!-- Calculate the base health value for the actor from its pieces. We have to
+            calculate the value from its pieces instead of just getting the net trait
+            value. This is because Health must be calculated BEFORE the final value
+            for derived traits, since derived traits may be influenced by the net health
+            (e.g. attack penalties after taking sufficient damage).
+      -->
+      <calculate phase="Traits" priority="5000" name="Calc gdBodyMin"><![CDATA[
+        @value = container.childfound[attrBod].field[trtBonus].value + container.childfound[attrBod].field[trtInPlay].value
+        ]]></calculate>
+      </field>
+
+    <!-- Bonus health for the actor -->
+    <field
+      id="gdBodBonus"
+      name="Bonus Body"
+      type="derived">
+      <!-- Calculate any health bonus that the actor receives from other sources.
+      -->
+      <calculate phase="Traits" priority="5000" name="Calc gdBodBonus"><![CDATA[
+        ~.... add any suitable code here to calculate this for the game system ....
+        @value = 0
+        ]]></calculate>
+      </field>
+
+    <!-- Maximum health for the actor -->
+    <field
+      id="gdBodyMax"
+      name="Max Body"
+      type="derived">
+      <!-- Calculate the maximum health for the actor as the minimum plus any bonus.
+      -->
+      <calculate phase="Traits" priority="5002" name="Calc gdBodyMax">
+        <after name="Calc gdBodyMin"/>
+        <after name="Calc gdBodBonus"/><![CDATA[
+		@value = container.child[attrBod].field[trtBonus].value
+		]]></calculate>
+      </field>
+
+    <!-- Current health -->
+    <field
+      id="gdBodyNow"
+      name="Current Body"
+      type="derived">
+      <!-- Calculate the current health for the actor based on the maximum and any
+            actual damage that has been sustained.
+      -->
+      <calculate phase="Traits" priority="5100" name="Calc gdBodyNow">
+        <after name="Calc gdBodyMax"/><![CDATA[
+        @value = field[gdBodyMax].value - usagepool[gdBodyNet].value
+        ]]></calculate>
+      </field>
+
+    <!-- Health penalty adjustment due to damage effects -->
+    <field
+      id="gdBodPenal"
+      name="Body Penalty"
+      type="derived"
+      maxfinal="50">
+      <!-- Calculate any penalty adjustment applied due to substantial damage effects.
+            For example, if the actor has sustained enough damage, he might suffer
+            penalties on attack roles.
+      -->
+      <calculate phase="Traits" priority="5200" name="Calc gdBodPenal">
+        <after name="Calc gdBodyNow"/><![CDATA[
+          ]]></calculate>
+      <!-- Final value for display shows any negative value in red and ignores other values -->
+      <finalize><![CDATA[
+        if (@value >= 0) then
+          @text = ""
+        else
+          @text = "{text clrwarning}(" & @value & "){text clrreset}"
+          endif
+        ]]></finalize>
+      </field>
+
+    <!-- Health summary for display -->
+    <field
+      id="gdBodySumm"
+      name="Health Summary"
+      type="derived"
+      maxfinal="50">
+      <!-- Calculate a value that is based on all the fields referenced by the
+            "finalize" script. This ensures that the field always changes if any of
+            its pieces changes, which triggers the finalized value to be updated.
+      -->
+      <calculate phase="Render" priority="1000">
+        <after name="Calc gdBodyNow"/><![CDATA[
+        ~make sure this value consists of the elements that could cause the summary to change
+        @value = field[gdBodyNow].value * 10000 + field[gdBodyMax].value * 100 + field[gdBodPenal].value
+        ]]></calculate>
+      <!-- Final value for display show the current and maximum health, plus any
+            penalty value in parentheses.
+      -->
+      <finalize><![CDATA[
+        @text = field[gdBodyNow].value & " / " & field[gdBodyMax].value
+        if (field[gdBodPenal].value < 0) then
+          @text &= " {text clrwarning}(" & field[gdBodPenal].value & "){text clrreset}"
+          endif
+        ]]></finalize>
+      </field>
+
+	 <!-- Minimum (starting) health for the actor -->
+    <field
+      id="gdMindMin"
+      name="Min Mind"
+      type="derived">
+      <!-- Calculate the base health value for the actor from its pieces. We have to
+            calculate the value from its pieces instead of just getting the net trait
+            value. This is because Health must be calculated BEFORE the final value
+            for derived traits, since derived traits may be influenced by the net health
+            (e.g. attack penalties after taking sufficient damage).
+      -->
+      <calculate phase="Traits" priority="5000" name="Calc gdMindMin"><![CDATA[
+        @value = container.childfound[attrMin].field[trtBonus].value + container.childfound[attrMin].field[trtInPlay].value
+        ]]></calculate>
+      </field>
+
+    <!-- Bonus health for the actor -->
+    <field
+      id="gdMinBonus"
+      name="Bonus Mind"
+      type="derived">
+      <!-- Calculate any health bonus that the actor receives from other sources.
+      -->
+      <calculate phase="Traits" priority="5000" name="Calc gdMinBonus"><![CDATA[
+        ~.... add any suitable code here to calculate this for the game system ....
+        @value = 0
+        ]]></calculate>
+      </field>
+
+    <!-- Maximum health for the actor -->
+    <field
+      id="gdMindMax"
+      name="Max Mind"
+      type="derived">
+      <!-- Calculate the maximum health for the actor as the minimum plus any bonus.
+      -->
+      <calculate phase="Traits" priority="5002" name="Calc gdMindMax">
+        <after name="Calc gdMindMin"/>
+        <after name="Calc gdBodBonus"/><![CDATA[
+        @value = container.childfound[attrMin].field[trtFinal].value
+        ]]></calculate>
+      </field>
+
+    <!-- Current health -->
+    <field
+      id="gdMindNow"
+      name="Current Mind"
+      type="derived">
+      <!-- Calculate the current health for the actor based on the maximum and any
+            actual damage that has been sustained.
+      -->
+      <calculate phase="Traits" priority="5100" name="Calc gdMindNow">
+        <after name="Calc gdMindMax"/><![CDATA[
+        @value = field[gdMindMax].value - usagepool[gdMindNet].value
+        ]]></calculate>
+      </field>
+
+    <!-- Health penalty adjustment due to damage effects -->
+    <field
+      id="gdMinPenal"
+      name="Mind Penalty"
+      type="derived"
+      maxfinal="50">
+      <!-- Calculate any penalty adjustment applied due to substantial damage effects.
+            For example, if the actor has sustained enough damage, he might suffer
+            penalties on attack roles.
+      -->
+      <calculate phase="Traits" priority="5200" name="Calc gdMinPenal">
+        <after name="Calc gdMindNow"/><![CDATA[
+          ]]></calculate>
+      <!-- Final value for display shows any negative value in red and ignores other values -->
+      <finalize><![CDATA[
+        if (@value >= 0) then
+          @text = ""
+        else
+          @text = "{text clrwarning}(" & @value & "){text clrreset}"
+          endif
+        ]]></finalize>
+      </field>
+
+    <!-- Health summary for display -->
+    <field
+      id="gdMindSumm"
+      name="Mind Summary"
+      type="derived"
+      maxfinal="50">
+      <!-- Calculate a value that is based on all the fields referenced by the
+            "finalize" script. This ensures that the field always changes if any of
+            its pieces changes, which triggers the finalized value to be updated.
+      -->
+      <calculate phase="Render" priority="1000">
+        <after name="Calc gdMindNow"/><![CDATA[
+        ~make sure this value consists of the elements that could cause the summary to change
+        @value = field[gdMindNow].value * 10000 + field[gdMindMax].value * 100 + field[gdMinPenal].value
+        ]]></calculate>
+      <!-- Final value for display show the current and maximum health, plus any
+            penalty value in parentheses.
+      -->
+      <finalize><![CDATA[
+        @text = field[gdMindNow].value & " / " & field[gdMindMax].value
+        if (field[gdMinPenal].value < 0) then
+          @text &= " {text clrwarning}(" & field[gdBodPenal].value & "){text clrreset}"
+          endif
+        ]]></finalize>
+      </field>
+
+	<!-- Minimum (starting) health for the gadget -->
+    <field
+      id="gdSpirMin"
+      name="Min Spirit"
+      type="derived">
+      <!-- Calculate the base health value for the actor from its pieces. We have to
+            calculate the value from its pieces instead of just getting the net trait
+            value. This is because Health must be calculated BEFORE the final value
+            for derived traits, since derived traits may be influenced by the net health
+            (e.g. attack penalties after taking sufficient damage).
+      -->
+      <calculate phase="Traits" priority="5000" name="Calc gdSpirMin"><![CDATA[
+        ~@value = container.childfound[attrSpi].field[trtBonus].value + container.childfound[attrSpi].field[trtInPlay].value
+        ]]></calculate>
+      </field>
+
+    <!-- Bonus health for the actor -->
+    <field
+      id="gdSpiBonus"
+      name="Bonus Spirit"
+      type="derived">
+      <!-- Calculate any health bonus that the actor receives from other sources.
+      -->
+      <calculate phase="Traits" priority="5000" name="Calc gdSpiBonus"><![CDATA[
+        ~.... add any suitable code here to calculate this for the game system ....
+        @value = 0
+        ]]></calculate>
+      </field>
+
+    <!-- Maximum health for the actor -->
+    <field
+      id="gdSpirMax"
+      name="Max Spirit"
+      type="derived">
+      <!-- Calculate the maximum health for the actor as the minimum plus any bonus.
+      -->
+      <calculate phase="Traits" priority="5002" name="Calc gdSpirMax">
+        <after name="Calc gdSpirMin"/>
+        <after name="Calc gdSpiBonus"/><![CDATA[
+        @value = container.childfound[attrSpi].field[trtFinal].value
+        ]]></calculate>
+      </field>
+
+    <!-- Current health -->
+    <field
+      id="gdSpirNow"
+      name="Current Spir"
+      type="derived">
+      <!-- Calculate the current health for the actor based on the maximum and any
+            actual damage that has been sustained.
+      -->
+      <calculate phase="Traits" priority="5100" name="Calc gdSpirNow">
+        <after name="Calc gdSpirMax"/><![CDATA[
+        @value = field[gdSpirMax].value - usagepool[gdSpirNet].value
+        ]]></calculate>
+      </field>
+
+    <!-- Health penalty adjustment due to damage effects -->
+    <field
+      id="gdSpiPenal"
+      name="Spirit Penalty"
+      type="derived"
+      maxfinal="50">
+      <!-- Calculate any penalty adjustment applied due to substantial damage effects.
+            For example, if the actor has sustained enough damage, he might suffer
+            penalties on attack roles.
+      -->
+      <calculate phase="Traits" priority="5200" name="Calc gdSpiPenal">
+        <after name="Calc gdSpirNow"/><![CDATA[
+          ]]></calculate>
+      <!-- Final value for display shows any negative value in red and ignores other values -->
+      <finalize><![CDATA[
+        if (@value >= 0) then
+          @text = ""
+        else
+          @text = "{text clrwarning}(" & @value & "){text clrreset}"
+          endif
+        ]]></finalize>
+      </field>
+
+    <!-- Health summary for display -->
+    <field
+      id="gdSpirSumm"
+      name="Spir Summary"
+      type="derived"
+      maxfinal="50">
+      <!-- Calculate a value that is based on all the fields referenced by the
+            "finalize" script. This ensures that the field always changes if any of
+            its pieces changes, which triggers the finalized value to be updated.
+      -->
+      <calculate phase="Render" priority="1000">
+        <after name="Calc gdSpirNow"/><![CDATA[
+        ~make sure this value consists of the elements that could cause the summary to change
+        @value = field[gdSpirNow].value * 10000 + field[gdSpirMax].value * 100 + field[gdSpiPenal].value
+        ]]></calculate>
+      <!-- Final value for display show the current and maximum health, plus any
+            penalty value in parentheses.
+      -->
+      <finalize><![CDATA[
+        @text = field[gdSpirNow].value & " / " & field[gdSpirMax].value
+        if (field[gdSpiPenal].value < 0) then
+          @text &= " {text clrwarning}(" & field[gdSpiPenal].value & "){text clrreset}"
+          endif
+        ]]></finalize>
+      </field>
+	  
+    <usage usagepool="gdBodyAdj"/>
+    <usage usagepool="gdBodyNet"/>
+    <usage usagepool="gdMindAdj"/>
+    <usage usagepool="gdMindNet"/>
+    <usage usagepool="gdSpirAdj"/>
+    <usage usagepool="gdSpirNet"/>
+	  
+	  
+	<eval index="1" phase="Final" priority="100" name="Calc Gadget HP Cost">
+		<before name="Calc Gadget Cost"/><![CDATA[
+		var val as number
+        if (field[gdIsFree].value <> 0) then
+			val = 0
+		else
+			val = container.childfound[resGadHP].field[resSpent].value
+			if (field[gdTaken].value <> 0) then
+				val = val / 4
+			else
+				val = val / 2
+			endif
+        endif
+		val = round(val,0,1)
+		field[gdHP].value = val
+		]]></eval> 
+    </component>
+	
+	 <!-- Hero point resource to track the pool of character points being spent -->
+
+  <!-- Gadget component
+        Attaches the gizmo that comprises gadget traits and GadgetInfo
+  -->
+  <component
+    id="Gadget"
+    name="Gadget"
+    autocompset="no"
+	addbehavior="default"
+	ispublic="yes">
+	
+	<!-- Pay for the gadget in hero points -->
+	<eval index="1" phase="Final" priority="500" name="Calc Gadget Cost">      
+	<before name="Calc resLeft"/>
+      <after name="Calc Gadget HP Cost"/><![CDATA[
+		var gadgetcost as number
+		gadgetcost = gizmo.childfound[GadgetInfo].field[gdHP].value
+		hero.child[resHP].field[resSpent].value += gadgetcost 
+		field[livename].text = gizmo.childfound[GadgetInfo].field[username].text
+    ]]></eval>  
+	
+	
+    </component>
+
+  <!-- Drawback Info component
+        Used for tracking modifiers on drawbacks -->
+  <component
+    id="DrawbkInfo"
+    name="Drawback Info"
+    autocompset="yes"
+	ispublic="no">
+
+    <!-- Tag applied when picked -->
+    <field
+      id="drTagExp"
+      name="Tag Expression"
+      type="derived"
+      maxlength="200">
+      </field>
+
+
+    </component>
+	
+  <!-- Subskill - all Subskills utilize this compset -->
+  <compset
+    id="Subskill">
+    <compref component="Subskill"/>
+    <compref component="Custom"/>
+    <compref component="Domain"/>
+    <compref component="UserSelect"/>
+    </compset>
+
+  <!-- Gadget - all Gadgets utilize this compset -->
+  <compset
+    id="Gadget">
+    <compref component="Gadget"/>
+    <compref component="Custom"/>
+    <compref component="Domain"/>
+    <compref component="UserSelect"/>
+    </compset>
+	
+  <!-- Entity for bootstrapping gadgets to things -->
+   <entity
+	  id="entGadget"
+	  defaultthing="GadgetInfo"
+	  form="gadget">
+	  <bootstrap thing="GadgetInfo"/>	  
+	  <bootstrap thing="mscGadImg"/>
+	  <bootstrap thing="attrBod"/>
+	  <bootstrap thing="resGadHP"/>
+	</entity>
+
+  <!-- Entity for bootstrapping subskills to skills -->
+   <entity
+	  id="entSubSkl"
+	  defaultthing="SubsklInfo"
+	  form="subskill">
+	  <bootstrap thing="SubsklInfo"/>
+	</entity>	
+
+
+  </document>

@@ -1,0 +1,2046 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- Form for adding gadgets.
+-->
+
+<document signature="Hero Lab Data">
+
+
+   <!-- gfPowers portal for assigning traits -->	
+   <portal
+    id="gfPowers"
+    style="tblNormal">
+    <table_dynamic
+      component="Power"
+      showtemplate="pwPick"
+      choosetemplate="pwChoice"
+      showfixedlast="yes"
+	  headerpick="GadgetInfo"
+	  addpick="resGadHP"
+	  columns="1">
+      <titlebar><![CDATA[
+        @text = "Power - " & container.childfound[resGadHP].field[resShort].text
+        ]]></titlebar>
+      <description/>
+      <headertitle><![CDATA[
+         @text = "Power: " & container.childfound[resGadHP].field[resShort].text
+        ]]></headertitle>
+	  <additem><![CDATA[
+        @text = "Add Power"
+        ]]></additem>
+      </table_dynamic>
+    </portal>
+
+   <!-- gfAttrib portal for assigning traits -->	
+   <portal
+    id="gfAttrib"
+    style="tblNormal">
+    <table_dynamic
+      component="Attribute"
+      showtemplate="baAttrPick"
+      choosetemplate="SimpleItem"
+      showfixedlast="yes"
+	  headerpick="GadgetInfo"
+	  addpick="resGadHP"
+	  showsortset="explicit"
+	  choosesortset="explicit"
+	  columns="1">
+	  <candidate><![CDATA[
+		AttrType.Gadget | AttrType.Resistance | AttrType.ActOpp | AttrType.Effect
+	  ]]></candidate>
+      <titlebar><![CDATA[
+        @text = "Attributes - " & container.childfound[resGadHP].field[resShort].text
+        ]]></titlebar>
+      <description/>
+      <headertitle><![CDATA[
+         @text = "Attributes: " & container.childfound[resGadHP].field[resShort].text
+        ]]></headertitle>
+	  <additem><![CDATA[
+        @text = "Add Attribute"
+        ]]></additem>
+      </table_dynamic>
+    </portal>
+
+   <!-- gfSkills portal for assigning traits -->	
+   <portal
+    id="gfSkills"
+    style="tblNormal">
+    <table_dynamic
+      component="Skill"
+      showtemplate="baSklPick"
+      choosetemplate="SimpleItem"
+      showfixedlast="yes"
+	  headerpick="resGadHP"
+	  addpick="resGadHP"
+	  columns="1">
+      <titlebar><![CDATA[
+        @text = "Skill - " & container.childfound[resGadHP].field[resShort].text
+        ]]></titlebar>
+      <description/>
+      <headertitle><![CDATA[
+         @text = "Skill: " & container.childfound[resGadHP].field[resShort].text
+        ]]></headertitle>
+	  <additem><![CDATA[
+        @text = "Add Skill"
+        ]]></additem>
+      </table_dynamic>
+    </portal>
+
+	<!-- gfDraw portal for assigning traits -->	
+   <portal
+    id="gfDraw"
+    style="tblNormal">
+    <table_dynamic
+      component="Drawback"
+      showtemplate="baDrawPick"
+      choosetemplate="SimpleItem"
+      showfixedlast="yes"
+	  headerpick="resGadHP"
+	  addpick="resGadHP"
+	  columns="1">
+      <titlebar><![CDATA[
+        @text = "Drawbacks - " & container.childfound[resGadHP].field[resShort].text
+        ]]></titlebar>
+      <description/>
+      <headertitle><![CDATA[
+         @text = "Drawbacks: " & container.childfound[resGadHP].field[resShort].text
+        ]]></headertitle>
+	  <additem><![CDATA[
+        @text = "Add Drawback"
+        ]]></additem>
+      </table_dynamic>
+    </portal>
+
+      <!-- gfImages portal
+        Displays the table of character images.
+
+        Since the table only contains images, we define it to auto-add a new empty
+        image instead of prompting the user to select something from a list.
+
+        We use a "headertitle" script to place a suitable title above the table.
+
+        We use an "additem" script to simply prompt the user to add new images,
+        along with a little bit of extra vertical spacing around it.
+   -->
+  <portal
+    id="gfImages"
+    style="tblNormal">
+    <table_auto
+      component="UserImage"
+      showtemplate="gfImage"
+      autothing="mscGadImg"
+      allowuserorder="yes"
+      showsortset="_CompSeq_"
+	  headerpick="resGadHP"
+	  addpick="resGadHP">
+      <headertitle><![CDATA[
+        @text = "Gallery"
+        ]]></headertitle>
+      <additem><![CDATA[
+        @text = "Add Another Image"
+        ]]></additem>
+      </table_auto>
+    </portal>
+
+
+  <!-- gfPowPick template
+        Displays the name of the pick/thing and an info button with the basic
+        description text. This is basically the "SimpleItem" template, with one
+        key difference. Auto-added abilities such as those conferred by races are
+        sorted and colored differently to distinguish their nature.
+  -->
+  <template
+    id="gfPowPick"
+    name="Gadget Power Pick"
+    compset="Power"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label>
+		<labeltext><![CDATA[
+			if (isuser = 0) then
+				@text = "{text clrauto}"
+			endif
+			@text &= field[thingname].text
+        ]]></labeltext>
+		</label>
+      </portal>
+
+	<portal
+      id="tags"
+      style="lblSecond"
+      showinvalid="no">
+      <label>
+		<labeltext><![CDATA[
+			@text = tagnames[PowerType.?," "]
+   	    ]]></labeltext>
+	  </label>
+      </portal>
+
+    <portal
+      id="lblmenu1"
+      style="lblSecond">
+      <label
+        field="usrLabel1">
+        </label>
+      </portal>
+
+    <portal
+      id="lblmenu2"
+      style="lblSecond">
+      <label
+        field="usrLabel2">
+        </label>
+      </portal>
+
+    <portal
+      id="menu1"
+      style="menuNormal">
+      <menu_things
+        field="usrChosen1"
+        component="none"
+        maxvisible="10"
+        usepicksfield="usrSource1"
+        candidatefield="usrCandid1">
+        </menu_things>
+      </portal>
+
+    <portal
+      id="menu2"
+      style="menuNormal">
+      <menu_things
+        field="usrChosen2"
+        component="none"
+        maxvisible="10"
+        usepicksfield="usrSource2"
+        candidatefield="usrCandid2">
+        </menu_things>
+      </portal>
+
+    <portal
+      id="lblmenuar"
+      style="lblSecond">
+      <label
+        field="usrLabelAr">
+        </label>
+      </portal>
+
+    <portal
+      id="menuarray"
+      style="menuNormal">
+      <menu_array
+        field="usrSelect"
+        array="usrArray"
+        maxvisible="10">
+        </menu_array>
+      </portal>
+
+    <portal
+      id="checkbox"
+      style="chkNormal">
+      <checkbox
+        field="usrIsCheck"
+        dynamicfield="usrChkText">
+        </checkbox>
+      </portal>
+
+    <portal
+      id="domain"
+      style="editNormal">
+      <edit
+        field="domDomain"
+		placeholdertext="Details">
+        </edit>
+      </portal>	  
+	  
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo/>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete"
+      tiptext="Click to delete this item">
+      <action
+        action="delete">
+        </action>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[info].height
+	  width = 265
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~position our tallest portal at the top
+      portal[info].top = 0
+
+      ~center the other portals vertically
+      perform portal[name].centervert
+      perform portal[tags].centervert
+      perform portal[delete].centervert
+      perform portal[lblmenu1].centervert
+      perform portal[menu1].centervert
+      perform portal[lblmenu2].centervert
+      perform portal[menu2].centervert
+      perform portal[lblmenuar].centervert
+      perform portal[menuarray].centervert
+      perform portal[checkbox].centervert
+      perform portal[domain].centervert	  
+
+      ~determine whether our portals are visible; we only show them if requested
+      ~Note: Remember that a non-empty tagexpr field indicates menu selection is used.
+
+      if (field[usrCandid1].isempty <> 0) then
+        portal[lblmenu1].visible = 0
+        portal[menu1].visible = 0
+      elseif (field[usrLabel1].isempty <> 0) then
+        portal[lblmenu1].visible = 0
+        endif
+      if (field[usrCandid2].isempty <> 0) then
+        portal[lblmenu2].visible = 0
+        portal[menu2].visible = 0
+      elseif (field[usrLabel2].isempty <> 0) then
+        portal[lblmenu2].visible = 0
+        endif
+      if (empty(field[usrArray].arraytext[0]) <> 0) then
+        portal[lblmenuar].visible = 0
+        portal[menuarray].visible = 0
+      elseif (field[usrLabelAr].isempty <> 0) then
+        portal[lblmenuar].visible = 0
+        endif
+      if (field[usrChkText].isempty <> 0) then
+        portal[checkbox].visible = 0
+        endif	  
+	  
+      ~position the delete portal on the far right and the info portal next to it
+      perform portal[delete].alignedge[right,0]
+      perform portal[info].alignrel[rtol,delete,-8]
+      perform portal[tags].alignrel[rtol,info,-8]
+
+      ~determine our effective right edge, allowing for the buttons above
+      var edge as number
+      edge = portal[tags].left - 5
+	  
+      ~setup the default portal width and gap to be used between and around portals
+      var defwidth as number
+      var gap as number
+      defwidth = 100
+      gap = 10
+
+      ~determine the minimum amount of space we need to reserve for our portals
+      var reserve as number
+      if (portal[checkbox].visible <> 0) then
+        reserve = defwidth
+      elseif (portal[menuarray].visible <> 0) then
+        reserve = portal[lblmenuar].width * portal[lblmenuar].visible
+        reserve += defwidth + gap
+      elseif (portal[menu1].visible <> 0) then
+        reserve = portal[lblmenu1].width * portal[lblmenu1].visible
+        reserve += defwidth + gap
+        reserve += portal[lblmenu2].width * portal[menu2].visible
+        reserve += (defwidth + gap) * portal[menu2].visible
+        endif
+
+      ~position the name on the left, reserving our minimum space for any portals
+      var x as number
+      portal[name].left = 0
+      portal[name].width = minimum(portal[name].width,edge - portal[name].left - reserve)
+      x = portal[name].right + gap
+	  
+      ~setup the maximum width for our some portals, regardless of space available
+      var maxwidth as number
+	  maxwidth = 190
+	  if (tagis[User.NeedDomain] <> 0) then
+		maxwidth -= 90
+	  endif
+      
+	  ~if we have a checkbox, size and position it appropriately
+      if (portal[checkbox].visible <> 0) then
+        portal[checkbox].left = x
+		x = portal[checkbox].right + 4
+      ~if we have a thing-based menu and an array-based menu, size and position them appropriately
+      elseif (portal[menu1].visible + portal[menuarray].visible > 1) then
+        if (portal[lblmenu1].visible <> 0) then
+          portal[lblmenu1].left = x
+          x = portal[lblmenu1].right + 4
+          endif
+        portal[menu1].left = x
+        var extra as number
+        extra = (portal[lblmenu2].width + 4) * portal[lblmenu2].visible
+        var actual as number
+        actual = (edge - portal[menu1].left - extra - gap) / 2
+        portal[menu1].width = minimum(actual,maxwidth)
+        portal[menu2].width = portal[menu1].width
+        x = portal[menu1].right + gap
+        if (portal[lblmenuar].visible <> 0) then
+          portal[lblmenuar].left = x
+          x = portal[lblmenuar].right + 4
+          endif
+        portal[menuarray].left = x
+		x = portal[menuarray].right + 4		
+      ~if we have an array-based menu, size and position it appropriately
+      elseif (portal[menuarray].visible <> 0) then
+        if (portal[lblmenuar].visible <> 0) then
+          portal[lblmenuar].left = x
+          x = portal[lblmenuar].right + 4
+          endif
+        portal[menuarray].left = x
+        portal[menuarray].width = maxwidth
+		x = portal[menuarray].right + 4
+      ~if we have one thing-based menu, size and position it appropriately
+      elseif (portal[menu1].visible + portal[menu2].visible = 1) then
+        if (portal[lblmenu1].visible <> 0) then
+          portal[lblmenu1].left = x
+          x = portal[lblmenu1].right + 4
+          endif
+        portal[menu1].left = x
+        portal[menu1].width = minimum(edge - portal[menu1].left,maxwidth)
+		x = portal[menu1].right + 4
+      ~if we have two thing-based menus, size and position them appropriately
+      elseif (portal[menu1].visible <> 0) then
+        if (portal[lblmenu1].visible <> 0) then
+          portal[lblmenu1].left = x
+          x = portal[lblmenu1].right + 4
+          endif
+        portal[menu1].left = x
+        var extra as number
+        extra = (portal[lblmenu2].width + 4) * portal[lblmenu2].visible
+        var actual as number
+        actual = (edge - portal[menu1].left - extra - gap) / 2
+        portal[menu1].width = minimum(actual,maxwidth)
+        portal[menu2].width = portal[menu1].width
+        x = portal[menu1].right + gap
+        if (portal[lblmenu2].visible <> 0) then
+          portal[lblmenu2].left = x
+          x = portal[lblmenu2].right + 4
+          endif
+        portal[menu2].left = x
+		x = portal[menu2].right + 4
+        endif
+
+	  ~if we don't need a domain, hide it
+      if (tagis[User.NeedDomain] = 0) then
+        portal[domain].visible = 0	
+	        ~otherwise, position the domain portals next to the TL
+			~RDS altered to make the name portal invivisible and shift the domain to the name position 
+			~    to use it as a custom Skill name when a Custom Skill is chosen
+      else
+		portal[domain].left = x 
+		portal[domain].width = minimum(190,portal[tags].left - portal[domain].left - 5)		 
+	  endif			
+		
+      ~if a menu is visible, make sure it has a selection
+      if (portal[menu1].visible <> 0) then
+        if (field[usrChosen1].ischosen = 0) then
+          perform portal[menu1].setstyle[menuError]
+          endif
+        endif
+      if (portal[menu2].visible <> 0) then
+        if (field[usrChosen2].ischosen = 0) then
+          perform portal[menu2].setstyle[menuError]
+          endif
+        endif
+      if (portal[menuarray].visible <> 0) then
+        if (field[usrSelect].isempty <> 0) then
+          perform portal[menuarray].setstyle[menuError]
+          endif
+        endif
+      ]]></position>
+
+    </template>	
+
+	<!-- gfSklPick template
+        Displays the name of the pick/thing and an info button with the basic
+        description text. This is basically the "SimpleItem" template, with one
+        key difference. Auto-added abilities such as those conferred by races are
+        sorted and colored differently to distinguish their nature.
+  -->
+  <template
+    id="gfSklPick"
+    name="Gadget Skill Pick"
+    compset="Skill"
+    marginhorz="3"
+    marginvert="2">
+
+    <portal
+      id="name"
+      style="lblNormal"
+      showinvalid="yes">
+      <label>
+		<labeltext><![CDATA[
+			if (isuser = 0) then
+				@text = "{text clrauto}"
+			endif
+			@text &= field[thingname].text
+        ]]></labeltext>
+		</label>
+      </portal>
+
+	<portal
+      id="tags"
+      style="lblSecond"
+      showinvalid="no">
+      <label>
+		<labeltext><![CDATA[
+			@text = ""
+   	    ]]></labeltext>
+	  </label>
+      </portal>
+
+    <portal
+      id="lblmenu1"
+      style="lblSecond">
+      <label
+        field="usrLabel1">
+        </label>
+      </portal>
+
+    <portal
+      id="lblmenu2"
+      style="lblSecond">
+      <label
+        field="usrLabel2">
+        </label>
+      </portal>
+
+    <portal
+      id="menu1"
+      style="menuNormal">
+      <menu_things
+        field="usrChosen1"
+        component="none"
+        maxvisible="10"
+        usepicksfield="usrSource1"
+        candidatefield="usrCandid1">
+        </menu_things>
+      </portal>
+
+    <portal
+      id="menu2"
+      style="menuNormal">
+      <menu_things
+        field="usrChosen2"
+        component="none"
+        maxvisible="10"
+        usepicksfield="usrSource2"
+        candidatefield="usrCandid2">
+        </menu_things>
+      </portal>
+
+    <portal
+      id="lblmenuar"
+      style="lblSecond">
+      <label
+        field="usrLabelAr">
+        </label>
+      </portal>
+
+    <portal
+      id="menuarray"
+      style="menuNormal">
+      <menu_array
+        field="usrSelect"
+        array="usrArray"
+        maxvisible="10">
+        </menu_array>
+      </portal>
+
+    <portal
+      id="checkbox"
+      style="chkNormal">
+      <checkbox
+        field="usrIsCheck"
+        dynamicfield="usrChkText">
+        </checkbox>
+      </portal>
+
+    <portal
+      id="domain"
+      style="editNormal">
+      <edit
+        field="domDomain"
+		placeholdertext="Details">
+        </edit>
+      </portal>	  
+	  
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo/>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete"
+      tiptext="Click to delete this item">
+      <action
+        action="delete">
+        </action>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[info].height
+	  width = 265
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~position our tallest portal at the top
+      portal[info].top = 0
+
+      ~center the other portals vertically
+      perform portal[name].centervert
+      perform portal[tags].centervert
+      perform portal[delete].centervert
+      perform portal[lblmenu1].centervert
+      perform portal[menu1].centervert
+      perform portal[lblmenu2].centervert
+      perform portal[menu2].centervert
+      perform portal[lblmenuar].centervert
+      perform portal[menuarray].centervert
+      perform portal[checkbox].centervert
+      perform portal[domain].centervert	  
+
+      ~determine whether our portals are visible; we only show them if requested
+      ~Note: Remember that a non-empty tagexpr field indicates menu selection is used.
+
+      if (field[usrCandid1].isempty <> 0) then
+        portal[lblmenu1].visible = 0
+        portal[menu1].visible = 0
+      elseif (field[usrLabel1].isempty <> 0) then
+        portal[lblmenu1].visible = 0
+        endif
+      if (field[usrCandid2].isempty <> 0) then
+        portal[lblmenu2].visible = 0
+        portal[menu2].visible = 0
+      elseif (field[usrLabel2].isempty <> 0) then
+        portal[lblmenu2].visible = 0
+        endif
+      if (empty(field[usrArray].arraytext[0]) <> 0) then
+        portal[lblmenuar].visible = 0
+        portal[menuarray].visible = 0
+      elseif (field[usrLabelAr].isempty <> 0) then
+        portal[lblmenuar].visible = 0
+        endif
+      if (field[usrChkText].isempty <> 0) then
+        portal[checkbox].visible = 0
+        endif	  
+	  
+      ~position the delete portal on the far right and the info portal next to it
+      perform portal[delete].alignedge[right,0]
+      perform portal[info].alignrel[rtol,delete,-8]
+      perform portal[tags].alignrel[rtol,info,-8]
+
+      ~determine our effective right edge, allowing for the buttons above
+      var edge as number
+      edge = portal[tags].left - 5
+	  
+      ~setup the default portal width and gap to be used between and around portals
+      var defwidth as number
+      var gap as number
+      defwidth = 100
+      gap = 10
+
+      ~determine the minimum amount of space we need to reserve for our portals
+      var reserve as number
+      if (portal[checkbox].visible <> 0) then
+        reserve = defwidth
+      elseif (portal[menuarray].visible <> 0) then
+        reserve = portal[lblmenuar].width * portal[lblmenuar].visible
+        reserve += defwidth + gap
+      elseif (portal[menu1].visible <> 0) then
+        reserve = portal[lblmenu1].width * portal[lblmenu1].visible
+        reserve += defwidth + gap
+        reserve += portal[lblmenu2].width * portal[menu2].visible
+        reserve += (defwidth + gap) * portal[menu2].visible
+        endif
+
+      ~position the name on the left, reserving our minimum space for any portals
+      var x as number
+      portal[name].left = 0
+      portal[name].width = minimum(portal[name].width,edge - portal[name].left - reserve)
+      x = portal[name].right + gap
+	  
+      ~setup the maximum width for our some portals, regardless of space available
+      var maxwidth as number
+	  maxwidth = 190
+	  if (tagis[User.NeedDomain] <> 0) then
+		maxwidth -= 90
+	  endif
+      
+	  ~if we have a checkbox, size and position it appropriately
+      if (portal[checkbox].visible <> 0) then
+        portal[checkbox].left = x
+		x = portal[checkbox].right + 4
+      ~if we have a thing-based menu and an array-based menu, size and position them appropriately
+      elseif (portal[menu1].visible + portal[menuarray].visible > 1) then
+        if (portal[lblmenu1].visible <> 0) then
+          portal[lblmenu1].left = x
+          x = portal[lblmenu1].right + 4
+          endif
+        portal[menu1].left = x
+        var extra as number
+        extra = (portal[lblmenu2].width + 4) * portal[lblmenu2].visible
+        var actual as number
+        actual = (edge - portal[menu1].left - extra - gap) / 2
+        portal[menu1].width = minimum(actual,maxwidth)
+        portal[menu2].width = portal[menu1].width
+        x = portal[menu1].right + gap
+        if (portal[lblmenuar].visible <> 0) then
+          portal[lblmenuar].left = x
+          x = portal[lblmenuar].right + 4
+          endif
+        portal[menuarray].left = x
+		x = portal[menuarray].right + 4		
+      ~if we have an array-based menu, size and position it appropriately
+      elseif (portal[menuarray].visible <> 0) then
+        if (portal[lblmenuar].visible <> 0) then
+          portal[lblmenuar].left = x
+          x = portal[lblmenuar].right + 4
+          endif
+        portal[menuarray].left = x
+        portal[menuarray].width = maxwidth
+		x = portal[menuarray].right + 4
+      ~if we have one thing-based menu, size and position it appropriately
+      elseif (portal[menu1].visible + portal[menu2].visible = 1) then
+        if (portal[lblmenu1].visible <> 0) then
+          portal[lblmenu1].left = x
+          x = portal[lblmenu1].right + 4
+          endif
+        portal[menu1].left = x
+        portal[menu1].width = minimum(edge - portal[menu1].left,maxwidth)
+		x = portal[menu1].right + 4
+      ~if we have two thing-based menus, size and position them appropriately
+      elseif (portal[menu1].visible <> 0) then
+        if (portal[lblmenu1].visible <> 0) then
+          portal[lblmenu1].left = x
+          x = portal[lblmenu1].right + 4
+          endif
+        portal[menu1].left = x
+        var extra as number
+        extra = (portal[lblmenu2].width + 4) * portal[lblmenu2].visible
+        var actual as number
+        actual = (edge - portal[menu1].left - extra - gap) / 2
+        portal[menu1].width = minimum(actual,maxwidth)
+        portal[menu2].width = portal[menu1].width
+        x = portal[menu1].right + gap
+        if (portal[lblmenu2].visible <> 0) then
+          portal[lblmenu2].left = x
+          x = portal[lblmenu2].right + 4
+          endif
+        portal[menu2].left = x
+		x = portal[menu2].right + 4
+        endif
+
+	  ~if we don't need a domain, hide it
+      if (tagis[User.NeedDomain] = 0) then
+        portal[domain].visible = 0	
+	        ~otherwise, position the domain portals next to the TL
+			~RDS altered to make the name portal invivisible and shift the domain to the name position 
+			~    to use it as a custom Skill name when a Custom Skill is chosen
+      else
+		portal[domain].left = x 
+		portal[domain].width = minimum(190,portal[tags].left - portal[domain].left - 5)		 
+	  endif			
+		
+      ~if a menu is visible, make sure it has a selection
+      if (portal[menu1].visible <> 0) then
+        if (field[usrChosen1].ischosen = 0) then
+          perform portal[menu1].setstyle[menuError]
+          endif
+        endif
+      if (portal[menu2].visible <> 0) then
+        if (field[usrChosen2].ischosen = 0) then
+          perform portal[menu2].setstyle[menuError]
+          endif
+        endif
+      if (portal[menuarray].visible <> 0) then
+        if (field[usrSelect].isempty <> 0) then
+          perform portal[menuarray].setstyle[menuError]
+          endif
+        endif
+      ]]></position>
+
+    </template>	
+	
+  <!-- gfImage template
+        This template shows a user-added gadget image. The height is calculated
+        based on the width such that a relatively symmetric image space is provided.
+  -->
+  <template
+    id="gfImage"
+    name="User Image"
+    compset="UserImage"
+    marginhorz="8"
+    marginvert="3">
+
+    <portal
+      id="image"
+      style="imgNormal">
+      <image_user
+        field="uimgImage">
+        </image_user>
+      </portal>
+
+    <portal
+      id="delete"
+      style="actDelete">
+      <action
+        action="delete">
+        </action>
+      </portal>
+
+    <position><![CDATA[
+      ~position the delete portal appropriately
+      perform portal[delete].alignedge[right,0]
+      portal[delete].top = 5
+
+      ~use the remaining width for the image portal and use a symmetric height
+      portal[image].left = 0
+      portal[image].width = portal[delete].left - portal[image].left - 10
+      portal[image].height = portal[image].width
+
+      ~set our height based on the extent of our contents
+      height = portal[image].bottom
+      ]]></position>
+    </template>	
+	
+  <!-- Title template -->
+  <template
+    id="gfTitle"
+    name="Title"
+    compset="GadgetInfo">
+
+    <portal
+      id="title"
+		style="editNormal">
+		<edit
+			placeholdertext="Enter gadget name"		
+			field="username"/>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our width and height
+      height = portal[title].height
+	  width = 265
+	  
+      doneif (issizing <> 0)
+
+	  portal[title].top = 0
+      portal[title].width = width
+      ]]></position>
+    </template>
+
+	<!-- Reliability Number template -->
+  <template
+    id="gfRelNum"
+    name="Reliability Number"
+    compset="GadgetInfo">
+
+	<portal
+		id="basetitle"
+		style="lblNormal">
+		<label
+			istitle="yes">
+			<labeltext><![CDATA[
+				@text = "Base Reliability #"
+			]]></labeltext>
+		</label>
+	</portal>	
+
+	<portal
+		id="curtitle"
+		style="lblNormal">
+		<label
+			istitle="yes">
+			<labeltext><![CDATA[
+				@text = "Current"
+			]]></labeltext>
+		</label>
+	</portal>	
+	
+	<portal 
+	  id="base" 
+	  style="menuNormal">
+	  <menu_literal field="gdRelNum">
+		<choice value="0" display="Reliabilty #: 0"/>
+		<choice value="2" display="Reliabilty #: 2"/>
+		<choice value="3" display="Reliabilty #: 3"/>
+		<choice value="5" display="Reliabilty #: 5"/>
+		<choice value="7" display="Reliabilty #: 7"/>
+		<choice value="9" display="Reliabilty #: 9"/>
+		<choice value="11" display="Reliabilty #: 11"/>
+    </menu_literal>
+    </portal>
+	
+	<portal
+		id="current"
+		style="lblNormal">
+		<label>
+			<labeltext><![CDATA[
+				@text = field[gdCurRel].value
+			]]></labeltext>
+		</label>
+	</portal>
+
+    <position><![CDATA[
+      ~set up our width and height
+      height = portal[base].height + portal[basetitle].height
+      width = 180
+	  
+	  doneif (issizing <> 0)
+	  
+	  portal[basetitle].left = 0
+	  portal[basetitle].top = 0
+	  portal[base].left = 0
+	  portal[base].width = portal[basetitle].width
+	  portal[base].top = portal[basetitle].bottom + 5
+	  
+	  portal[curtitle].left = portal[basetitle].right + 25
+	  portal[current].left = portal[curtitle].left
+	  portal[current].top = portal[curtitle].bottom + 5
+	  portal[current].width = portal[curtitle].width
+      ]]></position>
+    </template>
+
+  <!-- Details template -->
+  <template
+    id="gfDetails"
+    name="Detail"
+    compset="GadgetInfo">
+
+    <portal
+      id="title"
+      style="lblNormal">
+      <label
+        istitle="yes">
+        <labeltext><![CDATA[
+          @text = "Notes: "
+          ]]></labeltext>
+        </label>
+      </portal>
+	  
+    <portal
+      id="desc"
+      style="actNotes">
+      <action
+        action="notes"
+		field="gdDesc">
+        </action>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our width and height
+      height = 25
+      doneif (issizing <> 0)
+
+	  ~position vertically
+	  perform portal[title].centervert
+	  perform portal[desc].centervert
+	
+	  portal[title].left = 5
+	  portal[desc].left = portal[title].right + 5
+	  	  
+	  ~portal[desc].width = width
+	  ~portal[desc].height = height - portal[desc].top - 5
+	  
+	  ~height = portal[desc].bottom + 30
+      ]]></position>
+    </template>
+
+  <!-- Custom cost template -->
+  <template
+    id="gfCost"
+    name="Hero Point cost"
+    compset="GadgetInfo">
+
+    <portal
+      id="label"
+      style="lblTitle">
+      <label
+        istitle="yes">
+        <labeltext><![CDATA[
+          @text = "Cost"
+          ]]></labeltext>
+        </label>
+      </portal>
+
+    <portal
+      id="hpcost"
+      style="lblSecond">
+      <label>
+        <labeltext><![CDATA[
+			@text = field[gdHP].value & " HP"
+		]]></labeltext>
+        </label>
+      </portal>
+	  
+    <portal
+      id="isfree"
+      style="chkNormal"
+      tiptext="Check this option to designate this gadget costs no hero points">
+      <checkbox
+        field="gdIsFree"
+        message="No cost?">
+        </checkbox>
+      </portal>		  
+
+    <position><![CDATA[
+      ~set up our width and height
+      height = portal[label].height
+      width = 130
+	  doneif (issizing <> 0)
+
+	  portal[label].top = 0
+      portal[label].width = width
+	  
+	  perform portal[hpcost].alignrel[ttob,label,5]
+	  portal[hpcost].left = portal[label].left 
+	  
+	  perform portal[isfree].alignedge[right,0]
+	  portal[isfree].top = portal[hpcost].top
+      ]]></position>
+    </template>
+
+	<!-- Can be taken away template -->
+  <template
+    id="gfTaken"
+    name="Can be stripped away?"
+    compset="GadgetInfo">
+ 
+    <portal
+      id="taken"
+      style="chkNormal"
+      tiptext="Can be stripped away from hero during combat?">
+      <checkbox
+        field="gdTaken"
+        message="Can be stripped away?">
+        </checkbox>
+      </portal>		  
+
+    <position><![CDATA[
+      ~set up our width and height
+      height = portal[taken].height
+      width = 180
+	  doneif (issizing <> 0)
+
+	  portal[taken].top = 0
+      portal[taken].width = width
+	  
+      ]]></position>
+    </template>
+
+	<!-- hardened defenses template -->
+  <template
+    id="gfHardened"
+    name="Hardened defenses"
+    compset="GadgetInfo">
+ 
+    <portal
+      id="hardened"
+      style="chkNormal"
+      tiptext="Hardened defenses?">
+      <checkbox
+        field="gdHardened"
+        message="Hardened defenses?">
+        </checkbox>
+      </portal>		  
+
+    <position><![CDATA[
+      ~set up our width and height
+      height = portal[hardened].height
+      width = 180
+	  doneif (issizing <> 0)
+
+	  portal[hardened].top = 0
+      portal[hardened].width = width
+	  
+      ]]></position>
+    </template>	
+	
+  <!-- gfBody template
+        This template presents the health of the character and allows the user to
+        apply damage and healing to the character.
+
+        Usage pools on the actor are used to track the various damage and healing
+        actions that are performed on the actor. This allows us to undo actions and
+        clear all damage. It also allows us to retrieve a detailed report of each
+        separate action and present it to the user. All of this is achieved via
+        trigger scripts associated with the various action buttons employed below.
+  -->
+  <template
+    id="gfBody"
+    name="Health"
+    compset="GadgetInfo">
+
+    <portal
+      id="title"
+      style="lblTitle">
+      <label
+        istitle="yes"
+        text="Current Body">
+        </label>
+      </portal>
+
+    <portal
+      id="lblhealth"
+      style="lblNormal">
+      <label
+        text="Body:">
+        </label>
+      </portal>
+
+    <portal
+      id="health"
+      style="lblXLarge">
+      <label>
+        <labeltext><![CDATA[
+          ~show the current health; if the character is incurring any extra penalties
+          ~due to excessive damage, append them
+          @text = field[gdBodyNow].text & "{text clrgrey}{size 40} /" & field[gdBodyMax].text
+          if (field[gdBodPenal].value < 0) then
+            @text &= " " & field[gdBodPenal].text
+            endif
+          ]]></labeltext>
+        </label>
+      </portal>
+
+    <portal
+      id="lbldamage"
+      style="lblNormal">
+      <label
+        text="Damage:">
+        </label>
+      </portal>
+
+    <portal
+      id="damage"
+      style="incrSimple"
+      tiptext="Specify the damage or healing quantity to be applied.">
+      <incrementer
+        field="gdBodyDmg">
+        </incrementer>
+      </portal>
+
+    <portal
+      id="sustain"
+      style="actDamage"
+      tiptext="Click here to sustain the quantity specified as damage.">
+      <action
+        action="trigger">
+        <trigger><![CDATA[
+          ~get the various values to operate upon
+          var sustain as number
+          var current as number
+          sustain = field[gdBodyDmg].value
+          current = usagepool[gdBodyNet].value
+
+          ~save the adjustment requested by the user and the new net damage
+          perform usagepool[gdBodyAdj].adjust[sustain]
+          perform usagepool[gdBodyNet].set[current + sustain]
+
+          ~reset the damage field to ensure that everything gets properly updated
+          perform field[gdBodyDmg].reset
+          ]]></trigger>
+        </action>
+      </portal>
+
+    <portal
+      id="heal"
+      style="actHeal"
+      tiptext="Click here to heal the quantity specified.">
+      <action
+        action="trigger">
+        <trigger><![CDATA[
+          ~get the various values to operate upon
+          var heal as number
+          var current as number
+          heal = field[gdBodyDmg].value
+          current = usagepool[gdBodyNet].value
+
+          ~cap any adjustment so we can't go above our natural maximum health
+          var isover as number
+          if (heal > current) then
+            heal = current
+            isover = 1
+            endif
+
+          ~if we're already at our maximum health, there's nothing to do
+          doneif (heal = 0)
+
+          ~save the adjustment requested by the user and the new net damage
+          perform usagepool[gdBodyAdj].adjust[-heal]
+          perform usagepool[gdBodyNet].adjust[-heal]
+
+          ~reset the damage field to ensure that everything gets properly updated
+          perform field[gdBodyDmg].reset
+
+          ~if the requested adjustment exceeds the actual damage level, report the error
+          if (isover > 0) then
+            notify "Requested healing adjustment exceeds current damage levels. Actual adjustment differs."
+            endif
+          ]]></trigger>
+        </action>
+      </portal>
+
+    <portal
+      id="undo"
+      style="actUndo"
+      tiptext="Click here to undo the last damage sustained or healed.">
+      <action
+        action="trigger">
+        <trigger><![CDATA[
+          ~if there is no history to undo, notify the user
+          if (usagepool[gdBodyNet].count = 0) then
+            notify "Undo history is empty"
+            done
+            endif
+
+          ~rollback the last transaction for both usage pools
+          perform usagepool[gdBodyNet].rollback
+          perform usagepool[gdBodyAdj].rollback
+
+          ~reset the damage field to ensure that everything gets properly updated
+          perform field[gdBodyDmg].reset
+          ]]></trigger>
+        </action>
+      </portal>
+
+    <portal
+      id="reset"
+      style="actReset"
+      tiptext="Click here to reset your health to fully healed. All records of past damage sustained and healed will be lost.">
+      <action
+        action="trigger"
+        confirm="This will reset your health to fully healed and discard all history of past damage sustained and healed. Proceed?">
+        <trigger><![CDATA[
+          ~if there is no history to undo, notify the user
+          if (usagepool[gdBodyNet].count = 0) then
+            notify "Undo history is empty"
+            done
+            endif
+
+          ~empty out both usage pools
+          perform usagepool[gdBodyNet].empty
+          perform usagepool[gdBodyAdj].empty
+          ]]></trigger>
+        </action>
+      </portal>
+
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo><![CDATA[
+        ~if our usage pool history is empty, indicate that fact and we're done
+        @text = " Damage History "
+        var history as number
+        history = usagepool[gdBodyAdj].count
+        if (history = 0) then
+          @text = @text & "{br}-none-"
+          done
+          endif
+
+        ~iterate through all elements of the usage pool history and build a report
+        var i as number
+        var cnt as number
+        var form as string
+        for i = 0 to history - 1
+
+          ~get the adjustment for this history entry
+          cnt = usagepool[gdBodyAdj].history[i]
+          if (cnt > 0) then
+            form = "Damage: "
+          else
+            form = "Healed: "
+            cnt = -cnt
+            endif
+
+          ~append the history entry to the overall text being reported
+          @text = @text & "{br}" & form & cnt
+          next
+        ]]></mouseinfo>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height based on our title, a gap, and our tallest portal
+      height = portal[title].height + portal[health].height + 8
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~the title should span the full width
+      portal[title].width = width
+
+      ~position the tallest portal beneath the title
+      perform portal[health].alignrel[ttob,title,8]
+
+      ~center all non-text portals vertically on the health portal
+      perform portal[damage].centeron[vert,health]
+      perform portal[sustain].centeron[vert,health]
+      perform portal[heal].centeron[vert,health]
+      perform portal[undo].centeron[vert,health]
+      perform portal[reset].centeron[vert,health]
+      perform portal[info].centeron[vert,health]
+
+      ~align the smaller text portals to have the same baseline
+      perform portal[lblhealth].alignrel[btob,health,-4]
+      perform portal[lbldamage].alignrel[btob,health,-4]
+
+      ~position the current health portals on the left
+      portal[lblhealth].left = 35
+      perform portal[health].alignrel[ltor,lblhealth,10]
+
+      ~position the damage portals to the right of the current health
+      portal[lbldamage].left = 155
+      perform portal[damage].alignrel[ltor,lbldamage,10]
+
+      ~position the info portal on the far right
+      perform portal[info].alignedge[right,-25]
+
+      ~position the reset portal to the left of the info portal
+      perform portal[reset].alignrel[rtol,info,-10]
+
+      ~position the undo portal to the left of the reset portal
+      perform portal[undo].alignrel[rtol,reset,-10]
+
+      ~position the heal portal to the left of the undo portal
+      perform portal[heal].alignrel[rtol,undo,-20]
+
+      ~position the sustain portal to the left of the heal portal
+      perform portal[sustain].alignrel[rtol,heal,-10]
+
+      ~disable the sustain and heal portals if the current quantity is zero
+      if (field[gdBodyDmg].value = 0) then
+        portal[sustain].enable = 0
+        portal[heal].enable = 0
+        endif
+
+      ~disable the undo and reset portals if there is no history to undo
+      ~if (usagepool[gdBodyAdj].count = 0) then
+      ~  portal[undo].enable = 0
+      ~  portal[reset].enable = 0
+      ~  endif
+      ]]></position>
+
+    </template>
+
+	<!-- gfMind template
+        This template presents the health of the character and allows the user to
+        apply damage and healing to the character.
+
+        Usage pools on the actor are used to track the various damage and healing
+        actions that are performed on the actor. This allows us to undo actions and
+        clear all damage. It also allows us to retrieve a detailed report of each
+        separate action and present it to the user. All of this is achieved via
+        trigger scripts associated with the various action buttons employed below.
+  -->
+  <template
+    id="gfMind"
+    name="Health"
+    compset="GadgetInfo">
+
+    <portal
+      id="title"
+      style="lblTitle">
+      <label
+        istitle="yes"
+        text="Current Mind">
+        </label>
+      </portal>
+
+    <portal
+      id="lblhealth"
+      style="lblNormal">
+      <label
+        text="Mind:">
+        </label>
+      </portal>
+
+    <portal
+      id="health"
+      style="lblXLarge">
+      <label>
+        <labeltext><![CDATA[
+          ~show the current health; if the character is incurring any extra penalties
+          ~due to excessive damage, append them
+          @text = field[gdMindNow].text & "{text clrgrey}{size 40} /" & field[gdMindMax].text
+          if (field[gdMinPenal].value < 0) then
+            @text &= " " & field[gdMinPenal].text
+            endif
+          ]]></labeltext>
+        </label>
+      </portal>
+
+    <portal
+      id="lbldamage"
+      style="lblNormal">
+      <label
+        text="Damage:">
+        </label>
+      </portal>
+
+    <portal
+      id="damage"
+      style="incrSimple"
+      tiptext="Specify the damage or healing quantity to be applied.">
+      <incrementer
+        field="gdMindDmg">
+        </incrementer>
+      </portal>
+
+    <portal
+      id="sustain"
+      style="actDamage"
+      tiptext="Click here to sustain the quantity specified as damage.">
+      <action
+        action="trigger">
+        <trigger><![CDATA[
+          ~get the various values to operate upon
+          var sustain as number
+          var current as number
+          sustain = field[gdMindDmg].value
+          current = usagepool[gdMindNet].value
+
+          ~save the adjustment requested by the user and the new net damage
+          perform usagepool[gdMindAdj].adjust[sustain]
+          perform usagepool[gdMindNet].set[current + sustain]
+
+          ~reset the damage field to ensure that everything gets properly updated
+          perform field[gdMindDmg].reset
+          ]]></trigger>
+        </action>
+      </portal>
+
+    <portal
+      id="heal"
+      style="actHeal"
+      tiptext="Click here to heal the quantity specified.">
+      <action
+        action="trigger">
+        <trigger><![CDATA[
+          ~get the various values to operate upon
+          var heal as number
+          var current as number
+          heal = field[gdMindDmg].value
+          current = usagepool[gdMindNet].value
+
+          ~cap any adjustment so we can't go above our natural maximum health
+          var isover as number
+          if (heal > current) then
+            heal = current
+            isover = 1
+            endif
+
+          ~if we're already at our maximum health, there's nothing to do
+          doneif (heal = 0)
+
+          ~save the adjustment requested by the user and the new net damage
+          perform usagepool[gdMindAdj].adjust[-heal]
+          perform usagepool[gdMindNet].adjust[-heal]
+
+          ~reset the damage field to ensure that everything gets properly updated
+          perform field[gdMindDmg].reset
+
+          ~if the requested adjustment exceeds the actual damage level, report the error
+          if (isover > 0) then
+            notify "Requested healing adjustment exceeds current damage levels. Actual adjustment differs."
+            endif
+          ]]></trigger>
+        </action>
+      </portal>
+
+    <portal
+      id="undo"
+      style="actUndo"
+      tiptext="Click here to undo the last damage sustained or healed.">
+      <action
+        action="trigger">
+        <trigger><![CDATA[
+          ~if there is no history to undo, notify the user
+          if (usagepool[gdMindNet].count = 0) then
+            notify "Undo history is empty"
+            done
+            endif
+
+          ~rollback the last transaction for both usage pools
+          perform usagepool[gdMindNet].rollback
+          perform usagepool[gdMindAdj].rollback
+
+          ~reset the damage field to ensure that everything gets properly updated
+          perform field[gdMindDmg].reset
+          ]]></trigger>
+        </action>
+      </portal>
+
+    <portal
+      id="reset"
+      style="actReset"
+      tiptext="Click here to reset your health to fully healed. All records of past damage sustained and healed will be lost.">
+      <action
+        action="trigger"
+        confirm="This will reset your health to fully healed and discard all history of past damage sustained and healed. Proceed?">
+        <trigger><![CDATA[
+          ~if there is no history to undo, notify the user
+          if (usagepool[gdMindNet].count = 0) then
+            notify "Undo history is empty"
+            done
+            endif
+
+          ~empty out both usage pools
+          perform usagepool[gdMindNet].empty
+          perform usagepool[gdMindAdj].empty
+          ]]></trigger>
+        </action>
+      </portal>
+
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo><![CDATA[
+        ~if our usage pool history is empty, indicate that fact and we're done
+        @text = " Damage History "
+        var history as number
+        history = usagepool[gdMindAdj].count
+        if (history = 0) then
+          @text = @text & "{br}-none-"
+          done
+          endif
+
+        ~iterate through all elements of the usage pool history and build a report
+        var i as number
+        var cnt as number
+        var form as string
+        for i = 0 to history - 1
+
+          ~get the adjustment for this history entry
+          cnt = usagepool[gdMindAdj].history[i]
+          if (cnt > 0) then
+            form = "Damage: "
+          else
+            form = "Healed: "
+            cnt = -cnt
+            endif
+
+          ~append the history entry to the overall text being reported
+          @text = @text & "{br}" & form & cnt
+          next
+        ]]></mouseinfo>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height based on our title, a gap, and our tallest portal
+      height = portal[title].height + portal[health].height + 8
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~the title should span the full width
+      portal[title].width = width
+
+      ~position the tallest portal beneath the title
+      perform portal[health].alignrel[ttob,title,8]
+
+      ~center all non-text portals vertically on the health portal
+      perform portal[damage].centeron[vert,health]
+      perform portal[sustain].centeron[vert,health]
+      perform portal[heal].centeron[vert,health]
+      perform portal[undo].centeron[vert,health]
+      perform portal[reset].centeron[vert,health]
+      perform portal[info].centeron[vert,health]
+
+      ~align the smaller text portals to have the same baseline
+      perform portal[lblhealth].alignrel[btob,health,-4]
+      perform portal[lbldamage].alignrel[btob,health,-4]
+
+      ~position the current health portals on the left
+      portal[lblhealth].left = 35
+      perform portal[health].alignrel[ltor,lblhealth,10]
+
+      ~position the damage portals to the right of the current health
+      portal[lbldamage].left = 155
+      perform portal[damage].alignrel[ltor,lbldamage,10]
+
+      ~position the info portal on the far right
+      perform portal[info].alignedge[right,-25]
+
+      ~position the reset portal to the left of the info portal
+      perform portal[reset].alignrel[rtol,info,-10]
+
+      ~position the undo portal to the left of the reset portal
+      perform portal[undo].alignrel[rtol,reset,-10]
+
+      ~position the heal portal to the left of the undo portal
+      perform portal[heal].alignrel[rtol,undo,-20]
+
+      ~position the sustain portal to the left of the heal portal
+      perform portal[sustain].alignrel[rtol,heal,-10]
+
+      ~disable the sustain and heal portals if the current quantity is zero
+      if (field[gdMindDmg].value = 0) then
+        portal[sustain].enable = 0
+        portal[heal].enable = 0
+        endif
+
+      ~disable the undo and reset portals if there is no history to undo
+      ~if (usagepool[gdMindAdj].count = 0) then
+      ~  portal[undo].enable = 0
+      ~  portal[reset].enable = 0
+      ~  endif
+      ]]></position>
+
+    </template>
+	
+	<!-- gfSpir template
+        This template presents the health of the character and allows the user to
+        apply damage and healing to the character.
+
+        Usage pools on the actor are used to track the various damage and healing
+        actions that are performed on the actor. This allows us to undo actions and
+        clear all damage. It also allows us to retrieve a detailed report of each
+        separate action and present it to the user. All of this is achieved via
+        trigger scripts associated with the various action buttons employed below.
+  -->
+  <template
+    id="gfSpir"
+    name="Health"
+    compset="GadgetInfo">
+
+    <portal
+      id="title"
+      style="lblTitle">
+      <label
+        istitle="yes"
+        text="Current Spirit">
+        </label>
+      </portal>
+
+    <portal
+      id="lblhealth"
+      style="lblNormal">
+      <label
+        text="Spirit:">
+        </label>
+      </portal>
+
+    <portal
+      id="health"
+      style="lblXLarge">
+      <label>
+        <labeltext><![CDATA[
+          ~show the current health; if the character is incurring any extra penalties
+          ~due to excessive damage, append them
+          @text = field[gdSpirNow].text & "{text clrgrey}{size 40} /" & field[gdSpirMax].text
+          if (field[gdSpiPenal].value < 0) then
+            @text &= " " & field[gdSpiPenal].text
+            endif
+          ]]></labeltext>
+        </label>
+      </portal>
+
+    <portal
+      id="lbldamage"
+      style="lblNormal">
+      <label
+        text="Damage:">
+        </label>
+      </portal>
+
+    <portal
+      id="damage"
+      style="incrSimple"
+      tiptext="Specify the damage or healing quantity to be applied.">
+      <incrementer
+        field="gdSpirDmg">
+        </incrementer>
+      </portal>
+
+    <portal
+      id="sustain"
+      style="actDamage"
+      tiptext="Click here to sustain the quantity specified as damage.">
+      <action
+        action="trigger">
+        <trigger><![CDATA[
+          ~get the various values to operate upon
+          var sustain as number
+          var current as number
+          sustain = field[gdSpirDmg].value
+          current = usagepool[gdSpirNet].value
+
+          ~save the adjustment requested by the user and the new net damage
+          perform usagepool[gdSpirAdj].adjust[sustain]
+          perform usagepool[gdSpirNet].set[current + sustain]
+
+          ~reset the damage field to ensure that everything gets properly updated
+          perform field[gdSpirDmg].reset
+          ]]></trigger>
+        </action>
+      </portal>
+
+    <portal
+      id="heal"
+      style="actHeal"
+      tiptext="Click here to heal the quantity specified.">
+      <action
+        action="trigger">
+        <trigger><![CDATA[
+          ~get the various values to operate upon
+          var heal as number
+          var current as number
+          heal = field[gdSpirDmg].value
+          current = usagepool[gdSpirNet].value
+
+          ~cap any adjustment so we can't go above our natural maximum health
+          var isover as number
+          if (heal > current) then
+            heal = current
+            isover = 1
+            endif
+
+          ~if we're already at our maximum health, there's nothing to do
+          doneif (heal = 0)
+
+          ~save the adjustment requested by the user and the new net damage
+          perform usagepool[gdSpirAdj].adjust[-heal]
+          perform usagepool[gdSpirNet].adjust[-heal]
+
+          ~reset the damage field to ensure that everything gets properly updated
+          perform field[gdSpirDmg].reset
+
+          ~if the requested adjustment exceeds the actual damage level, report the error
+          if (isover > 0) then
+            notify "Requested healing adjustment exceeds current damage levels. Actual adjustment differs."
+            endif
+          ]]></trigger>
+        </action>
+      </portal>
+
+    <portal
+      id="undo"
+      style="actUndo"
+      tiptext="Click here to undo the last damage sustained or healed.">
+      <action
+        action="trigger">
+        <trigger><![CDATA[
+          ~if there is no history to undo, notify the user
+          if (usagepool[gdSpirNet].count = 0) then
+            notify "Undo history is empty"
+            done
+            endif
+
+          ~rollback the last transaction for both usage pools
+          perform usagepool[gdSpirNet].rollback
+          perform usagepool[gdSpirAdj].rollback
+
+          ~reset the damage field to ensure that everything gets properly updated
+          perform field[gdSpirDmg].reset
+          ]]></trigger>
+        </action>
+      </portal>
+
+    <portal
+      id="reset"
+      style="actReset"
+      tiptext="Click here to reset your health to fully healed. All records of past damage sustained and healed will be lost.">
+      <action
+        action="trigger"
+        confirm="This will reset your health to fully healed and discard all history of past damage sustained and healed. Proceed?">
+        <trigger><![CDATA[
+          ~if there is no history to undo, notify the user
+          if (usagepool[gdSpirNet].count = 0) then
+            notify "Undo history is empty"
+            done
+            endif
+
+          ~empty out both usage pools
+          perform usagepool[gdSpirNet].empty
+          perform usagepool[gdSpirAdj].empty
+          ]]></trigger>
+        </action>
+      </portal>
+
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      <mouseinfo><![CDATA[
+        ~if our usage pool history is empty, indicate that fact and we're done
+        @text = " Damage History "
+        var history as number
+        history = usagepool[gdSpirAdj].count
+        if (history = 0) then
+          @text = @text & "{br}-none-"
+          done
+          endif
+
+        ~iterate through all elements of the usage pool history and build a report
+        var i as number
+        var cnt as number
+        var form as string
+        for i = 0 to history - 1
+
+          ~get the adjustment for this history entry
+          cnt = usagepool[gdSpirAdj].history[i]
+          if (cnt > 0) then
+            form = "Damage: "
+          else
+            form = "Healed: "
+            cnt = -cnt
+            endif
+
+          ~append the history entry to the overall text being reported
+          @text = @text & "{br}" & form & cnt
+          next
+        ]]></mouseinfo>
+      </portal>
+
+    <position><![CDATA[
+      ~set up our height based on our title, a gap, and our tallest portal
+      height = portal[title].height + portal[health].height + 8
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~the title should span the full width
+      portal[title].width = width
+
+      ~position the tallest portal beneath the title
+      perform portal[health].alignrel[ttob,title,8]
+
+      ~center all non-text portals vertically on the health portal
+      perform portal[damage].centeron[vert,health]
+      perform portal[sustain].centeron[vert,health]
+      perform portal[heal].centeron[vert,health]
+      perform portal[undo].centeron[vert,health]
+      perform portal[reset].centeron[vert,health]
+      perform portal[info].centeron[vert,health]
+
+      ~align the smaller text portals to have the same baseline
+      perform portal[lblhealth].alignrel[btob,health,-4]
+      perform portal[lbldamage].alignrel[btob,health,-4]
+
+      ~position the current health portals on the left
+      portal[lblhealth].left = 35
+      perform portal[health].alignrel[ltor,lblhealth,10]
+
+      ~position the damage portals to the right of the current health
+      portal[lbldamage].left = 155
+      perform portal[damage].alignrel[ltor,lbldamage,10]
+
+      ~position the info portal on the far right
+      perform portal[info].alignedge[right,-25]
+
+      ~position the reset portal to the left of the info portal
+      perform portal[reset].alignrel[rtol,info,-10]
+
+      ~position the undo portal to the left of the reset portal
+      perform portal[undo].alignrel[rtol,reset,-10]
+
+      ~position the heal portal to the left of the undo portal
+      perform portal[heal].alignrel[rtol,undo,-20]
+
+      ~position the sustain portal to the left of the heal portal
+      perform portal[sustain].alignrel[rtol,heal,-10]
+
+      ~disable the sustain and heal portals if the current quantity is zero
+      if (field[gdSpirDmg].value = 0) then
+        portal[sustain].enable = 0
+        portal[heal].enable = 0
+        endif
+
+      ~disable the undo and reset portals if there is no history to undo
+      ~if (usagepool[gdSpirAdj].count = 0) then
+      ~  portal[undo].enable = 0
+      ~  portal[reset].enable = 0
+      ~  endif
+      ]]></position>
+
+    </template>
+	
+  <!-- gadget layout
+        
+  -->
+  <layout
+    id="gadgetform">
+    <portalref portal="gfImages" taborder="40"/>
+    <portalref portal="gfAttrib" taborder="50"/>
+    <portalref portal="gfSkills" taborder="60"/>
+    <portalref portal="gfPowers" taborder="70"/>
+    <portalref portal="gfDraw" taborder="80"/>
+    <templateref template="gfTitle" thing="GadgetInfo" taborder="10"/>
+    <templateref template="gfDetails" thing="GadgetInfo" taborder="20"/>
+    <templateref template="gfCost" thing="GadgetInfo" taborder="30"/>
+    <templateref template="gfRelNum" thing="GadgetInfo" taborder="40"/>
+    <templateref template="gfTaken" thing="GadgetInfo" taborder="50"/>
+    <templateref template="gfHardened" thing="GadgetInfo" taborder="60"/>
+    <templateref template="gfBody" thing="GadgetInfo" taborder="60"/>
+    <templateref template="gfMind" thing="GadgetInfo" taborder="60"/>
+    <templateref template="gfSpir" thing="GadgetInfo" taborder="60"/>
+
+    <!-- This script sizes and positions the layout and its child visual elements. -->
+    <position><![CDATA[
+      ~freeze our tables in advancement mode to disable adding new choices
+      ~Note: All freezing must be done *before* any positioning is performed.
+      if (state.iscreate = 0) then
+        portal[gfAttrib].freeze = 1
+        portal[gfSkills].freeze = 1
+        portal[gfPowers].freeze = 1
+        portal[gfDraw].freeze = 1
+        endif
+
+	  width = 500	
+      ~determine the vertical gap we want to use between tables
+      var gap as number
+      gap = 5
+
+      ~size all tables to span the full layout width
+      portal[gfAttrib].width = width 
+      portal[gfSkills].width = width 
+      portal[gfPowers].width = width  
+      portal[gfDraw].width = width 
+      template[gfBody].width = width 
+      template[gfMind].width = width 
+      template[gfSpir].width = width 
+
+      template[gfTitle].height = 25
+	  portal[gfImages].top = template[gfTitle].bottom + 5
+	  
+	  var hasbody as number
+	  var hasmind as number
+	  var hasspirit as number
+	  
+	  hasbody = container.tagis[Attribute.attrBod]
+	  hasmind = container.tagis[Attribute.attrMin]
+	  hasspirit = container.tagis[Attribute.attrSpi]
+ 	  
+	  template[gfBody].visible = hasbody
+	  template[gfMind].visible = hasmind
+	  template[gfSpir].visible = hasspirit
+	  
+	  ~we're always bootstrapping Body
+	  template[gfBody].top = portal[gfImages].bottom + gap
+	  
+
+
+	  
+	  template[gfCost].top = portal[gfImages].top
+	  template[gfCost].height = 30
+	  template[gfCost].left = portal[gfImages].right + gap
+	  
+	  template[gfRelNum].height = 25
+	  template[gfRelNum].left = portal[gfImages].right + gap
+	  template[gfRelNum].top = template[gfCost].bottom + (gap * 3)
+	  
+	  template[gfTaken].height = 25
+	  template[gfTaken].left = portal[gfImages].right + gap
+	  template[gfTaken].top = template[gfRelNum].bottom + (gap * 4)
+
+	  template[gfHardened].height = 25
+	  template[gfHardened].left = portal[gfImages].right + gap
+	  template[gfHardened].top = template[gfTaken].bottom + gap
+	  
+	  template[gfDetails].left = width - gap - template[gfDetails].width
+	  template[gfDetails].top = template[gfTitle].top + gap
+	 
+      ~position the powers table above the skills
+	  autotop = portal[gfImages].bottom + 10
+
+      ~since it's possible, even after using batchplace, for the form's
+      ~height to exceed the available height, we want to record what the autotop
+      ~was at this point, so we can re-use it later if we need to reset the
+      ~arrangement
+      var oldautotop as number
+      oldautotop = autotop
+
+	  perform template[gfBody].batchadd
+	  perform template[gfMind].batchadd
+      perform template[gfSpir].batchadd		  
+      perform portal[gfAttrib].batchadd      
+	  perform portal[gfPowers].batchadd
+      perform portal[gfSkills].batchadd
+      perform portal[gfDraw].batchadd
+
+
+      perform batchplace
+
+      ~if there wasn't actually enough space to show all those portals, then
+      ~we reset our autotop, and then set the height to a really large number.
+      ~then, re-do the batchplace with that new larger amount of space.  The
+      ~result will be a scrollbar for the whole form, and no scrollbars on the
+      ~individual tables
+      if (autotop > autobottom) then
+        autotop = oldautotop
+
+        height = 10000
+        autobottom = 10000
+
+	  perform template[gfBody].batchadd
+	  perform template[gfMind].batchadd
+      perform template[gfSpir].batchadd		  
+      perform portal[gfAttrib].batchadd      
+	  perform portal[gfPowers].batchadd
+      perform portal[gfSkills].batchadd
+      perform portal[gfDraw].batchadd
+
+
+        perform batchplace
+        endif
+
+      height = autotop
+      ]]></position>
+
+    </layout>
+
+
+  <!-- gadget form
+        This is the "config" form shown to configure a new character within Hero
+        Lab.
+
+        NOTE! The unique id of this form is specially recognized by Hero Lab as
+        the form to be used for character configuration. A form with this id is
+        required within your data files.
+  -->
+  
+    <form
+    id="gadget"
+    name="Gadget"
+	entity="entGadget"
+    marginhorz="10"
+    marginvert="5">
+    <layoutref layout="gadgetform"/>
+    <position><![CDATA[
+      layout[gadgetform].width = 480
+      perform layout[gadgetform].render
+      width = layout[gadgetform].width
+      height = layout[gadgetform].height
+      ]]></position>
+    </form>
+	
+
+
+
+  </document>

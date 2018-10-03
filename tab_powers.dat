@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains the definition of the "powers" tab panel. This tab is where
+      the user selects the special powers for the character.
+
+      All public visual elements used with this tab panel start with the prefix "ab"
+      to associate them with the tab.
+-->
+
+<document signature="Hero Lab Data">
+
+
+  <!-- pwPower portal
+        Presents a dynamic table where the user can add special powers for the
+        character.
+
+        We use the "SimpleItem" template for selecting the special powers, since
+        all we need is basic information. We use a custom template for showing the
+        selected powers to highlight auto-added picks based on race selections.
+        In conjunction with this, the "fixedlast" attribute forces all non-deletable
+        picks (i.e. those that are auto-added) to be shown at the bottom of the list.
+
+        We use an "additem" script to highlight whether more powers need to be
+        selected. This requires that we specify the "addthing" referenced in the
+        script, which is the resource for tracking powers.
+
+        We use a "candidate" tag expression to limit the choices the user can make.
+        If omitted, all things derived from the "Power" component will be shown
+        to the user for selection. Using this tagexpr allows us to omit all powers
+        that have the "Hide.Power" tag. For example, the Flight Power needs to
+        behave as a normal Power, but we only want it available to characters that
+        select the "Avian" race. By assigning it the "Hide.Power" tag and using
+        the candidate tagexpr to omit those powers, Flight cannot be chosen by
+        non-Avian characters but it will also appear in the selected list if the
+        character choosed the Avian race.
+
+        We use a "titlebar" script to replace the default title on the choose form
+        with something more useful. Just like we did on the title portal above, we
+        include the summary information as helpful feedback to the user.
+
+        We use a "description" script to generate the appropriate information for
+        display to the user as a description when choosing special powers. We
+        call a general procedure for the game system for this purpose.
+
+        We use a "headertitle" script to place a suitable title above the table.
+        The title includes an indication of how many selections have been chosen
+        and how many remain, with appropriate color highlighting to prompt the user.
+  -->
+  <portal
+    id="pwPower"
+    style="tblNormal">
+    <table_dynamic
+      component="Power"
+      showtemplate="pwPick"
+      choosetemplate="pwChoice"
+      showfixedlast="yes"
+	  showsortset="PowerSort"
+	  choosesortset="PowerSort"
+      addpick="resHP">
+      <candidate>!Hide.Power</candidate>
+      <titlebar><![CDATA[
+        @text = "Add a Power - " & hero.child[resHP].field[resShort].text
+        ]]></titlebar>
+      <description/>
+      <headertitle><![CDATA[
+        @text = "Power: " & hero.child[resHP].field[resShort].text
+        ]]></headertitle>
+      <additem><![CDATA[
+        ~if we're in advancement mode, we've been frozen, so display accordingly
+        if (state.iscreate = 0) then
+          @text = "{text clrgrey}Add Powers Via Advances Tab"
+          done
+          endif
+
+        ~set the color based on whether the proper number of slots are allocated
+        if (#resleft[resHP] = 0) then
+          @text = "{text clrgrey}"
+        elseif (#resleft[resHP] < 0) then
+          @text = "{text clrwarning}"
+          endif
+        @text &= "Add New Power"
+        ]]></additem>
+      </table_dynamic>
+    </portal>
+
+
+  <!-- pwPick template
+        Displays the name of the pick/thing and an info button with the basic
+        description text. This is basically the "SimpleItem" template, with one
+        key difference. Auto-added powers such as those conferred by races are
+        sorted and colored differently to distinguish their nature.
+  -->
+   <template
+    id="pwPick"
+    name="Power Pick"
+    compset="Power"
+    marginhorz="5"
+    marginvert="3">
+
+    <portal
+      id="name"
+      style="lblLeft"
+      showinvalid="yes">
+      <label
+        field="name"
+	    ismultiline="yes">
+        </label>
+      </portal>
+
+    <portal
+      id="value"
+      style="incrSimple">
+      <incrementer
+        field="trtUser">
+        </incrementer>
+      <mouseinfo><![CDATA[
+        if (hero.tagis[mode.creation] = 0) then
+          @text = "Skills must be modified via the Advances tab once the character is locked for play."
+        elseif (autonomous = 0) then
+          @text = "This trait has been improved via the Advances tab and cannot be modified further from here."
+        else
+          @text = "Allocate points to this skill by clicking on the arrows to increase/decrease the number of points assigned."
+          endif
+        ]]></mouseinfo>
+      </portal>
+	  
+	  <portal
+      id="total"
+      style="lblXLarge"
+      showinvalid="yes">
+      <label
+        field="trtFinal">
+        </label>
+      </portal> 
+
+	<portal
+	  id="edit"
+	  style="actEdit"
+	  tiptext="Edit Bonuses/Limitations">
+	  <action
+		action="edit"
+		buttontext="">
+		</action>
+	  </portal>	 
+
+    <portal
+      id="sub"
+      style="lblSecond"
+      showinvalid="yes">
+      <label
+		ismultiline="yes">
+		<labeltext><![CDATA[
+			var kids as number
+			var x as number
+			var bonus as string
+			var limit as string
+			x = 0
+			@text = "{text clrdisable}"
+			if (isgizmo <> 0) then
+				kids = gizmo.tagcount[Bonus.?]
+				if (kids > 0) then
+					foreach pick in gizmo from Bonus
+						x += 1
+						bonus &= eachpick.livename
+						if (x < kids) then
+							bonus &= ", "
+						endif
+					nexteach
+				endif
+			endif
+			x = 0
+			if (isgizmo <> 0) then
+				kids = gizmo.tagcount[Limitation.?]
+				if (kids > 0) then
+					foreach pick in gizmo from Limitation
+						x += 1
+						limit &= eachpick.livename
+						if (x < kids) then
+							limit &= ", "
+						endif
+					nexteach
+				endif
+			endif
+			if (length(bonus) >= 1) then
+				@text &= "Bonuses: " & bonus 
+			endif
+			if (length(limit) >= 1) then
+				@text &= "{br}Limitations: " & limit 
+			endif
+		]]></labeltext>
+	  </label>
+    </portal>
+
+    <portal
+      id="checkbox"
+      style="chkNormal">
+      <checkbox
+        field="usrIsCheck"
+        dynamicfield="usrChkText">
+        </checkbox>
+      </portal>
+
+    <portal
+      id="lblmenu1"
+      style="lblSecond">
+      <label
+        field="usrLabel1">
+        </label>
+      </portal>
+
+    <portal
+      id="lblmenu2"
+      style="lblSecond">
+      <label
+        field="usrLabel2">
+        </label>
+      </portal>
+
+    <portal
+      id="menu1"
+      style="menuNormal">
+      <menu_things
+        field="usrChosen1"
+        component="none"
+        maxvisible="10"
+        usepicksfield="usrSource1"
+        candidatefield="usrCandid1">
+        </menu_things>
+      </portal>
+
+    <portal
+      id="menu2"
+      style="menuNormal">
+      <menu_things
+        field="usrChosen2"
+        component="none"
+        maxvisible="10"
+        usepicksfield="usrSource2"
+        candidatefield="usrCandid2">
+        </menu_things>
+      </portal>
+
+    <portal
+      id="lblmenuar"
+      style="lblSecond">
+      <label
+        field="usrLabelAr">
+        </label>
+      </portal>
+
+    <portal
+      id="menuarray"
+      style="menuNormal">
+      <menu_array
+        field="usrSelect"
+        array="usrArray"
+        maxvisible="10">
+        </menu_array>
+      </portal>
+
+    <portal
+      id="domain"
+      style="editNormal">
+      <edit
+        field="domDomain"
+		placeholdertext="Details">
+        </edit>
+      </portal>	
+
+	<portal
+      id="username"
+      style="editNormal">
+      <edit
+        field="UserName"
+		placeholdertext="Enter custom subskill">
+        </edit>
+      </portal>		  
+	  
+    <portal
+      id="info"
+      style="actInfo">
+      <action
+        action="info">
+        </action>
+      </portal>
+	  
+    <portal
+      id="delete"
+      style="actDelete"
+      tiptext="Click to delete this item">
+      <action
+        action="delete">
+        </action>
+      </portal>	  
+
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[sub].height + 55
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~freeze our value in advancement mode or if an advancement has modified us
+      ~Note: All freezing must be done *before* any positioning is performed.
+      if (state.iscreate = 0) then
+        portal[value].freeze = 1
+      elseif (autonomous = 0) then
+        portal[value].freeze = 1
+        endif
+
+      ~position our tallest portal at the top
+      portal[info].top = 0
+      portal[edit].top = 0
+      portal[name].top = 0
+      portal[total].top = 0
+
+      portal[lblmenu1].top = 0
+      portal[menu1].top = 0
+      portal[lblmenu2].top = 0
+      portal[menu2].top = 0
+      portal[lblmenuar].top = 0
+      portal[menuarray].top = 0
+      portal[domain].top = 0	 	  
+      portal[username].top = 0	
+
+	  portal[name].height = 50
+
+      ~determine whether our portals are visible; we only show them if requested
+      ~Note: Remember that a non-empty tagexpr field indicates menu selection is used.
+
+      if (field[usrCandid1].isempty <> 0) then
+        portal[lblmenu1].visible = 0
+        portal[menu1].visible = 0
+      elseif (field[usrLabel1].isempty <> 0) then
+        portal[lblmenu1].visible = 0
+        endif
+      if (field[usrCandid2].isempty <> 0) then
+        portal[lblmenu2].visible = 0
+        portal[menu2].visible = 0
+      elseif (field[usrLabel2].isempty <> 0) then
+        portal[lblmenu2].visible = 0
+        endif
+      if (empty(field[usrArray].arraytext[0]) <> 0) then
+        portal[lblmenuar].visible = 0
+        portal[menuarray].visible = 0
+      elseif (field[usrLabelAr].isempty <> 0) then
+        portal[lblmenuar].visible = 0
+        endif
+	  if (field[usrChkText].isempty <> 0) then
+        portal[checkbox].visible = 0
+        endif	
+	  
+	  
+      ~position the delete portal on the far right and the info portal next to it
+      perform portal[delete].alignedge[right,0]
+      perform portal[info].alignrel[rtol,delete,-5]
+      perform portal[edit].alignrel[rtol,info,-5]
+ 
+
+      ~determine our effective right edge, allowing for the buttons above
+      var edge as number
+      edge = portal[edit].left - 5
+	  
+      ~setup the default portal width and gap to be used between and around portals
+      var defwidth as number
+      var gap as number
+      defwidth = 100
+      gap = 10
+
+      ~determine the minimum amount of space we need to reserve for our portals
+      var reserve as number
+      if (portal[checkbox].visible <> 0) then
+        reserve = defwidth
+      elseif (portal[menuarray].visible <> 0) then
+        reserve = portal[lblmenuar].width * portal[lblmenuar].visible
+        reserve += defwidth + gap
+      elseif (portal[menu1].visible <> 0) then
+        reserve = portal[lblmenu1].width * portal[lblmenu1].visible
+        reserve += defwidth + gap
+        reserve += portal[lblmenu2].width * portal[menu2].visible
+        reserve += (defwidth + gap) * portal[menu2].visible
+        endif
+
+      ~position the name on the left, reserving our minimum space for any portals
+      var x as number
+      portal[name].left = 0
+      ~portal[name].width = minimum(portal[name].width,edge - portal[name].left - reserve)
+      portal[name].width = 100
+      x = portal[name].right + gap
+
+	  ~position the value
+	  portal[value].left = x
+	  x = portal[value].right + gap
+
+	  ~position the total
+	  portal[total].left = x + 10
+	  x = portal[total].right + gap
+	  
+	  ~if we're a custom item, show the edit portal over the name
+	  if (tagis[Helper.CustomItem] <> 0) then
+		portal[username].left = portal[name].left
+		portal[username].width = minimum(165,edge - portal[name].left - reserve)
+		portal[name].visible = 0
+	  else
+		portal[username].visible = 0
+	  endif
+	  
+      ~setup the maximum width for our some portals, regardless of space available
+      var maxwidth as number
+	  maxwidth = 180
+	  if (tagis[User.NeedDomain] <> 0) then
+		maxwidth -= 90
+	  endif
+      
+	  ~if we have a checkbox, size and position it appropriately
+      if (portal[checkbox].visible <> 0) then
+        portal[checkbox].left = x
+		x = portal[checkbox].right + 4
+      ~if we have a thing-based menu and an array-based menu, size and position them appropriately
+      elseif (portal[menu1].visible + portal[menuarray].visible > 1) then
+        if (portal[lblmenu1].visible <> 0) then
+          portal[lblmenu1].left = x
+          x = portal[lblmenu1].right + 4
+          endif
+        portal[menu1].left = x
+        var extra as number
+        extra = (portal[lblmenu2].width + 4) * portal[lblmenu2].visible
+        var actual as number
+        actual = (edge - portal[menu1].left - extra - gap) / 2
+        portal[menu1].width = minimum(actual,maxwidth)
+        portal[menu2].width = portal[menu1].width
+        x = portal[menu1].right + gap
+        if (portal[lblmenuar].visible <> 0) then
+          portal[lblmenuar].left = x
+          x = portal[lblmenuar].right + 4
+          endif
+        portal[menuarray].left = x
+		x = portal[menuarray].right + 4		
+      ~if we have an array-based menu, size and position it appropriately
+      elseif (portal[menuarray].visible <> 0) then
+        if (portal[lblmenuar].visible <> 0) then
+          portal[lblmenuar].left = x
+          x = portal[lblmenuar].right + 4
+          endif
+        portal[menuarray].left = x
+        portal[menuarray].width = maxwidth
+		x = portal[menuarray].right + 4
+      ~if we have one thing-based menu, size and position it appropriately
+      elseif (portal[menu1].visible + portal[menu2].visible = 1) then
+        if (portal[lblmenu1].visible <> 0) then
+          portal[lblmenu1].left = x
+          x = portal[lblmenu1].right + 4
+          endif
+        portal[menu1].left = x
+        portal[menu1].width = minimum(edge - portal[menu1].left,maxwidth)
+		x = portal[menu1].right + 4
+      ~if we have two thing-based menus, size and position them appropriately
+      elseif (portal[menu1].visible <> 0) then
+        if (portal[lblmenu1].visible <> 0) then
+          portal[lblmenu1].left = x
+          x = portal[lblmenu1].right + 4
+          endif
+        portal[menu1].left = x
+        var extra as number
+        extra = (portal[lblmenu2].width + 4) * portal[lblmenu2].visible
+        var actual as number
+        actual = (edge - portal[menu1].left - extra - gap) / 2
+        portal[menu1].width = minimum(actual,maxwidth)
+        portal[menu2].width = portal[menu1].width
+        x = portal[menu1].right + gap
+        if (portal[lblmenu2].visible <> 0) then
+          portal[lblmenu2].left = x
+          x = portal[lblmenu2].right + 4
+          endif
+        portal[menu2].left = x
+		x = portal[menu2].right + 4
+        endif
+
+	  ~if we don't need a domain, hide it
+      if (tagis[User.NeedDomain] = 0) then
+        portal[domain].visible = 0	
+	        ~otherwise, position the domain portals next to the value
+			~RDS altered to make the name portal invivisible and shift the domain to the name position 
+			~    to use it as a custom Skill name when a Custom Skill is chosen
+      else
+		portal[domain].left = portal[value].right + 5 
+		portal[domain].width = minimum(160,portal[info].left - portal[domain].left - 5)		 
+	  endif			
+		
+      ~if a menu is visible, make sure it has a selection
+      if (portal[menu1].visible <> 0) then
+        if (field[usrChosen1].ischosen = 0) then
+          perform portal[menu1].setstyle[menuError]
+          endif
+        endif
+      if (portal[menu2].visible <> 0) then
+        if (field[usrChosen2].ischosen = 0) then
+          perform portal[menu2].setstyle[menuError]
+          endif
+        endif
+      if (portal[menuarray].visible <> 0) then
+        if (field[usrSelect].isempty <> 0) then
+          perform portal[menuarray].setstyle[menuError]
+          endif
+        endif
+      ~if the ability is auto-added, change its font to indicate that fact
+      if (candelete = 0) then
+        perform portal[name].setstyle[lblAuto]
+        endif
+ 	  
+	  ~position the subskill portal beside the edit
+	  portal[sub].top = portal[value].bottom + 5
+	  portal[sub].left = portal[value].left
+	  portal[sub].width = portal[edit].left - portal[sub].left - 5
+	  portal[sub].height = height
+
+	
+	 ]]></position>
+
+    </template>
+
+	<!-- pwChoice template
+        Displays the name of the pick/thing and an info button with the basic
+        description text. This is basically the "SimpleItem" template, with one
+        key difference. Auto-added powers such as those conferred by races are
+        sorted and colored differently to distinguish their nature.
+  -->
+   <template
+    id="pwChoice"
+    name="Power Choice"
+    compset="Power"
+    marginhorz="1"
+    marginvert="3">
+
+    <portal
+      id="name"
+      style="lblLeft"
+      showinvalid="yes">
+      <label>
+		<labeltext><![CDATA[
+			@text = "{size 30} " & field[name].text
+		]]></labeltext>
+        </label>
+      </portal>
+
+	 <portal
+      id="type"
+      style="lblSecond">
+      <label>
+        <labeltext><![CDATA[
+		  @text = "{size 30} " & tagnames[PowerType.?]
+		]]></labeltext>
+        </label>
+      </portal> 
+	  
+    <position><![CDATA[
+      ~set up our height based on our tallest portal
+      height = portal[name].height
+
+      ~if this is a "sizing" calculation, we're done
+      doneif (issizing <> 0)
+
+      ~center the other portals vertically
+      portal[type].top = 0
+
+	  ~position the delete portal on the far right
+	  perform portal[type].alignedge[right,0]
+	  
+      ~position the name on the left and make sure its width does not exceed the available space
+      portal[name].left = 0
+      portal[name].width = maximum(portal[name].width,110)
+
+	 ]]></position>
+
+    </template>
+
+
+  <!-- powers layout
+        This layout orchestrates the display of the visual elements that comprise
+        the powers tab. This amounts to a title at the top and a dynamic table
+        below where the user can add the special powers he wants.
+
+        The logic for this layout is similar to (albeit much simpler than) the
+        logic for the Basics tab. So please refer to the Basics tab for more details.
+  -->
+  <layout
+    id="powers">
+    <portalref portal="pwPower" taborder="10"/>
+
+    <!-- This script sizes and positions the layout and its child visual elements. -->
+    <position><![CDATA[
+      ~freeze our table in advancement mode to disable adding new choices
+      ~Note: All freezing must be done *before* any positioning is performed.
+      if (state.iscreate = 0) then
+        portal[pwPower].freeze = 1
+        endif
+
+      ~position and size the table to span the full layout; it will only use the
+      ~vertical space that it actually needs
+      perform portal[pwPower].autoplace
+      ]]></position>
+
+    </layout>
+
+
+  <!-- powers panel
+        This is the "powers" panel shown within Hero Lab. Since we want this
+        panel to appear after Basics and within the traits grouping, we assign it
+        an "order" of 120.
+
+        The logic for this panel is similar to the logic for the Basics panel, so
+        please refer to the Basics panel for more details.
+  -->
+  <panel
+    id="powers"
+    name="Powers"
+    marginhorz="5"
+    marginvert="5"
+    order="130">
+    <live>!HideTab.powers</live>
+    <layoutref layout="powers"/>
+    <position><![CDATA[
+      ]]></position>
+    </panel>
+  </document>

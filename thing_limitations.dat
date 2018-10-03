@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- This file contains the assortment of subskills for the game system. Note that each
+      skill is linked to an associated attribute for the character. This linkage allows
+      the value of the skill to easily incorporate the effects of the linked attribute
+      via a script on the component.
+-->
+
+<document signature="Hero Lab Data">
+  <!-- Affects Non-Living Only  -->
+  <thing
+    id="bonNonLiv"
+    name="Affects Non-living Only"
+    compset="Limitation"
+    isunique="yes"
+    description="Description goes here">
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="affect any sized area"/>
+    -->	
+	
+	<tag group="FCMod" tag="1"/>
+	<tag group="OnPower" tag="Any"/>
+	
+    <!-- Each Bonus must be costed to account for the HP multiplier 
+    <eval index="1" phase="Traits" priority="100">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+
+      ~adjust the resource appropriately
+	  var mod as number
+	  
+	  mod = tagvalue[FCMod.?]
+	  if (field[usrIsCheck].value <> 0) then
+		mod += 1
+		perform delete[FCMod.?]
+		perform assignstr["FCMod." & mod]
+	  endif
+	
+      ]]></eval>
+	  -->
+    </thing>
+	
+	
+  <!-- Diminishing  -->
+  <thing
+    id="bonDimin"
+    name="Diminishing"
+    compset="Limitation"
+    isunique="yes"
+    description="Description goes here">
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="affect any sized area"/>
+    -->	
+	
+	<tag group="FCMod" tag="1"/>
+	<tag group="OnPower" tag="Any"/>
+	
+    <!-- Each Bonus must be costed to account for the HP multiplier 
+    <eval index="1" phase="Traits" priority="100">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+
+      ~adjust the resource appropriately
+	  var mod as number
+	  
+	  mod = tagvalue[FCMod.?]
+	  if (field[usrIsCheck].value <> 0) then
+		mod += 1
+		perform delete[FCMod.?]
+		perform assignstr["FCMod." & mod]
+	  endif
+	
+      ]]></eval>
+	  -->
+    </thing>
+
+   <!-- Lethal -->
+  <thing
+    id="bonLethal"
+    name="Lethal"
+    compset="Limitation"
+    isunique="yes"
+    description="Description goes here">
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="affect any sized area"/>
+    -->	
+	
+	<tag group="FCMod" tag="1"/>
+	<tag group="OnPower" tag="Any"/>
+	
+    <!-- Each Bonus must be costed to account for the HP multiplier 
+    <eval index="1" phase="Traits" priority="100">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+
+      ~adjust the resource appropriately
+	  var mod as number
+	  
+	  mod = tagvalue[FCMod.?]
+	  if (field[usrIsCheck].value <> 0) then
+		mod += 1
+		perform delete[FCMod.?]
+		perform assignstr["FCMod." & mod]
+	  endif
+	
+      ]]></eval>
+	  -->
+    </thing>
+
+  <!-- Fatiguing -->
+  <thing
+    id="bonFatig"
+    name="Fatiguing"
+    compset="Limitation"
+    isunique="yes"
+    description="Description goes here">
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="affect any sized area"/>
+    -->	
+	
+	<tag group="FCMod" tag="2"/>
+	<tag group="OnPower" tag="Any"/>
+	
+    <!-- Each Bonus must be costed to account for the HP multiplier 
+    <eval index="1" phase="Traits" priority="100">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+
+      ~adjust the resource appropriately
+	  var mod as number
+	  
+	  mod = tagvalue[FCMod.?]
+	  if (field[usrIsCheck].value <> 0) then
+		mod += 1
+		perform delete[FCMod.?]
+		perform assignstr["FCMod." & mod]
+	  endif
+	
+      ]]></eval>
+	  -->
+    </thing>
+
+  <!-- No Range -->
+  <thing
+    id="bonNoRang"
+    name="No Range"
+    compset="Limitation"
+    isunique="yes"
+    description="Description goes here">
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="affect any sized area"/>
+    -->	
+	
+	<tag group="FCMod" tag="1"/>
+	<tag group="OnPower" tag="Any"/>
+	
+    <!-- Each Bonus must be costed to account for the HP multiplier 
+    <eval index="1" phase="Traits" priority="100">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+
+      ~adjust the resource appropriately
+	  var mod as number
+	  
+	  mod = tagvalue[FCMod.?]
+	  if (field[usrIsCheck].value <> 0) then
+		mod += 1
+		perform delete[FCMod.?]
+		perform assignstr["FCMod." & mod]
+	  endif
+	
+      ]]></eval>
+	  -->
+    </thing>
+
+  <!-- Power Always On -->
+  <thing
+    id="bonAlways"
+    name="Power Always On"
+    compset="Limitation"
+    isunique="yes"
+    description="Description goes here">
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="affect any sized area"/>
+    -->	
+	
+	<tag group="FCMod" tag="1"/>
+	<tag group="OnPower" tag="Any"/>
+	
+    <!-- Each Bonus must be costed to account for the HP multiplier 
+    <eval index="1" phase="Traits" priority="100">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+
+      ~adjust the resource appropriately
+	  var mod as number
+	  
+	  mod = tagvalue[FCMod.?]
+	  if (field[usrIsCheck].value <> 0) then
+		mod += 1
+		perform delete[FCMod.?]
+		perform assignstr["FCMod." & mod]
+	  endif
+	
+      ]]></eval>
+	  -->
+    </thing>
+
+  <!-- Power Burnout -->
+  <thing
+    id="bonPower"
+    name="Power Burnout"
+    compset="Limitation"
+    isunique="yes"
+    description="Description goes here">
+	
+	<arrayval field="usrArray" index="0" value="Minor"/>
+	<arrayval field="usrArray" index="1" value="Serious"/>
+	<arrayval field="usrArray" index="2" value="Catastrophic"/>
+	
+	<tag group="FCMod" tag="1"/>
+	<tag group="OnPower" tag="Any"/>
+	
+    <!-- Each Bonus must be costed to account for the HP multiplier -->
+    <eval index="1" phase="Traits" priority="1500">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+
+      ~adjust the resource appropriately
+	  var mod as number
+	  if (compare(field[usrSelect].text,field[usrArray].arraytext[0]) = 0) then
+	  	  mod = 1
+	  elseif (compare(field[usrSelect].text,field[usrArray].arraytext[1]) = 0) then	
+		  mod = 2
+      elseif (compare(field[usrSelect].text,field[usrArray].arraytext[2]) = 0) then	
+		  mod = 3
+	  endif
+	  perform delete[FCMod.?]
+	  perform assignstr["FCMod." & mod]
+	  
+	
+      ]]></eval>
+	 
+    </thing>
+	
+  <!-- Miscellaneous Bonus -->
+  <thing
+    id="limMisc"
+    name="Miscellaneous Limitation"
+    compset="Limitation"
+    isunique="yes"
+    description="Description goes here.">
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="affect any sized area"/>
+    -->	
+	
+	<tag group="FCMod" tag="1"/>
+	<tag group="OnPower" tag="Any"/>
+	<tag group="User" tag="NeedDomain"/>
+	
+    <!-- Each Bonus must be costed to account for the HP multiplier 
+    <eval index="1" phase="Traits" priority="100">
+      <before name="Calc resLeft"/>
+      <after name="Bound trtUser"/><![CDATA[
+
+      ~adjust the resource appropriately
+	  var mod as number
+	  
+	  mod = tagvalue[FCMod.?]
+	  if (field[usrIsCheck].value <> 0) then
+		mod += 1
+		perform delete[FCMod.?]
+		perform assignstr["FCMod." & mod]
+	  endif
+	
+      ]]></eval>	
+	  -->
+    </thing>	
+	
+  </document>
