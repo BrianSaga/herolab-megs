@@ -641,4 +641,186 @@
     </thing>
 
 
+  <!-- Insta-Change -->
+  <thing
+    id="adInsta"
+    name="Insta-Change"
+    compset="Advantage"
+    isunique="yes"
+    description="">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Area Size"/>
+    <arrayval field="usrArray" index="0" value="Neighborhood"/>   
+    -->
+	
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Advantage"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+	
+	<!-- All non-variable cost items should have this tag -->
+	<tag group="HPCost" tag="5"/>
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated Advantages)
+      doneif (field[pwActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+	
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing> 
+
+	<!-- Intensive Training  -->
+  <thing
+    id="adIntens"
+    name="Intensive Training"
+    compset="Advantage"
+    isunique="yes"
+    description="">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Area Size"/>
+    <arrayval field="usrArray" index="0" value="Neighborhood"/>   
+    -->
+	
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Advantage"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+	
+	<!-- All non-variable cost items should have this tag -->
+	<tag group="HPCost" tag="20"/>
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated Advantages)
+      doneif (field[pwActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+	
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
+	
+  <!-- Leadership   -->
+  <thing
+    id="adLeader"
+    name="Leadership"
+    compset="Advantage"
+    isunique="yes"
+    description="">
+
+    <!-- If checkbox selection is needed, make sure the compset includes "UserSelect"
+          component and define this field appropriately.
+    <fieldval field="usrChkText" value="Menu1"/>
+    -->
+
+    <!-- If thing-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields and tags as appropriate.
+    <fieldval field="usrLabel1" value="Menu1"/>
+    <fieldval field="usrCandid1" value="component.Attribute"/>
+    <fieldval field="usrLabel2" value="Menu2"/>
+    <fieldval field="usrCandid2" value="component.Skill"/>
+    <tag group="ChooseSrc1" tag="Hero"/>
+    <tag group="ChooseSrc2" tag="Thing"/>
+    -->
+
+    <!-- If array-based menu selection is needed, make sure the compset includes
+          "UserSelect" component and define these fields as appropriate.
+    <fieldval field="usrLabelAr" value="Area Size"/>
+    <arrayval field="usrArray" index="0" value="Neighborhood"/>   
+    -->
+	
+    <!-- If the ability can only be selected at character creation, assign this tag
+    <tag group="User" tag="CreateOnly"/>
+    -->
+
+    <!-- If the ability should not appear for normal selection, assign this tag
+    <tag group="Hide" tag="Advantage"/>
+    -->
+
+    <!-- If the ability can be activated by the user to apply its effects, assign this tag
+    <tag group="User" tag="Activation"/>
+    -->
+	
+	<!-- All non-variable cost items should have this tag -->
+	<tag group="HPCost" tag="25"/>
+
+    <!-- Define any script needed to apply changes to other traits
+    <eval value="1" phase="PreTraits" priority="5000">
+      <before name="Calc trtFinal"/><![CDATA[
+      ~if we haven't been activated, just get out (only needed for user-activated Advantages)
+      doneif (field[pwActive].value = 0)
+
+      ~apply whatever adjustment(s) are needed here
+      ~#traitbonus[trDefense] += 1
+      ]]></eval>
+    -->
+	
+    <!-- Define any appropriate pre-requisites for the ability
+    <exprreq iserror="yes" message="Strength 5 required."><![CDATA[#trait[attrStr] >= 5]]></exprreq>
+    -->
+
+    </thing>
   </document>

@@ -213,7 +213,6 @@
   <component
     id="Skill"
     name="Skill"
-	addbehavior="never"
     autocompset="no">
 	
     <field
@@ -402,7 +401,6 @@
   <component
     id="Power"
     name="Power"
-	addbehavior="never"	
     autocompset="no">
 
     <!-- Activation state of ability - we're not activated by default -->
@@ -468,7 +466,12 @@
 	  basecost = tagvalue[BaseCost.?]
 	   
 	  fc = tagvalue[FactorCost.?]
-  
+	  
+	 ~take intensive training into account
+	  if (hero.tagis[Advantage.adIntens] <> 0) then
+		fc += 2
+	  endif	
+	  
 	  ~fc cannot be less than 1
 	   if (fc < 1) then
 		fc = 1
@@ -567,17 +570,22 @@
 	  var fc as number
 	  fc = tagvalue[FactorCost.?]
 	  fc -= 2
-	  if (fc < 1) then
-		fc = 1
-	  endif
 	  if (field[lnkLinked].value <> 0) then
 		if (islinkage[powAttr] <> 0) then
 			field[trtFinal].value = linkage[powAttr].field[trtFinal].value
 		elseif (islinkage[skillAttr] <> 0) then
-			field[trtFinal].value = linkage[skillAttr].field[trtFinal].value	
+			field[trtFinal].value = linkage[skillAttr].field[trtFinal].value
+			  ~take intensive training into account
+			  if (hero.tagis[Advantage.adIntens] <> 0) then
+				fc -= 2
+			  endif			
 		endif
 		field[livename].text = field[name].text & " {super}L{/super}"
 		perform delete[FactorCost.?]
+		
+		if (fc < 1) then
+			fc = 1
+		endif
 		perform assignstr["FactorCost." & fc]
 	  endif
       ]]></eval>

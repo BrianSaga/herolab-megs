@@ -408,7 +408,6 @@
 	endif
 
 	if (tagis[Type.?] <> 0) then
-		
 		iteminfo &= "{br}{b}Type:{/b} " & tagnames[Type.?]
 	endif
 
@@ -437,6 +436,7 @@
     var iteminfo as string
 	var offset as number
 	var adjfc as number
+	var actfc as number
 	var kids as number
 	
 	if (islinkage[skillAttr] <> 0) then
@@ -448,7 +448,6 @@
 	endif
 
 	if (tagis[Type.?] <> 0) then
-		
 		iteminfo &= "{br}{b}Type:{/b} " & tagnames[Type.?]
 	endif
 
@@ -459,7 +458,9 @@
 	
 	adjfc = field[sklFC].value
 	if (tagis[FactorCost.?] <> 0) then
+		actfc = tagvalue[FactorCost.?]
 		iteminfo &= "{br}{b}Factor Cost:{/b} " & adjfc & " (all subskills chosen)"
+		iteminfo &= "{br}{b}Adjusted Factor Cost:{/b} " & actfc 
 	endif
 	iteminfo &= "{br}"
 	]]></procedure>
